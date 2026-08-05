@@ -3,9 +3,9 @@ export type LocaleLinks = Partial<Record<Locale, string>>;
 
 export const ui = {
   ko: {
-    home: '홈',
-    articles: '글',
-    about: '소개',
+    home: 'Home',
+    articles: 'Articles',
+    about: 'About',
     mainNav: '주요 메뉴',
     homeAria: 'Gemini Kim 홈',
     skip: '본문으로 건너뛰기',

@@ -50,6 +50,17 @@ includes(
 excludes('dist/ko/index.html', 'http-equiv="refresh"', 'Korean home is content, not a redirect');
 
 includes('dist/index.html', 'href="/articles/">Articles</a>', 'English navigation labels the archive Articles');
+includes(
+  'dist/ko/index.html',
+  'href="/ko/" class="active" aria-current="page">Home</a>',
+  'Korean navigation uses the shared Home label',
+);
+includes(
+  'dist/ko/index.html',
+  'href="/ko/articles/">Articles</a>',
+  'Korean navigation uses the shared Articles label',
+);
+includes('dist/ko/index.html', 'href="/ko/about/">About</a>', 'Korean navigation uses the shared About label');
 includes('dist/articles/index.html', '<h1>Articles</h1>', 'English archive heading');
 includes('dist/articles/hello-world/index.html', '<html lang="en">', 'Default article is English');
 includes(
@@ -78,6 +89,8 @@ includes(
   '<meta property="og:title" content="Articles — Gemini Kim">',
   'Korean archive Open Graph title is English',
 );
+excludes('dist/about/index.html', 'What I write about', 'English about does not limit future article topics');
+excludes('dist/ko/about/index.html', '이 블로그에 쓰는 것', 'Korean about does not limit future article topics');
 
 for (const [path, label] of [
   ['dist/posts', 'Removed English posts routes'],
