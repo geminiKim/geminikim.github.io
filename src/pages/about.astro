@@ -6,37 +6,71 @@ const alternates = { en: '/about/', ko: '/ko/about/' };
 
 <BaseLayout
   title="About"
-  description="About software engineer and writer Gemini Kim."
+  description="Gemini Kim is a software engineer and writer focused on operable software, sound judgment, and systems others can carry forward."
   locale="en"
   alternates={alternates}
 >
   <section class="page-header page-shell about-header">
     <p class="section-kicker">About</p>
-    <h1>Hello.<br />I’m Gemini Kim.</h1>
-    <p>I build, operate, and write about software.</p>
+    <h1>I build software<br />others can carry forward.</h1>
+    <p>
+      I’m Gemini Kim, a software engineer and writer. I care about what happens after code is written: who
+      operates it, how it changes, and what the next person needs to understand.
+    </p>
   </section>
 
   <section class="about-grid page-shell">
     <div class="about-label">How I work</div>
     <div class="about-copy prose">
       <p>
-        I start with the real user and business problem. Within current constraints, I prefer simple,
-        reversible choices and validate them through tests, measurement, and operation.
+        My work has ranged from firmware and systems integration to consumer services, legacy modernization,
+        and engineering leadership. The technologies changed, but the job kept widening: implement features,
+        follow operational problems to the end, explain technical trade-offs in business terms, and leave
+        useful context for the team.
+      </p>
+
+      <h2>How I decide</h2>
+      <p>
+        I start by asking who has the problem and why it matters. Before choosing an architecture, I look at
+        the current scale, team, schedule, cost of failure, and who will operate the result.
       </p>
       <p>
-        Software spends far longer being used and changed than being initially built. I therefore consider
-        not only implementation cost, but also operation, maintenance, and the assets left for the team.
+        I usually begin with the smallest structure that solves the present problem and can be changed later.
+        Simple does not mean careless. The code should be testable, readable, operable, and repairable by
+        someone else.
       </p>
+      <p>
+        I ship work in reviewable units and verify it directly. Incidents, measurements, and user behavior
+        often expose what the original plan missed. When reality changes, the rule should change too.
+      </p>
+
+      <h2>What I value</h2>
+      <p>
+        Software built at work is a company asset and a promise to users and colleagues. I count learning,
+        review, hiring, onboarding, deployment, failure, recovery, and handover alongside implementation time.
+      </p>
+      <p>
+        I do not see business and engineering as opposing sides. Engineering should translate technical risk
+        into business cost, then turn business urgency into work the team can deliver safely.
+      </p>
+      <p>
+        I use AI actively for code, tests, documents, and repetitive work. More output is not automatically
+        more productivity. People still have to define the problem, supply missing context, reject bad results,
+        verify the outcome, and own the failure.
+      </p>
+
       <h2>What I write about</h2>
       <ul>
-        <li>Choices made while designing and implementing software</li>
-        <li>Problems and improvements discovered through operation</li>
-        <li>Developer careers and collaboration</li>
-        <li>Experiments and principles from using AI as a tool</li>
+        <li>Engineering choices and the constraints behind them</li>
+        <li>Problems revealed by operation, incidents, and maintenance</li>
+        <li>Careers, collaboration, leadership, and trust</li>
+        <li>Practical experiments with AI and the judgment it still requires</li>
       </ul>
       <p>
-        I want to preserve the context behind decisions rather than present polished answers. My goal is to
-        write notes that remain useful when it is time to make the next choice.
+        My conclusions can be direct, but I do not treat them as universal rules. Context changes the answer,
+        and I do not follow these standards perfectly myself. I can take on too much, decide too quickly, or
+        explain the conclusion before the context. This blog records the decisions, failures, and revisions so
+        the next choice can start with more context than the last one.
       </p>
     </div>
   </section>
