@@ -1,0 +1,24 @@
+---
+import type { Locale } from '../i18n/config';
+import { localePath } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© {year} Gemini Kim</p>
+    <div class="footer-links">
+      <a href={localePath(locale, 'rss.xml')}>RSS</a>
+      <a href="https://github.com/geminiKim" rel="me noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/geminikims" rel="me noreferrer">LinkedIn</a>
+      <a href="https://x.com/geminikims" rel="me noreferrer">X</a>
+      <a href="https://m.youtube.com/@geminikims" rel="me noreferrer">YouTube</a>
+    </div>
+  </div>
+</footer>

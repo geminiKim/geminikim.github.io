@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+import { getVisiblePosts } from '../../lib/posts';
+
+const posts = await getVisiblePosts('en');
+const alternates = { en: '/articles/', ko: '/ko/articles/' };
+---
+
+<BaseLayout
+  title="Articles"
+  description="Technical articles on building and operating software by Gemini Kim."
+  locale="en"
+  alternates={alternates}
+>
+  <section class="page-header page-shell">
+    <p class="section-kicker">Articles</p>
+    <h1>Articles</h1>
+    <p>I write about how I frame problems, why I make certain choices, and what remains after operating software.</p>
+  </section>
+  <section class="archive page-shell" aria-label="All articles">
+    <PostList posts={posts} locale="en" />
+  </section>
+</BaseLayout>

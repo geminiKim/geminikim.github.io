@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const alternates = { en: '/about/', ko: '/ko/about/' };
+---
+
+<BaseLayout
+  title="About"
+  description="About software engineer and writer Gemini Kim."
+  locale="en"
+  alternates={alternates}
+>
+  <section class="page-header page-shell about-header">
+    <p class="section-kicker">About</p>
+    <h1>Hello.<br />I’m Gemini Kim.</h1>
+    <p>I build, operate, and write about software.</p>
+  </section>
+
+  <section class="about-grid page-shell">
+    <div class="about-label">How I work</div>
+    <div class="about-copy prose">
+      <p>
+        I start with the real user and business problem. Within current constraints, I prefer simple,
+        reversible choices and validate them through tests, measurement, and operation.
+      </p>
+      <p>
+        Software spends far longer being used and changed than being initially built. I therefore consider
+        not only implementation cost, but also operation, maintenance, and the assets left for the team.
+      </p>
+      <h2>What I write about</h2>
+      <ul>
+        <li>Choices made while designing and implementing software</li>
+        <li>Problems and improvements discovered through operation</li>
+        <li>Developer careers and collaboration</li>
+        <li>Experiments and principles from using AI as a tool</li>
+      </ul>
+      <p>
+        I want to preserve the context behind decisions rather than present polished answers. My goal is to
+        write notes that remain useful when it is time to make the next choice.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

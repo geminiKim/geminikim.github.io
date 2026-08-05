@@ -1,0 +1,60 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import type { LocaleLinks } from '../../i18n/config';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../lib/date';
+import { getPostAlternates, getPostSlug, getVisiblePosts } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const koPosts = await getVisiblePosts('ko');
+  const enPosts = await getVisiblePosts('en');
+  const allPosts = [...koPosts, ...enPosts];
+  return enPosts.map((post) => ({
+    params: { slug: getPostSlug(post) },
+    props: { post, alternates: getPostAlternates(post, allPosts) },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  alternates: LocaleLinks;
+}
+
+const { post, alternates } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  type="article"
+  publishedAt={post.data.publishedAt}
+  updatedAt={post.data.updatedAt}
+  locale="en"
+  alternates={alternates}
+>
+  <article class="article page-shell">
+    <header class="article-header">
+      <a class="back-link" href="/articles/"><span aria-hidden="true">←</span> All articles</a>
+      <div class="article-meta">
+        <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt, 'en')}</time>
+        {post.data.updatedAt && <span>Updated {formatDate(post.data.updatedAt, 'en')}</span>}
+      </div>
+      <h1>{post.data.title}</h1>
+      <p>{post.data.description}</p>
+      {post.data.tags.length > 0 && (
+        <ul class="tag-list" aria-label="Tags">
+          {post.data.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      )}
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+    <footer class="article-footer">
+      <p>Thanks for reading.</p>
+      <a href="/articles/">Read another article <span aria-hidden="true">→</span></a>
+    </footer>
+  </article>
+</BaseLayout>

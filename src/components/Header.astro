@@ -1,0 +1,84 @@
+---
+import type { Locale, LocaleLinks } from '../i18n/config';
+import { localePath, ui } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  alternates?: LocaleLinks;
+}
+
+const { locale, alternates = {} } = Astro.props;
+const text = ui[locale];
+const pathname = Astro.url.pathname;
+const links = [
+  { href: localePath(locale), label: text.home },
+  { href: localePath(locale, 'articles'), label: text.articles },
+  { href: localePath(locale, 'about'), label: text.about },
+];
+const localeLinks = {
+  ko: alternates.ko ?? localePath('ko'),
+  en: alternates.en ?? localePath('en'),
+};
+
+const isActive = (href: string) =>
+  href === localePath(locale) ? pathname === href : pathname.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href={localePath(locale)} aria-label={text.homeAria}>
+      <span class="wordmark-mark" aria-hidden="true">G</span>
+      <span>Gemini Kim</span>
+    </a>
+
+    <div class="header-actions">
+      <nav aria-label={text.mainNav}>
+        <ul>
+          {links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={{ active: isActive(link.href) }}
+                aria-current={isActive(link.href) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="language-switcher" role="group" aria-label={text.language}>
+        <a
+          href={localeLinks.ko}
+          class:list={{ active: locale === 'ko' }}
+          aria-current={locale === 'ko' ? 'true' : undefined}
+          data-locale-choice="ko"
+          lang="ko"
+        >KO</a>
+        <span aria-hidden="true">/</span>
+        <a
+          href={localeLinks.en}
+          class:list={{ active: locale === 'en' }}
+          aria-current={locale === 'en' ? 'true' : undefined}
+          data-locale-choice="en"
+          lang="en"
+        >EN</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  for (const link of document.querySelectorAll<HTMLAnchorElement>('[data-locale-choice]')) {
+    link.addEventListener('click', () => {
+      const locale = link.dataset.localeChoice;
+      if (locale !== 'ko' && locale !== 'en') return;
+      try {
+        localStorage.setItem('geminikim.locale', locale);
+      } catch {
+        // The link still works when storage is unavailable.
+      }
+    });
+  }
+</script>

@@ -1,0 +1,73 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import type { LocaleLinks } from '../../../i18n/config';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { formatDate } from '../../../lib/date';
+import { getPostAlternates, getPostSlug, getVisiblePosts } from '../../../lib/posts';
+
+export async function getStaticPaths() {
+  const koPosts = await getVisiblePosts('ko');
+  const enPosts = await getVisiblePosts('en');
+  const allPosts = [...koPosts, ...enPosts];
+  return koPosts.map((post) => {
+    const englishPost = enPosts.find(
+      (candidate) => candidate.data.translationKey === post.data.translationKey,
+    );
+    return {
+      params: { slug: getPostSlug(post) },
+      props: {
+        post,
+        alternates: getPostAlternates(post, allPosts),
+        ogTitle: englishPost
+          ? `${englishPost.data.title} — Gemini Kim`
+          : 'Gemini Kim — Software engineering notes',
+      },
+    };
+  });
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  alternates: LocaleLinks;
+  ogTitle: string;
+}
+
+const { post, alternates, ogTitle } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+  title={post.data.title}
+  ogTitle={ogTitle}
+  description={post.data.description}
+  type="article"
+  publishedAt={post.data.publishedAt}
+  updatedAt={post.data.updatedAt}
+  locale="ko"
+  alternates={alternates}
+>
+  <article class="article page-shell">
+    <header class="article-header">
+      <a class="back-link" href="/ko/articles/"><span aria-hidden="true">←</span> 모든 글</a>
+      <div class="article-meta">
+        <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt, 'ko')}</time>
+        {post.data.updatedAt && <span>수정 {formatDate(post.data.updatedAt, 'ko')}</span>}
+      </div>
+      <h1>{post.data.title}</h1>
+      <p>{post.data.description}</p>
+      {post.data.tags.length > 0 && (
+        <ul class="tag-list" aria-label="태그">
+          {post.data.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      )}
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+    <footer class="article-footer">
+      <p>끝까지 읽어주셔서 감사합니다.</p>
+      <a href="/ko/articles/">다른 글 보기 <span aria-hidden="true">→</span></a>
+    </footer>
+  </article>
+</BaseLayout>

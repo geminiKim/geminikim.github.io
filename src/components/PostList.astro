@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '../i18n/config';
+import { ui } from '../i18n/config';
+import { formatDate } from '../lib/date';
+import { getPostUrl } from '../lib/posts';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  locale: Locale;
+}
+
+const { posts, locale } = Astro.props;
+const text = ui[locale];
+---
+
+{posts.length > 0 ? (
+  <ol class="post-list">
+    {posts.map((post) => (
+      <li>
+        <article class="post-card">
+          <a class="post-card-link" href={getPostUrl(post)} aria-label={`${post.data.title} ${text.read}`}>
+            <div class="post-card-meta">
+              <time datetime={post.data.publishedAt.toISOString()}>
+                {formatDate(post.data.publishedAt, locale)}
+              </time>
+              {post.data.draft && <span class="draft-badge">{text.draft}</span>}
+            </div>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            {post.data.tags.length > 0 && (
+              <ul class="tag-list" aria-label={text.tags}>
+                {post.data.tags.map((tag) => <li>{tag}</li>)}
+              </ul>
+            )}
+            <span class="read-more" aria-hidden="true">{text.read} <span>↗</span></span>
+          </a>
+        </article>
+      </li>
+    ))}
+  </ol>
+) : (
+  <p class="empty-state">{text.emptyPosts}</p>
+)}

@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import { getVisiblePosts } from '../lib/posts';
+
+const posts = (await getVisiblePosts('en')).slice(0, 5);
+const alternates = { en: '/', ko: '/ko/' };
+---
+
+<BaseLayout locale="en" alternates={alternates} isHome>
+  <section class="hero page-shell">
+    <p class="eyebrow"><span aria-hidden="true"></span> Engineer · Writer</p>
+    <h1>Build it. Run it.<br /><em>Learn</em> from it.</h1>
+    <p class="hero-description">
+      I’m Gemini Kim. I define software problems, test simple solutions, and write about what
+      real-world operation teaches me.
+    </p>
+    <div class="hero-actions">
+      <a class="button primary" href="/articles/">Browse articles <span aria-hidden="true">→</span></a>
+      <a class="button secondary" href="/about/">About</a>
+    </div>
+  </section>
+
+  <section class="latest page-shell" aria-labelledby="latest-title">
+    <div class="section-heading">
+      <div>
+        <p class="section-kicker">Latest articles</p>
+        <h2 id="latest-title">Recent articles</h2>
+      </div>
+      <a href="/articles/">All articles <span aria-hidden="true">→</span></a>
+    </div>
+    <PostList posts={posts} locale="en" />
+  </section>
+</BaseLayout>
