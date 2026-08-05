@@ -62,6 +62,22 @@ includes(
 );
 includes('dist/ko/index.html', 'href="/ko/about/">About</a>', 'Korean navigation uses the shared About label');
 includes('dist/articles/index.html', '<h1>Articles</h1>', 'English archive heading');
+excludes(
+  'dist/articles/index.html',
+  '<p class="section-kicker">Articles</p>',
+  'English archive does not repeat the Articles label',
+);
+includes('dist/ko/articles/index.html', '<h1>Articles</h1>', 'Korean archive uses the shared Articles heading');
+excludes(
+  'dist/ko/articles/index.html',
+  '<p class="section-kicker">Articles</p>',
+  'Korean archive does not pair Articles with a duplicate localized heading',
+);
+includes(
+  'dist/ko/articles/index.html',
+  '<title>Articles — Gemini Kim</title>',
+  'Korean archive document title matches the shared heading',
+);
 includes('dist/articles/hello-world/index.html', '<html lang="en">', 'Default article is English');
 includes(
   'dist/articles/hello-world/index.html',
