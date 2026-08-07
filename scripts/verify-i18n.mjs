@@ -118,6 +118,31 @@ includes(
   'Korean article Open Graph title uses its English translation',
 );
 includes(
+  'dist/articles/idempotent-ai-tool-calls/index.html',
+  '<link rel="canonical" href="https://geminikim.github.io/articles/idempotent-ai-tool-calls/">',
+  'English idempotency article canonical',
+);
+includes(
+  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
+  '<html lang="ko">',
+  'Korean idempotency article language',
+);
+includes(
+  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
+  '<title>When an AI Agent Calls the Same Tool Twice — Gemini Kim</title>',
+  'Korean idempotency article browser title uses its English translation',
+);
+includes(
+  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
+  '<link rel="canonical" href="https://geminikim.github.io/ko/articles/idempotent-ai-tool-calls/">',
+  'Korean idempotency article canonical',
+);
+includes(
+  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
+  '<meta property="og:title" content="When an AI Agent Calls the Same Tool Twice — Gemini Kim">',
+  'Korean idempotency article Open Graph title uses its English translation',
+);
+includes(
   'dist/ko/about/index.html',
   '<title>About — Gemini Kim</title>',
   'Korean about browser title is English',
@@ -152,8 +177,18 @@ includes('dist/en/about/index.html', 'content="0;url=/about/"', 'Legacy English 
 
 includes('dist/rss.xml', '<language>en-US</language>', 'Default RSS is English');
 includes('dist/rss.xml', '/articles/hello-world/', 'Default RSS points to canonical English article');
+includes(
+  'dist/rss.xml',
+  '/articles/idempotent-ai-tool-calls/',
+  'Default RSS includes the English idempotency article',
+);
 includes('dist/ko/rss.xml', '<language>ko-KR</language>', 'Korean RSS language');
 includes('dist/ko/rss.xml', '/ko/articles/hello-world/', 'Korean RSS points to canonical Korean article');
+includes(
+  'dist/ko/rss.xml',
+  '/ko/articles/idempotent-ai-tool-calls/',
+  'Korean RSS includes the Korean idempotency article',
+);
 const englishRss = read('dist/rss.xml');
 const legacyEnglishRss = read('dist/en/rss.xml');
 if (legacyEnglishRss !== englishRss) {
@@ -167,9 +202,11 @@ for (const url of [
   'https://geminikim.github.io/',
   'https://geminikim.github.io/articles/',
   'https://geminikim.github.io/articles/hello-world/',
+  'https://geminikim.github.io/articles/idempotent-ai-tool-calls/',
   'https://geminikim.github.io/ko/',
   'https://geminikim.github.io/ko/articles/',
   'https://geminikim.github.io/ko/articles/hello-world/',
+  'https://geminikim.github.io/ko/articles/idempotent-ai-tool-calls/',
 ]) {
   if (!sitemap.includes(`<loc>${url}</loc>`)) failures.push(`Sitemap is missing ${url}`);
 }
