@@ -95,28 +95,6 @@ includes(
   '<title>Articles — Gemini Kim</title>',
   'Korean archive document title matches the shared heading',
 );
-includes('dist/articles/hello-world/index.html', '<html lang="en">', 'Default article is English');
-includes(
-  'dist/articles/hello-world/index.html',
-  'href="https://geminikim.github.io/articles/hello-world/"',
-  'English article canonical',
-);
-includes('dist/ko/articles/hello-world/index.html', '<html lang="ko">', 'Korean article language');
-includes(
-  'dist/ko/articles/hello-world/index.html',
-  '<title>Starting This Journal — Gemini Kim</title>',
-  'Korean article browser title uses its English translation',
-);
-includes(
-  'dist/ko/articles/hello-world/index.html',
-  'href="https://geminikim.github.io/ko/articles/hello-world/"',
-  'Korean article canonical',
-);
-includes(
-  'dist/ko/articles/hello-world/index.html',
-  '<meta property="og:title" content="Starting This Journal — Gemini Kim">',
-  'Korean article Open Graph title uses its English translation',
-);
 includes(
   'dist/articles/idempotent-ai-tool-calls/index.html',
   '<link rel="canonical" href="https://geminikim.github.io/articles/idempotent-ai-tool-calls/">',
@@ -164,6 +142,8 @@ for (const [path, label] of [
   ['dist/posts', 'Removed English posts routes'],
   ['dist/ko/posts', 'Removed Korean posts routes'],
   ['dist/en/posts', 'Removed prefixed English posts routes'],
+  ['dist/articles/hello-world', 'Removed English placeholder article'],
+  ['dist/ko/articles/hello-world', 'Removed Korean placeholder article'],
 ]) {
   missing(path, label);
 }
@@ -176,14 +156,14 @@ includes('dist/en/about/index.html', 'noindex,follow', 'Legacy English about is 
 includes('dist/en/about/index.html', 'content="0;url=/about/"', 'Legacy English about redirect target');
 
 includes('dist/rss.xml', '<language>en-US</language>', 'Default RSS is English');
-includes('dist/rss.xml', '/articles/hello-world/', 'Default RSS points to canonical English article');
+excludes('dist/rss.xml', '/articles/hello-world/', 'Default RSS excludes the removed placeholder article');
 includes(
   'dist/rss.xml',
   '/articles/idempotent-ai-tool-calls/',
   'Default RSS includes the English idempotency article',
 );
 includes('dist/ko/rss.xml', '<language>ko-KR</language>', 'Korean RSS language');
-includes('dist/ko/rss.xml', '/ko/articles/hello-world/', 'Korean RSS points to canonical Korean article');
+excludes('dist/ko/rss.xml', '/ko/articles/hello-world/', 'Korean RSS excludes the removed placeholder article');
 includes(
   'dist/ko/rss.xml',
   '/ko/articles/idempotent-ai-tool-calls/',
@@ -201,14 +181,20 @@ const sitemap = read('dist/sitemap-0.xml');
 for (const url of [
   'https://geminikim.github.io/',
   'https://geminikim.github.io/articles/',
-  'https://geminikim.github.io/articles/hello-world/',
   'https://geminikim.github.io/articles/idempotent-ai-tool-calls/',
   'https://geminikim.github.io/ko/',
   'https://geminikim.github.io/ko/articles/',
-  'https://geminikim.github.io/ko/articles/hello-world/',
   'https://geminikim.github.io/ko/articles/idempotent-ai-tool-calls/',
 ]) {
   if (!sitemap.includes(`<loc>${url}</loc>`)) failures.push(`Sitemap is missing ${url}`);
+}
+for (const removedUrl of [
+  'https://geminikim.github.io/articles/hello-world/',
+  'https://geminikim.github.io/ko/articles/hello-world/',
+]) {
+  if (sitemap.includes(`<loc>${removedUrl}</loc>`)) {
+    failures.push(`Sitemap must exclude removed placeholder article ${removedUrl}`);
+  }
 }
 for (const legacyPrefix of [
   'https://geminikim.github.io/en/',
