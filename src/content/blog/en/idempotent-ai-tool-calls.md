@@ -3,7 +3,8 @@ title: "When an AI Agent Calls the Same Tool Twice"
 description: "Retries are normal in distributed systems and AI workflows. Use database constraints, idempotency keys, and bounded retries to prevent duplicate side effects."
 lang: en
 translationKey: idempotent-ai-tool-calls
-publishedAt: 2026-08-07
+publishedAt: 2023-10-28
+updatedAt: 2026-08-07
 tags:
   - ai-agents
   - backend
