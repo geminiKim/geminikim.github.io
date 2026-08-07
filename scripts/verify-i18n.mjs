@@ -41,6 +41,11 @@ includes('dist/index.html', 'hreflang="ko" href="https://geminikim.github.io/ko/
 includes('dist/index.html', 'hreflang="x-default" href="https://geminikim.github.io/"', 'English is x-default');
 
 includes('dist/ko/index.html', '<html lang="ko">', 'Korean home language');
+includes(
+  'dist/ko/index.html',
+  '<title>Gemini Kim — Software engineering notes</title>',
+  'Korean home browser title is English',
+);
 includes('dist/ko/index.html', '<link rel="canonical" href="https://geminikim.github.io/ko/">', 'Korean home canonical');
 includes(
   'dist/ko/index.html',
@@ -87,6 +92,11 @@ includes(
 includes('dist/ko/articles/hello-world/index.html', '<html lang="ko">', 'Korean article language');
 includes(
   'dist/ko/articles/hello-world/index.html',
+  '<title>Starting This Journal — Gemini Kim</title>',
+  'Korean article browser title uses its English translation',
+);
+includes(
+  'dist/ko/articles/hello-world/index.html',
   'href="https://geminikim.github.io/ko/articles/hello-world/"',
   'Korean article canonical',
 );
@@ -94,6 +104,11 @@ includes(
   'dist/ko/articles/hello-world/index.html',
   '<meta property="og:title" content="Starting This Journal — Gemini Kim">',
   'Korean article Open Graph title uses its English translation',
+);
+includes(
+  'dist/ko/about/index.html',
+  '<title>About — Gemini Kim</title>',
+  'Korean about browser title is English',
 );
 includes(
   'dist/ko/about/index.html',
@@ -164,6 +179,18 @@ function collectFiles(directory) {
     else files.push(child);
   }
   return files;
+}
+
+for (const htmlFile of collectFiles(new URL('../dist/', import.meta.url)).filter(
+  (file) => file.pathname.endsWith('.html'),
+)) {
+  const content = readFileSync(htmlFile, 'utf8');
+  const title = content.match(/<title>(.*?)<\/title>/s)?.[1];
+  if (!title) {
+    failures.push(`Browser title is missing in ${htmlFile.pathname}`);
+  } else if (/[\u3131-\u318e\uac00-\ud7a3]/u.test(title)) {
+    failures.push(`Browser title must be English in ${htmlFile.pathname}: ${JSON.stringify(title)}`);
+  }
 }
 
 const deprecatedNames = ['\uAE40\uC7AC\uBBFC', ['Jaemin', 'Kim'].join(' ')];

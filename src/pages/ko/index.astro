@@ -7,12 +7,7 @@ const posts = (await getVisiblePosts('ko')).slice(0, 5);
 const alternates = { en: '/', ko: '/ko/' };
 ---
 
-<BaseLayout
-  locale="ko"
-  ogTitle="Gemini Kim — Software engineering notes"
-  alternates={alternates}
-  isHome
->
+<BaseLayout locale="ko" alternates={alternates} isHome>
   <section class="hero page-shell">
     <p class="eyebrow"><span aria-hidden="true"></span> Engineer · Writer</p>
     <h1>기술을 만들고,<br /><em>운영하며</em> 배운 것.</h1>
