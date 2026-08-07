@@ -102,8 +102,8 @@ includes(
 );
 includes(
   'dist/articles/idempotent-ai-tool-calls/index.html',
-  'This article is based on Gemini Kim’s YouTube content recorded in 2023.',
-  'English article discloses its 2023 YouTube source',
+  '<a href="https://www.youtube.com/@geminikims">Gemini’s Devpractice</a>',
+  'English article links the English YouTube channel name',
 );
 includes(
   'dist/articles/idempotent-ai-tool-calls/index.html',
@@ -147,8 +147,8 @@ includes(
 );
 includes(
   'dist/ko/articles/idempotent-ai-tool-calls/index.html',
-  '이 글은 Gemini Kim의 2023년도 유튜브 콘텐츠를 기반으로 작성되었습니다.',
-  'Korean article discloses its 2023 YouTube source',
+  '<a href="https://www.youtube.com/@geminikims">제미니의 개발실무</a>',
+  'Korean article links the Korean YouTube channel name',
 );
 includes(
   'dist/ko/articles/idempotent-ai-tool-calls/index.html',
