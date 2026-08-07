@@ -101,6 +101,31 @@ includes(
   'English idempotency article canonical',
 );
 includes(
+  'dist/articles/idempotent-ai-tool-calls/index.html',
+  'This article is based on Gemini Kim’s YouTube content recorded in 2023.',
+  'English article discloses its 2023 YouTube source',
+);
+includes(
+  'dist/articles/idempotent-ai-tool-calls/index.html',
+  '<code>gpt-5.6-sol</code>',
+  'English article discloses its generation model',
+);
+includes(
+  'dist/articles/idempotent-ai-tool-calls/index.html',
+  '<meta property="article:published_time" content="2023-10-28T00:00:00.000Z">',
+  'English article keeps the source-video publication date',
+);
+excludes(
+  'dist/articles/idempotent-ai-tool-calls/index.html',
+  'article:modified_time',
+  'English article omits modified metadata',
+);
+excludes(
+  'dist/articles/idempotent-ai-tool-calls/index.html',
+  '<span>Updated ',
+  'English article displays only its publication date',
+);
+includes(
   'dist/ko/articles/idempotent-ai-tool-calls/index.html',
   '<html lang="ko">',
   'Korean idempotency article language',
@@ -119,6 +144,31 @@ includes(
   'dist/ko/articles/idempotent-ai-tool-calls/index.html',
   '<meta property="og:title" content="When an AI Agent Calls the Same Tool Twice — Gemini Kim">',
   'Korean idempotency article Open Graph title uses its English translation',
+);
+includes(
+  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
+  '이 글은 Gemini Kim의 2023년도 유튜브 콘텐츠를 기반으로 작성되었습니다.',
+  'Korean article discloses its 2023 YouTube source',
+);
+includes(
+  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
+  '<code>gpt-5.6-sol</code>',
+  'Korean article discloses its generation model',
+);
+includes(
+  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
+  '<meta property="article:published_time" content="2023-10-28T00:00:00.000Z">',
+  'Korean article keeps the source-video publication date',
+);
+excludes(
+  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
+  'article:modified_time',
+  'Korean article omits modified metadata',
+);
+excludes(
+  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
+  '<span>수정 ',
+  'Korean article displays only its publication date',
 );
 includes(
   'dist/ko/about/index.html',

@@ -4,7 +4,6 @@ description: "Retries are normal in distributed systems and AI workflows. Use da
 lang: en
 translationKey: idempotent-ai-tool-calls
 publishedAt: 2023-10-28
-updatedAt: 2026-08-07
 tags:
   - ai-agents
   - backend
@@ -12,7 +11,9 @@ tags:
 draft: false
 ---
 
-A few years ago, I was asked how a backend should stop the same request from being submitted twice. The visible cause was a double click. The difficult case had nothing to do with the button.
+> **Source and AI note:** This article is based on Gemini Kim's YouTube content recorded in 2023. It was generated and edited with the `gpt-5.6-sol` model through Hermes Agent.
+
+I was asked how a backend should stop the same request from being submitted twice. The visible cause was a double click. The difficult case had nothing to do with the button.
 
 A client sends a request. The server completes the work, but the connection drops before the response arrives. The client sees a timeout. It cannot tell whether the operation failed or succeeded, so it sends the request again.
 
@@ -98,9 +99,7 @@ The contract must also define which failures become terminal and replayable. Val
 
 ## Client-generated keys are not a trust decision
 
-I used to be suspicious of client-generated idempotency keys. If the client controls the key, I thought the server was trusting client input to protect an important operation.
-
-That mixes two different responsibilities.
+Client-generated idempotency keys can look risky because the server appears to trust client input to protect an important operation. That concern mixes two different responsibilities.
 
 Stripe's API asks the client to generate a high-entropy key. After endpoint execution begins, Stripe stores the status and body, including `500` responses, and replays that result for later requests. It does not store validation failures or requests that conflict with another concurrent execution, so those can be retried. Keys may be pruned after they are at least 24 hours old, and reuse after pruning is treated as a new request. Authentication and authorization still decide whether the caller may perform the operation. The idempotency key only identifies retries of one logical attempt.
 
