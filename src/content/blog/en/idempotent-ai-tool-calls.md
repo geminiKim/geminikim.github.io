@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-> **Source and AI note:** This article is based on Gemini Kim's YouTube content recorded in 2023. It was generated and edited with the `gpt-5.6-sol` model.
+> **Source and AI note:** This article is based on [Gemini's Devpractice](https://www.youtube.com/@geminikims) on YouTube. It was generated and edited with the `gpt-5.6-sol` model.
 
 I was asked how a backend should stop the same request from being submitted twice. The visible cause was a double click. The difficult case had nothing to do with the button.
 
