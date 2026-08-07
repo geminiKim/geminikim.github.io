@@ -258,11 +258,6 @@ main {
   font-weight: 400;
 }
 
-.hero h1.ko-hero-title {
-  max-width: none;
-  word-break: keep-all;
-}
-
 .hero-description {
   max-width: 38rem;
   margin: 2.25rem 0 0;
@@ -795,10 +790,6 @@ main {
 
   .hero h1 {
     font-size: clamp(3.1rem, 15.5vw, 5rem);
-  }
-
-  .hero h1.ko-hero-title {
-    font-size: clamp(2.4rem, 12vw, 5rem);
   }
 
   .section-heading {

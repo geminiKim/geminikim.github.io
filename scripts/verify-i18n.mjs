@@ -48,10 +48,11 @@ includes(
 includes('dist/ko/index.html', '<html lang="ko">', 'Korean home language');
 includes(
   'dist/ko/index.html',
-  '<h1 class="ko-hero-title">만들고, 운영하고,<br><em>배운 걸 씁니다.</em></h1>',
-  'Korean home uses the reviewed active hero slogan',
+  '<h1>Build it. Run it.<br><em>Learn</em> from it.</h1>',
+  'Korean home preserves the original English hero slogan',
 );
-excludes('dist/ko/index.html', '기술을 만들고,', 'Korean home removes the stiff noun-phrase slogan');
+excludes('dist/ko/index.html', '기술을 만들고,', 'Korean home removes the retired localized slogan');
+excludes('dist/ko/index.html', '만들고, 운영하고,', 'Korean home does not localize the hero slogan');
 includes(
   'dist/ko/index.html',
   '<title>Gemini Kim — Software engineering notes</title>',
