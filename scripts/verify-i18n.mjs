@@ -39,8 +39,19 @@ includes('dist/index.html', '<link rel="canonical" href="https://geminikim.githu
 includes('dist/index.html', 'hreflang="en" href="https://geminikim.github.io/"', 'English home hreflang');
 includes('dist/index.html', 'hreflang="ko" href="https://geminikim.github.io/ko/"', 'Korean home hreflang');
 includes('dist/index.html', 'hreflang="x-default" href="https://geminikim.github.io/"', 'English is x-default');
+includes(
+  'dist/index.html',
+  '<h1>Build it. Run it.<br><em>Learn</em> from it.</h1>',
+  'English home preserves the original hero slogan',
+);
 
 includes('dist/ko/index.html', '<html lang="ko">', 'Korean home language');
+includes(
+  'dist/ko/index.html',
+  '<h1 class="ko-hero-title">만들고, 운영하고,<br><em>배운 걸 씁니다.</em></h1>',
+  'Korean home uses the reviewed active hero slogan',
+);
+excludes('dist/ko/index.html', '기술을 만들고,', 'Korean home removes the stiff noun-phrase slogan');
 includes(
   'dist/ko/index.html',
   '<title>Gemini Kim — Software engineering notes</title>',
