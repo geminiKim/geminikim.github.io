@@ -133,9 +133,7 @@ Tool names are often too vague to carry a safety policy. `update_record` might b
 - Can it interact with external entities outside a closed, controlled domain?
 - Does it require human confirmation?
 
-The Model Context Protocol includes `readOnlyHint`, `destructiveHint`, `idempotentHint`, and `openWorldHint` in tool annotations. Its definition of `idempotentHint` is close to what an orchestrator needs: calling the tool repeatedly with the same arguments has no additional effect on the environment.
-
-In the MCP schema, `idempotentHint` defaults to `false` and is meaningful only when `readOnlyHint == false`. The specification also says these fields are hints, not guarantees, and clients must not base decisions on annotations from untrusted servers. Setting `idempotentHint: true` does not make a tool idempotent. The server's storage constraints and side-effect handling do.
+If a tool contract includes metadata about these effects, treat it as a warning for the caller rather than proof. A field that says a call is idempotent does not make it idempotent. The server's storage constraints and side-effect handling do.
 
 Idempotency does not prove that the user wanted the first call. Refunds, deployments, data deletion, and other high-impact operations may still need an approval step. Duplicate safety and human intent solve different problems.
 
@@ -181,6 +179,4 @@ If calling the same tool twice can charge, send, delete, or deploy twice, the to
 ## References
 
 - [Stripe API: Idempotent requests](https://docs.stripe.com/api/idempotent_requests)
-- [Model Context Protocol schema: ToolAnnotations](https://modelcontextprotocol.io/specification/2026-07-28/schema#toolannotations)
-- [Model Context Protocol: Tools and human-in-the-loop guidance](https://modelcontextprotocol.io/specification/2026-07-28/server/tools)
 - [AWS Builders' Library: Timeouts, retries, and backoff with jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)

@@ -95,81 +95,242 @@ includes(
   '<title>Articles — Gemini Kim</title>',
   'Korean archive document title matches the shared heading',
 );
-includes(
-  'dist/articles/idempotent-ai-tool-calls/index.html',
-  '<link rel="canonical" href="https://geminikim.github.io/articles/idempotent-ai-tool-calls/">',
-  'English idempotency article canonical',
-);
-includes(
-  'dist/articles/idempotent-ai-tool-calls/index.html',
-  '<a href="https://www.youtube.com/@geminikims">Gemini’s Devpractice</a>',
-  'English article links the English YouTube channel name',
-);
-includes(
-  'dist/articles/idempotent-ai-tool-calls/index.html',
-  '<code>gpt-5.6-sol</code>',
-  'English article discloses its generation model',
-);
-includes(
-  'dist/articles/idempotent-ai-tool-calls/index.html',
-  '<meta property="article:published_time" content="2023-10-28T00:00:00.000Z">',
-  'English article keeps the source-video publication date',
-);
-excludes(
-  'dist/articles/idempotent-ai-tool-calls/index.html',
-  'article:modified_time',
-  'English article omits modified metadata',
-);
-excludes(
-  'dist/articles/idempotent-ai-tool-calls/index.html',
-  '<span>Updated ',
-  'English article displays only its publication date',
-);
-includes(
-  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
-  '<html lang="ko">',
-  'Korean idempotency article language',
-);
-includes(
-  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
-  '<title>When an AI Agent Calls the Same Tool Twice — Gemini Kim</title>',
-  'Korean idempotency article browser title uses its English translation',
-);
-includes(
-  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
-  '<link rel="canonical" href="https://geminikim.github.io/ko/articles/idempotent-ai-tool-calls/">',
-  'Korean idempotency article canonical',
-);
-includes(
-  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
-  '<meta property="og:title" content="When an AI Agent Calls the Same Tool Twice — Gemini Kim">',
-  'Korean idempotency article Open Graph title uses its English translation',
-);
-includes(
-  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
-  '<a href="https://www.youtube.com/@geminikims">제미니의 개발실무</a>',
-  'Korean article links the Korean YouTube channel name',
-);
-includes(
-  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
-  '<code>gpt-5.6-sol</code>',
-  'Korean article discloses its generation model',
-);
-includes(
-  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
-  '<meta property="article:published_time" content="2023-10-28T00:00:00.000Z">',
-  'Korean article keeps the source-video publication date',
-);
-excludes(
-  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
-  'article:modified_time',
-  'Korean article omits modified metadata',
-);
-excludes(
-  'dist/ko/articles/idempotent-ai-tool-calls/index.html',
-  '<span>수정 ',
-  'Korean article displays only its publication date',
-);
+const expected2023ArticleSlugs = [
+  'normalization-from-requirements',
+  'split-large-service-class',
+  'experience-over-development-jargon',
+  'reuse-below-use-case-layer',
+  'define-problems-from-user-perspective',
+  'trace-id-across-distributed-services',
+  'reader-writer-business-flow',
+  'isolate-admin-from-domain',
+  'operate-toy-project-for-real-users',
+  'gradle-dependency-boundaries',
+  'premature-multi-module-complexity',
+  'idempotent-ai-tool-calls',
+  'unit-tests-protect-business-intent',
+  'software-that-survives-developer-departure',
+  'frequent-dependency-upgrades',
+  'cohesive-packages-with-modules-and-layers',
+  'grow-software-in-stages',
+  'domain-maturity-and-module-boundaries',
+  'timeouts-retries-and-failure-propagation',
+  'circuit-breaker-placement',
+  'practical-git-commit-branch-rules',
+  'dto-boundaries-between-layers',
+  'reliable-database-tests-with-testcontainers',
+  'high-traffic-experience-without-traffic',
+];
+
+function readSource(path) {
+  try {
+    return readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
+  } catch (error) {
+    if (error && error.code === 'ENOENT') {
+      failures.push(`Required source file is missing: ${path}`);
+      return '';
+    }
+    throw error;
+  }
+}
+
+function frontmatterValue(content, key) {
+  const frontmatter = content.match(/^---\n([\s\S]*?)\n---/u)?.[1] ?? '';
+  const value = frontmatter.match(new RegExp(`^${key}:\\s*(.+)$`, 'mu'))?.[1]?.trim() ?? '';
+  return value.replace(/^(?:"|')|(?:"|')$/gu, '');
+}
+
+function frontmatterList(content, key) {
+  const frontmatter = content.match(/^---\n([\s\S]*?)\n---/u)?.[1] ?? '';
+  const lines = frontmatter.split('\n');
+  const start = lines.findIndex((line) => line === `${key}:`);
+  if (start < 0) return [];
+  const values = [];
+  for (const line of lines.slice(start + 1)) {
+    const match = line.match(/^\s+-\s+(.+)$/u);
+    if (!match) break;
+    values.push(match[1].trim());
+  }
+  return values;
+}
+
+function markdownBody(content) {
+  return content.match(/^---\n[\s\S]*?\n---\n([\s\S]*)$/u)?.[1]?.trimStart() ?? '';
+}
+
+const englishArticleSlugs = readdirSync(new URL('../src/content/blog/en/', import.meta.url))
+  .filter((name) => name.endsWith('.md'))
+  .map((name) => name.slice(0, -3))
+  .sort();
+const koreanArticleSlugs = readdirSync(new URL('../src/content/blog/ko/', import.meta.url))
+  .filter((name) => name.endsWith('.md'))
+  .map((name) => name.slice(0, -3))
+  .sort();
+if (JSON.stringify(englishArticleSlugs) !== JSON.stringify(koreanArticleSlugs)) {
+  failures.push('English and Korean article source slugs must match exactly');
+}
+for (const slug of expected2023ArticleSlugs) {
+  if (!englishArticleSlugs.includes(slug) || !koreanArticleSlugs.includes(slug)) {
+    failures.push(`The complete 2023 YouTube series is missing the translated pair for ${slug}`);
+    continue;
+  }
+
+  const englishSourcePath = `src/content/blog/en/${slug}.md`;
+  const koreanSourcePath = `src/content/blog/ko/${slug}.md`;
+  const englishSource = readSource(englishSourcePath);
+  const koreanSource = readSource(koreanSourcePath);
+  const englishKey = frontmatterValue(englishSource, 'translationKey');
+  const koreanKey = frontmatterValue(koreanSource, 'translationKey');
+  const englishTitle = frontmatterValue(englishSource, 'title');
+  const koreanTitle = frontmatterValue(koreanSource, 'title');
+  const englishDescription = frontmatterValue(englishSource, 'description');
+  const koreanDescription = frontmatterValue(koreanSource, 'description');
+  const englishDate = frontmatterValue(englishSource, 'publishedAt');
+  const koreanDate = frontmatterValue(koreanSource, 'publishedAt');
+  const englishTags = frontmatterList(englishSource, 'tags');
+  const koreanTags = frontmatterList(koreanSource, 'tags');
+
+  if (englishKey !== slug || koreanKey !== slug) {
+    failures.push(`Translation keys must match the slug for ${slug}`);
+  }
+  if (!englishTitle || !koreanTitle || !englishDescription || !koreanDescription) {
+    failures.push(`Both locale sources need titles and descriptions for ${slug}`);
+  }
+  if (englishDescription.length > 180 || koreanDescription.length > 180) {
+    failures.push(`Article descriptions must stay within 180 characters for ${slug}`);
+  }
+  if (frontmatterValue(englishSource, 'lang') !== 'en' || frontmatterValue(koreanSource, 'lang') !== 'ko') {
+    failures.push(`Article source languages are invalid for ${slug}`);
+  }
+  if (!/^2023-\d{2}-\d{2}$/u.test(englishDate) || englishDate !== koreanDate) {
+    failures.push(`English and Korean source-era publication dates must match for ${slug}`);
+  }
+  if (JSON.stringify(englishTags) !== JSON.stringify(koreanTags)) {
+    failures.push(`English and Korean tags must match for ${slug}`);
+  }
+  if (frontmatterValue(englishSource, 'draft') !== 'false' || frontmatterValue(koreanSource, 'draft') !== 'false') {
+    failures.push(`The complete 2023 series must be published in both locales for ${slug}`);
+  }
+  if (/^updatedAt:/mu.test(englishSource) || /^updatedAt:/mu.test(koreanSource)) {
+    failures.push(`The source-date-only policy forbids updatedAt for ${slug}`);
+  }
+  if (/Hermes Agent|Gemini Kim(?:'s|’s) YouTube content|Gemini Kim의 2023년도/u.test(`${englishSource}\n${koreanSource}`)) {
+    failures.push(`Deprecated public source or agent wording remains for ${slug}`);
+  }
+  if (/\b20(?:2[4-9]|[3-9]\d)\b/u.test(`${markdownBody(englishSource)}\n${markdownBody(koreanSource)}`)) {
+    failures.push(`Post-2023 facts must not be presented inside the source-era article body for ${slug}`);
+  }
+  if (
+    !markdownBody(englishSource).startsWith(
+      "> **Source and AI note:** This article is based on [Gemini's Devpractice](https://www.youtube.com/@geminikims) on YouTube. It was generated and edited with the `gpt-5.6-sol` model.",
+    )
+  ) {
+    failures.push(`English article source/model disclosure is missing or changed for ${slug}`);
+  }
+  if (
+    !markdownBody(koreanSource).startsWith(
+      '> **출처 및 AI 안내:** 이 글은 [제미니의 개발실무](https://www.youtube.com/@geminikims) 유튜브를 기반으로 작성되었습니다. `gpt-5.6-sol` 모델을 사용해 생성·편집했습니다.',
+    )
+  ) {
+    failures.push(`Korean article source/model disclosure is missing or changed for ${slug}`);
+  }
+  if (/\b(?:a few years ago|years ago|I used to)\b/iu.test(englishSource)) {
+    failures.push(`English article contains retrospective framing for ${slug}`);
+  }
+  if (/몇\s*년\s*전|예전에는[\s\S]{0,100}지금은/u.test(koreanSource)) {
+    failures.push(`Korean article contains retrospective framing for ${slug}`);
+  }
+
+  const englishOutput = `dist/articles/${slug}/index.html`;
+  const koreanOutput = `dist/ko/articles/${slug}/index.html`;
+  includes(englishOutput, '<html lang="en">', `English article language for ${slug}`);
+  includes(
+    englishOutput,
+    `<link rel="canonical" href="https://geminikim.github.io/articles/${slug}/">`,
+    `English article canonical for ${slug}`,
+  );
+  includes(
+    englishOutput,
+    `hreflang="ko" href="https://geminikim.github.io/ko/articles/${slug}/"`,
+    `English article Korean alternate for ${slug}`,
+  );
+  includes(
+    englishOutput,
+    `hreflang="x-default" href="https://geminikim.github.io/articles/${slug}/"`,
+    `English article x-default for ${slug}`,
+  );
+  includes(
+    englishOutput,
+    '<a href="https://www.youtube.com/@geminikims">Gemini’s Devpractice</a>',
+    `English article YouTube source for ${slug}`,
+  );
+  includes(englishOutput, '<code>gpt-5.6-sol</code>', `English article model disclosure for ${slug}`);
+  includes(
+    englishOutput,
+    `<meta property="article:published_time" content="${englishDate}T00:00:00.000Z">`,
+    `English article publication date for ${slug}`,
+  );
+  excludes(englishOutput, 'article:modified_time', `English article modified metadata for ${slug}`);
+  excludes(englishOutput, '<span>Updated ', `English article modified label for ${slug}`);
+
+  includes(koreanOutput, '<html lang="ko">', `Korean article language for ${slug}`);
+  includes(
+    koreanOutput,
+    `<link rel="canonical" href="https://geminikim.github.io/ko/articles/${slug}/">`,
+    `Korean article canonical for ${slug}`,
+  );
+  includes(
+    koreanOutput,
+    `hreflang="en" href="https://geminikim.github.io/articles/${slug}/"`,
+    `Korean article English alternate for ${slug}`,
+  );
+  includes(
+    koreanOutput,
+    `hreflang="x-default" href="https://geminikim.github.io/articles/${slug}/"`,
+    `Korean article x-default for ${slug}`,
+  );
+  includes(
+    koreanOutput,
+    '<a href="https://www.youtube.com/@geminikims">제미니의 개발실무</a>',
+    `Korean article YouTube source for ${slug}`,
+  );
+  includes(koreanOutput, '<code>gpt-5.6-sol</code>', `Korean article model disclosure for ${slug}`);
+  includes(
+    koreanOutput,
+    `<meta property="article:published_time" content="${koreanDate}T00:00:00.000Z">`,
+    `Korean article publication date for ${slug}`,
+  );
+  excludes(koreanOutput, 'article:modified_time', `Korean article modified metadata for ${slug}`);
+  excludes(koreanOutput, '<span>수정 ', `Korean article modified label for ${slug}`);
+
+  const englishRendered = read(englishOutput);
+  const koreanRendered = read(koreanOutput);
+  const englishOgTitle = englishRendered.match(/<meta property="og:title" content="([^"]+)">/u)?.[1] ?? '';
+  const koreanOgTitle = koreanRendered.match(/<meta property="og:title" content="([^"]+)">/u)?.[1] ?? '';
+  const englishTwitterTitle = englishRendered.match(/<meta name="twitter:title" content="([^"]+)">/u)?.[1] ?? '';
+  const koreanTwitterTitle = koreanRendered.match(/<meta name="twitter:title" content="([^"]+)">/u)?.[1] ?? '';
+  if (!englishOgTitle || englishOgTitle !== koreanOgTitle) {
+    failures.push(`English and Korean Open Graph titles must use the English title for ${slug}`);
+  }
+  if (!englishTwitterTitle || englishTwitterTitle !== koreanTwitterTitle) {
+    failures.push(`English and Korean Twitter titles must use the English title for ${slug}`);
+  }
+
+  includes('dist/articles/index.html', `/articles/${slug}/`, `English archive includes ${slug}`);
+  includes('dist/ko/articles/index.html', `/ko/articles/${slug}/`, `Korean archive includes ${slug}`);
+  includes('dist/rss.xml', `/articles/${slug}/`, `English RSS includes ${slug}`);
+  includes('dist/ko/rss.xml', `/ko/articles/${slug}/`, `Korean RSS includes ${slug}`);
+  includes(
+    'dist/sitemap-0.xml',
+    `<loc>https://geminikim.github.io/articles/${slug}/</loc>`,
+    `Sitemap includes the English route for ${slug}`,
+  );
+  includes(
+    'dist/sitemap-0.xml',
+    `<loc>https://geminikim.github.io/ko/articles/${slug}/</loc>`,
+    `Sitemap includes the Korean route for ${slug}`,
+  );
+}
 includes(
   'dist/ko/about/index.html',
   '<title>About — Gemini Kim</title>',
@@ -207,18 +368,8 @@ includes('dist/en/about/index.html', 'content="0;url=/about/"', 'Legacy English 
 
 includes('dist/rss.xml', '<language>en-US</language>', 'Default RSS is English');
 excludes('dist/rss.xml', '/articles/hello-world/', 'Default RSS excludes the removed placeholder article');
-includes(
-  'dist/rss.xml',
-  '/articles/idempotent-ai-tool-calls/',
-  'Default RSS includes the English idempotency article',
-);
 includes('dist/ko/rss.xml', '<language>ko-KR</language>', 'Korean RSS language');
 excludes('dist/ko/rss.xml', '/ko/articles/hello-world/', 'Korean RSS excludes the removed placeholder article');
-includes(
-  'dist/ko/rss.xml',
-  '/ko/articles/idempotent-ai-tool-calls/',
-  'Korean RSS includes the Korean idempotency article',
-);
 const englishRss = read('dist/rss.xml');
 const legacyEnglishRss = read('dist/en/rss.xml');
 if (legacyEnglishRss !== englishRss) {
@@ -231,10 +382,8 @@ const sitemap = read('dist/sitemap-0.xml');
 for (const url of [
   'https://geminikim.github.io/',
   'https://geminikim.github.io/articles/',
-  'https://geminikim.github.io/articles/idempotent-ai-tool-calls/',
   'https://geminikim.github.io/ko/',
   'https://geminikim.github.io/ko/articles/',
-  'https://geminikim.github.io/ko/articles/idempotent-ai-tool-calls/',
 ]) {
   if (!sitemap.includes(`<loc>${url}</loc>`)) failures.push(`Sitemap is missing ${url}`);
 }
