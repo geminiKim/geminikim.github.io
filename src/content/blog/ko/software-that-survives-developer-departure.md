@@ -3,7 +3,7 @@ title: "만든 개발자가 떠나도 살아남는 소프트웨어"
 description: "좋은 회사 소프트웨어는 부채를 줄이고 팀의 운영 능력에 맞으며, 처음 만든 개발자가 떠난 뒤에도 이해하고 고칠 수 있어야 합니다."
 lang: ko
 translationKey: software-that-survives-developer-departure
-publishedAt: 2023-11-04
+publishedAt: 2023-10-24
 tags:
   - maintainability
   - engineering-culture

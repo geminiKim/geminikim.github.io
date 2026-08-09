@@ -3,7 +3,7 @@ title: "Do Not Split Modules Before the Domain Has Matured"
 description: "Domain maturity comes from understanding policy, behavior, and operating reality. Let those lessons reveal module boundaries instead of freezing guesses too early."
 lang: en
 translationKey: domain-maturity-and-module-boundaries
-publishedAt: 2023-11-24
+publishedAt: 2023-11-12
 tags:
   - architecture
   - domain-driven-design

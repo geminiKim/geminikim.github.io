@@ -3,7 +3,7 @@ title: "Reliable Database Tests Without a Shared Test Database"
 description: "Choose mocks, an in-memory database, Testcontainers, or a real database by the failure you need to catch, while keeping ordinary tests isolated from shared infrastructure."
 lang: en
 translationKey: reliable-database-tests-with-testcontainers
-publishedAt: 2023-12-09
+publishedAt: 2023-12-04
 tags:
   - testing
   - databases

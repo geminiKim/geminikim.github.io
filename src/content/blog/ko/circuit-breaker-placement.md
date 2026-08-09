@@ -3,7 +3,7 @@ title: "서킷브레이커는 실패하는 I/O 가까이에 두세요"
 description: "서킷브레이커, 타임아웃, 캐시 폴백 같은 외부 호출 정책은 I/O 구현체 가까이에 두고, 도메인 코드는 그 결과가 비즈니스에서 무엇을 뜻하는지 결정합니다."
 lang: ko
 translationKey: circuit-breaker-placement
-publishedAt: 2023-12-09
+publishedAt: 2023-11-21
 tags:
   - backend
   - reliability

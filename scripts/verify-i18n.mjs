@@ -169,6 +169,7 @@ const koreanArticleSlugs = readdirSync(new URL('../src/content/blog/ko/', import
 if (JSON.stringify(englishArticleSlugs) !== JSON.stringify(koreanArticleSlugs)) {
   failures.push('English and Korean article source slugs must match exactly');
 }
+const expected2023PublicationDates = [];
 for (const slug of expected2023ArticleSlugs) {
   if (!englishArticleSlugs.includes(slug) || !koreanArticleSlugs.includes(slug)) {
     failures.push(`The complete 2023 YouTube series is missing the translated pair for ${slug}`);
@@ -205,6 +206,7 @@ for (const slug of expected2023ArticleSlugs) {
   if (!/^2023-\d{2}-\d{2}$/u.test(englishDate) || englishDate !== koreanDate) {
     failures.push(`English and Korean source-era publication dates must match for ${slug}`);
   }
+  expected2023PublicationDates.push({ slug, date: englishDate });
   if (JSON.stringify(englishTags) !== JSON.stringify(koreanTags)) {
     failures.push(`English and Korean tags must match for ${slug}`);
   }
@@ -330,6 +332,19 @@ for (const slug of expected2023ArticleSlugs) {
     `<loc>https://geminikim.github.io/ko/articles/${slug}/</loc>`,
     `Sitemap includes the Korean route for ${slug}`,
   );
+}
+const publicationDateValues = expected2023PublicationDates.map(({ date }) => date);
+if (new Set(publicationDateValues).size !== expected2023ArticleSlugs.length) {
+  failures.push('Every article in the 2023 series must have a unique publication date');
+}
+for (let index = 1; index < expected2023PublicationDates.length; index += 1) {
+  const previous = expected2023PublicationDates[index - 1];
+  const current = expected2023PublicationDates[index];
+  if (previous.date >= current.date) {
+    failures.push(
+      `2023 series publication dates must increase in source order: ${previous.slug} (${previous.date}) before ${current.slug} (${current.date})`,
+    );
+  }
 }
 includes(
   'dist/ko/about/index.html',

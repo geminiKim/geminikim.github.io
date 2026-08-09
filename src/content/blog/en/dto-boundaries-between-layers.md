@@ -3,7 +3,7 @@ title: "Do Not Create a DTO for Every Layer by Habit"
 description: "Use DTOs where data crosses a boundary with a different contract. Mapping has a cost, but so does letting external request shapes define the inside of a service."
 lang: en
 translationKey: dto-boundaries-between-layers
-publishedAt: 2023-12-09
+publishedAt: 2023-11-30
 tags:
   - backend
   - architecture

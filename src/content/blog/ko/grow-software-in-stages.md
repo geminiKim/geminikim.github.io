@@ -3,7 +3,7 @@ title: "소프트웨어는 경계를 한 단계씩 키워야 한다"
 description: "동작하는 코드에서 시작해 실제 응집과 규모가 더 강한 경계를 요구할 때 함수, 클래스, 패키지, 모듈과 프로젝트를 단계적으로 추출합니다."
 lang: ko
 translationKey: grow-software-in-stages
-publishedAt: 2023-11-24
+publishedAt: 2023-11-07
 tags:
   - software-design
   - architecture

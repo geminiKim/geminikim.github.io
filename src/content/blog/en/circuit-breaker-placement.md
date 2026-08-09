@@ -3,7 +3,7 @@ title: "Put Circuit Breakers Next to the Failing I/O"
 description: "Circuit breakers, timeouts, cache fallbacks, and remote-call policies belong near the implementation that performs the I/O, while domain code chooses the required behavior."
 lang: en
 translationKey: circuit-breaker-placement
-publishedAt: 2023-12-09
+publishedAt: 2023-11-21
 tags:
   - backend
   - reliability

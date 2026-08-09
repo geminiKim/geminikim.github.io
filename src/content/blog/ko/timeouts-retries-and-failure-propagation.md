@@ -3,7 +3,7 @@ title: "타임아웃은 클라이언트 설정이 아니라 제품의 결정입�
 description: "모든 실패에 같은 재시도 규칙을 붙이지 말고, 사용자가 기다릴 수 있는 시간과 실패 뒤에 알 수 있는 사실을 기준으로 타임아웃과 복구 정책을 설계합니다."
 lang: ko
 translationKey: timeouts-retries-and-failure-propagation
-publishedAt: 2023-12-09
+publishedAt: 2023-11-16
 tags:
   - backend
   - reliability

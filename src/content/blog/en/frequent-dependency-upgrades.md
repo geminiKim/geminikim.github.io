@@ -3,7 +3,7 @@ title: "Upgrade Dependencies Before the Gap Becomes a Project"
 description: "Frequent, prioritized dependency upgrades keep change small, expose compatibility problems early, and prevent a maintained service from quietly accumulating debt."
 lang: en
 translationKey: frequent-dependency-upgrades
-publishedAt: 2023-11-04
+publishedAt: 2023-10-29
 tags:
   - dependencies
   - maintenance

@@ -3,7 +3,7 @@ title: "Unit Tests Should Preserve Business Intent"
 description: "A business-layer unit test is useful when it guides design, records meaningful behavior, or makes the next developer reconsider a risky change."
 lang: en
 translationKey: unit-tests-protect-business-intent
-publishedAt: 2023-10-28
+publishedAt: 2023-10-20
 tags:
   - testing
   - architecture

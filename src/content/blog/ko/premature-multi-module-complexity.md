@@ -3,7 +3,7 @@ title: "너무 이른 멀티모듈은 설계를 더 어렵게 만든다"
 description: "모듈은 이해하지 못한 도메인이나 아키텍처 그림을 미리 고정하는 장치가 아니라 구현에서 발견한 경계를 강제하는 수단이어야 합니다."
 lang: ko
 translationKey: premature-multi-module-complexity
-publishedAt: 2023-11-04
+publishedAt: 2023-10-11
 tags:
   - architecture
   - modularity

@@ -3,7 +3,7 @@ title: "Multi-Module Too Early Makes Design Harder"
 description: "Modules should enforce boundaries discovered through implementation, not freeze guessed domains or mirror an architecture diagram before the software is understood."
 lang: en
 translationKey: premature-multi-module-complexity
-publishedAt: 2023-11-04
+publishedAt: 2023-10-11
 tags:
   - architecture
   - modularity

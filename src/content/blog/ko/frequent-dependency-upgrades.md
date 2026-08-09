@@ -3,7 +3,7 @@ title: "의존성 격차가 프로젝트가 되기 전에 버전 올리기"
 description: "우선순위에 따라 의존성을 자주 올리면 변경을 작게 유지하고 호환성 문제를 일찍 발견하며 운영 서비스에 부채가 조용히 쌓이는 일을 막을 수 있습니다."
 lang: ko
 translationKey: frequent-dependency-upgrades
-publishedAt: 2023-11-04
+publishedAt: 2023-10-29
 tags:
   - dependencies
   - maintenance

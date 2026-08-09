@@ -3,7 +3,7 @@ title: "Timeouts Are Product Decisions, Not Just Client Settings"
 description: "Design timeout, retry, and recovery policies from the user's waiting budget and the uncertainty of each failure instead of applying one retry rule everywhere."
 lang: en
 translationKey: timeouts-retries-and-failure-propagation
-publishedAt: 2023-12-09
+publishedAt: 2023-11-16
 tags:
   - backend
   - reliability

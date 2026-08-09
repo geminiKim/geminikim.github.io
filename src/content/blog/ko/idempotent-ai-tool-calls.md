@@ -3,7 +3,7 @@ title: "AI 에이전트가 같은 도구를 두 번 호출한다면"
 description: "분산 시스템과 AI 워크플로에서 재시도는 정상입니다. DB 제약, 멱등 키, 제한된 재시도로 도구 호출의 중복 부작용을 막는 방법을 정리합니다."
 lang: ko
 translationKey: idempotent-ai-tool-calls
-publishedAt: 2023-10-28
+publishedAt: 2023-10-15
 tags:
   - ai-agents
   - backend

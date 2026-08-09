@@ -3,7 +3,7 @@ title: "도메인이 성숙하기 전에 모듈부터 나누지 마세요"
 description: "도메인 성숙도는 정책과 행동, 운영 현실을 얼마나 이해했는지에서 나옵니다. 추측을 일찍 굳히지 말고 운영에서 드러난 책임으로 모듈 경계를 정해야 합니다."
 lang: ko
 translationKey: domain-maturity-and-module-boundaries
-publishedAt: 2023-11-24
+publishedAt: 2023-11-12
 tags:
   - architecture
   - domain-driven-design

@@ -3,7 +3,7 @@ title: "거대한 서비스 클래스를 책임과 계층으로 분리하는 법
 description: "생성자 의존성과 import로 비대해진 서비스를 진단하고, 새로운 아키텍처 이름을 붙이기 전에 응집된 책임부터 분리합니다."
 lang: ko
 translationKey: split-large-service-class
-publishedAt: 2023-08-26
+publishedAt: 2023-08-31
 tags:
   - backend
   - refactoring

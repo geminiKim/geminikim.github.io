@@ -3,7 +3,7 @@ title: "Grow Software One Boundary at a Time"
 description: "Start with working code, then extract functions, classes, packages, modules, and projects as real cohesion and scale make each stronger boundary necessary."
 lang: en
 translationKey: grow-software-in-stages
-publishedAt: 2023-11-24
+publishedAt: 2023-11-07
 tags:
   - software-design
   - architecture

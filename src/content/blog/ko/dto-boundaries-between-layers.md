@@ -3,7 +3,7 @@ title: "계층마다 DTO를 습관처럼 만들지 마세요"
 description: "데이터가 서로 다른 계약을 가진 경계를 넘을 때 DTO를 사용합니다. 매핑에도 비용이 들지만 외부 요청 형태가 서비스 내부를 지배하게 두는 데도 비용이 듭니다."
 lang: ko
 translationKey: dto-boundaries-between-layers
-publishedAt: 2023-12-09
+publishedAt: 2023-11-30
 tags:
   - backend
   - architecture

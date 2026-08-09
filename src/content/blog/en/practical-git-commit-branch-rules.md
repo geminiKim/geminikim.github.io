@@ -3,7 +3,7 @@ title: "Git History Is a Team Asset, Not a Work Diary"
 description: "Split work before polishing commits, shape pull requests for reviewers, and leave a history that helps the next engineer understand changes and recover a release."
 lang: en
 translationKey: practical-git-commit-branch-rules
-publishedAt: 2023-12-09
+publishedAt: 2023-11-25
 tags:
   - git
   - collaboration

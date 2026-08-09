@@ -3,7 +3,7 @@ title: "Gradle Dependency Scopes Are Architectural Boundaries"
 description: "Use Gradle implementation, api, runtimeOnly, and compileOnly deliberately to express module access, prevent accidental coupling, and preserve design intent."
 lang: en
 translationKey: gradle-dependency-boundaries
-publishedAt: 2023-10-28
+publishedAt: 2023-10-06
 tags:
   - gradle
   - architecture

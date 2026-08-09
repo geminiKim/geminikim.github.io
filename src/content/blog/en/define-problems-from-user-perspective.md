@@ -3,7 +3,7 @@ title: "Define Problems from the User's Perspective"
 description: "Problem-solving improves when you separate technical load from product value, launch what you build, and keep asking why a user would choose it."
 lang: en
 translationKey: define-problems-from-user-perspective
-publishedAt: 2023-09-10
+publishedAt: 2023-09-13
 tags:
   - product
   - career
