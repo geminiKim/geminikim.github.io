@@ -133,9 +133,7 @@ Stripe API는 클라이언트가 충분히 무작위인 키를 만들도록 합�
 - 통제된 범위 밖의 외부 대상과 상호작용하는가?
 - 사람의 확인이 필요한가?
 
-Model Context Protocol은 도구 annotation으로 `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`를 제공합니다. `idempotentHint`의 정의는 오케스트레이터가 알고 싶어 하는 내용과 가깝습니다. 같은 인자로 도구를 반복 호출해도 환경에 추가 효과가 없어야 합니다.
-
-MCP 스키마에서 `idempotentHint`의 기본값은 `false`이며 `readOnlyHint == false`일 때만 의미가 있습니다. 명세는 이 값들이 보장 사항이 아니라 힌트라고도 명시합니다. 신뢰할 수 없는 서버가 보낸 annotation만으로 도구 사용을 결정해서는 안 됩니다. `idempotentHint: true`라고 적는다고 도구가 멱등해지지는 않습니다. 서버의 저장 제약과 부작용 처리 방식이 멱등성을 만듭니다.
+도구 계약에 이런 효과를 설명하는 메타데이터가 있다면 호출자에게 주는 경고로만 사용해야 합니다. 멱등하다고 표시한 필드가 실제 멱등성을 만들어주지는 않습니다. 서버의 저장 제약과 부작용 처리 방식이 멱등성을 만듭니다.
 
 멱등성은 사용자가 최초 호출을 원했다는 사실도 증명하지 않습니다. 환불, 배포, 데이터 삭제처럼 영향이 큰 작업에는 여전히 승인 단계가 필요할 수 있습니다. 중복 안전성과 사람의 의도 확인은 서로 다른 문제입니다.
 
@@ -181,6 +179,4 @@ AI 에이전트가 중복 실행 문제를 새로 만들지는 않았습니다. 
 ## 참고 자료
 
 - [Stripe API: 멱등 요청](https://docs.stripe.com/api/idempotent_requests)
-- [Model Context Protocol 스키마: ToolAnnotations](https://modelcontextprotocol.io/specification/2026-07-28/schema#toolannotations)
-- [Model Context Protocol: 도구와 Human-in-the-loop 지침](https://modelcontextprotocol.io/specification/2026-07-28/server/tools)
 - [AWS Builders' Library: 시간 제한, 재시도 및 지터를 사용한 백오프](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)

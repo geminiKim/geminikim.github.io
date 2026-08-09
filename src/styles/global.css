@@ -618,6 +618,10 @@ main {
   font-size: 1.12rem;
 }
 
+.prose blockquote code {
+  white-space: nowrap;
+}
+
 .prose code {
   padding: 0.15em 0.38em;
   border: 1px solid var(--border);
