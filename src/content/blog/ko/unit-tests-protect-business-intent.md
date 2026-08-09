@@ -3,7 +3,7 @@ title: "단위 테스트는 비즈니스 의도를 지켜야 한다"
 description: "비즈니스 레이어 단위 테스트는 설계를 돕고, 중요한 동작을 기록하며, 다음 개발자가 위험한 변경 앞에서 한 번 더 생각하게 할 때 의미가 있습니다."
 lang: ko
 translationKey: unit-tests-protect-business-intent
-publishedAt: 2023-10-28
+publishedAt: 2023-10-20
 tags:
   - testing
   - architecture

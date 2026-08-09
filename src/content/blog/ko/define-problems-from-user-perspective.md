@@ -3,7 +3,7 @@ title: "사용자 관점에서 문제를 정의하는 법"
 description: "기술 부하와 제품 가치를 구분하고, 만든 것을 실제로 출시하며, 사용자가 왜 선택할지 계속 물어야 문제 해결 능력이 자랍니다."
 lang: ko
 translationKey: define-problems-from-user-perspective
-publishedAt: 2023-09-10
+publishedAt: 2023-09-13
 tags:
   - product
   - career

@@ -3,7 +3,7 @@ title: "그래들 의존성 범위로 아키텍처 경계 세우기"
 description: "Gradle의 implementation, api, runtimeOnly, compileOnly를 의도적으로 사용해 모듈 접근을 제한하고 우발적인 결합을 막는 방법을 설명합니다."
 lang: ko
 translationKey: gradle-dependency-boundaries
-publishedAt: 2023-10-28
+publishedAt: 2023-10-06
 tags:
   - gradle
   - architecture

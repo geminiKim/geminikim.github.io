@@ -3,7 +3,7 @@ title: "Isolate Admin Work from the Service Domain"
 description: "Admin APIs have different queries, mutation needs, and release risks. Isolate them by module or repository instead of letting operational convenience reshape the core service."
 lang: en
 translationKey: isolate-admin-from-domain
-publishedAt: 2023-10-14
+publishedAt: 2023-09-27
 tags:
   - architecture
   - backend

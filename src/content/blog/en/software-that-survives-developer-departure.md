@@ -3,7 +3,7 @@ title: "Software Should Survive the Developer Who Built It"
 description: "Good company software reduces debt, fits the team's operating ability, and remains understandable and repairable after its original developer leaves."
 lang: en
 translationKey: software-that-survives-developer-departure
-publishedAt: 2023-11-04
+publishedAt: 2023-10-24
 tags:
   - maintainability
   - engineering-culture

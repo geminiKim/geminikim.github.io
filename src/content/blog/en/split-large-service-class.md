@@ -3,7 +3,7 @@ title: "How to Split a Large Service Class by Responsibility and Layer"
 description: "Use constructor dependencies and imports to diagnose an oversized service, then separate cohesive responsibilities before adding another architecture label."
 lang: en
 translationKey: split-large-service-class
-publishedAt: 2023-08-26
+publishedAt: 2023-08-31
 tags:
   - backend
   - refactoring

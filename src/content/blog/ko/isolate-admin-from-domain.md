@@ -3,7 +3,7 @@ title: "어드민을 서비스 도메인에서 격리하기"
 description: "어드민 API는 조회, 수정, 릴리스 위험이 다릅니다. 운영 편의가 핵심 서비스를 바꾸지 않도록 모듈이나 저장소로 격리합니다."
 lang: ko
 translationKey: isolate-admin-from-domain
-publishedAt: 2023-10-14
+publishedAt: 2023-09-27
 tags:
   - architecture
   - backend

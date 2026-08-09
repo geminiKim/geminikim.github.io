@@ -3,7 +3,7 @@ title: "Reuse Below the Use-Case Layer"
 description: "When use cases call one another for reuse, business changes spread and cycles follow. Compose above them or extract focused implementation components below them."
 lang: en
 translationKey: reuse-below-use-case-layer
-publishedAt: 2023-09-10
+publishedAt: 2023-09-09
 tags:
   - architecture
   - backend

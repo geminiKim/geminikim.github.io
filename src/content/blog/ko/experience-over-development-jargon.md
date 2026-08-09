@@ -3,7 +3,7 @@ title: "개발 용어보다 자기 생각과 운영 경험을 선택하기"
 description: "이론과 패턴은 유용한 참고 자료지만, 개발자는 코드와 트레이드오프, 운영 결과를 자기 언어로 설명할 수 있어야 합니다."
 lang: ko
 translationKey: experience-over-development-jargon
-publishedAt: 2023-09-10
+publishedAt: 2023-09-04
 tags:
   - career
   - software-design

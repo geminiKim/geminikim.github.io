@@ -3,7 +3,7 @@ title: "Operate Your Toy Project Before Calling It a Service"
 description: "A toy project becomes service experience only after launch: pick one goal, find real users, watch retention, and learn when to stop."
 lang: en
 translationKey: operate-toy-project-for-real-users
-publishedAt: 2023-10-14
+publishedAt: 2023-10-02
 tags:
   - product
   - operations

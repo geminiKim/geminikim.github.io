@@ -3,7 +3,7 @@ title: "분산 서비스 끝까지 하나의 트레이스 아이디 전달하기
 description: "민감한 정보를 노출하거나 저장소를 로그로 넘치게 하지 않으면서 HTTP 호출과 비동기 이벤트를 하나의 요청 맥락으로 추적합니다."
 lang: ko
 translationKey: trace-id-across-distributed-services
-publishedAt: 2023-09-10
+publishedAt: 2023-09-18
 tags:
   - observability
   - distributed-systems

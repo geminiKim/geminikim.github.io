@@ -3,7 +3,7 @@ title: "레이어는 논리적으로, 패키지는 응집도 있게"
 description: "모듈, 패키지와 아키텍처 레이어는 서로 다른 문제를 풉니다. 관련 동작은 가까이 두고 레이어는 기능을 흩뜨리지 않은 채 역할을 설명해야 합니다."
 lang: ko
 translationKey: cohesive-packages-with-modules-and-layers
-publishedAt: 2023-11-24
+publishedAt: 2023-11-02
 tags:
   - architecture
   - modularity

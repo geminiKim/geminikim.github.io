@@ -3,7 +3,7 @@ title: "Choose Experience and Judgment over Development Jargon"
 description: "Theories and patterns are useful references, but a developer still needs to explain the code, its tradeoffs, and what happened when it was operated."
 lang: en
 translationKey: experience-over-development-jargon
-publishedAt: 2023-09-10
+publishedAt: 2023-09-04
 tags:
   - career
   - software-design

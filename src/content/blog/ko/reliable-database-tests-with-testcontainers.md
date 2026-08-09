@@ -3,7 +3,7 @@ title: "공유 테스트 DB 없이 신뢰할 수 있는 데이터베이스 테�
 description: "잡아야 할 실패에 따라 목, 인메모리 DB, Testcontainers, 실제 DB를 고르고 일반 테스트는 공유 인프라에서 격리합니다."
 lang: ko
 translationKey: reliable-database-tests-with-testcontainers
-publishedAt: 2023-12-09
+publishedAt: 2023-12-04
 tags:
   - testing
   - databases

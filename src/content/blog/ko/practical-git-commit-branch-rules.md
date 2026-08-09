@@ -3,7 +3,7 @@ title: "Git 이력은 개인 작업일지가 아니라 팀의 자산입니다"
 description: "커밋을 다듬기 전에 작업부터 나누고, 동료가 검토하기 좋은 PR과 다음 사람이 변경 이유를 추적하고 릴리스를 복구할 수 있는 이력을 남깁니다."
 lang: ko
 translationKey: practical-git-commit-branch-rules
-publishedAt: 2023-12-09
+publishedAt: 2023-11-25
 tags:
   - git
   - collaboration

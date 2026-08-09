@@ -3,7 +3,7 @@ title: "Carry One Trace ID across Distributed Services"
 description: "Logs become operationally useful when one request can be followed across HTTP calls and asynchronous events without exposing sensitive data or flooding storage."
 lang: en
 translationKey: trace-id-across-distributed-services
-publishedAt: 2023-09-10
+publishedAt: 2023-09-18
 tags:
   - observability
   - distributed-systems

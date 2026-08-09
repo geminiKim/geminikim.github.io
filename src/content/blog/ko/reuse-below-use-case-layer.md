@@ -3,7 +3,7 @@ title: "유즈케이스 아래 계층에서 코드를 재사용하기"
 description: "유즈케이스끼리 재사용하면 비즈니스 변경이 번지고 순환 참조가 생깁니다. 위에서 조합하거나 아래의 구현 컴포넌트를 추출합니다."
 lang: ko
 translationKey: reuse-below-use-case-layer
-publishedAt: 2023-09-10
+publishedAt: 2023-09-09
 tags:
   - architecture
   - backend

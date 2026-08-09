@@ -3,7 +3,7 @@ title: "리더와 라이터 컴포넌트로 비즈니스 흐름 드러내기"
 description: "리더와 라이터는 저장소 세부사항과 변경 범위를 감추고 비즈니스 계층에 정책을 남깁니다. 다만 서비스 수명이 그 비용을 정당화해야 합니다."
 lang: ko
 translationKey: reader-writer-business-flow
-publishedAt: 2023-10-14
+publishedAt: 2023-09-22
 tags:
   - software-design
   - backend

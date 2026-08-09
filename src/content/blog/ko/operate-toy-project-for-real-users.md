@@ -3,7 +3,7 @@ title: "토이 프로젝트를 서비스라고 부르기 전에 운영해보기"
 description: "토이 프로젝트에서 서비스 경험을 얻으려면 하나의 목표를 정하고, 출시하고, 실제 사용자를 만나며, 리텐션과 종료 시점을 봐야 합니다."
 lang: ko
 translationKey: operate-toy-project-for-real-users
-publishedAt: 2023-10-14
+publishedAt: 2023-10-02
 tags:
   - product
   - operations

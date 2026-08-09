@@ -3,7 +3,7 @@ title: "Use Reader and Writer Components to Reveal Business Flow"
 description: "Reader and writer components can hide storage details, narrow change, and let the business layer show policy, but only when the software's lifetime justifies them."
 lang: en
 translationKey: reader-writer-business-flow
-publishedAt: 2023-10-14
+publishedAt: 2023-09-22
 tags:
   - software-design
   - backend

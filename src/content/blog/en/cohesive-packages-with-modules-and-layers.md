@@ -3,7 +3,7 @@ title: "Keep Layers Logical and Packages Cohesive"
 description: "Modules, packages, and architectural layers solve different problems. Package related behavior together and let layers describe roles without scattering a feature."
 lang: en
 translationKey: cohesive-packages-with-modules-and-layers
-publishedAt: 2023-11-24
+publishedAt: 2023-11-02
 tags:
   - architecture
   - modularity
