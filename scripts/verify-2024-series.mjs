@@ -49,12 +49,16 @@ function frontmatterKeys(content) {
     .filter(Boolean);
 }
 
+function withoutComments(content) {
+  return content.replace(/<!--[\s\S]*?-->/gu, '');
+}
+
 function requireIncludes(path, expected, label) {
-  if (!read(path).includes(expected)) failures.push(`${label}: ${path} is missing ${JSON.stringify(expected)}`);
+  if (!withoutComments(read(path)).includes(expected)) failures.push(`${label}: ${path} is missing ${JSON.stringify(expected)}`);
 }
 
 function requireExcludes(path, unexpected, label) {
-  if (read(path).includes(unexpected)) failures.push(`${label}: ${path} contains ${JSON.stringify(unexpected)}`);
+  if (withoutComments(read(path)).includes(unexpected)) failures.push(`${label}: ${path} contains ${JSON.stringify(unexpected)}`);
 }
 
 let manifest = null;
@@ -197,8 +201,8 @@ for (const [index, entry] of entries.entries()) {
   requireIncludes(koOutput, `<meta property="article:published_time" content="${expectedDate}T00:00:00.000Z">`, `Korean publication metadata for ${slug}`);
   requireExcludes(koOutput, 'article:modified_time', `Korean modified metadata for ${slug}`);
 
-  const enRendered = read(enOutput);
-  const koRendered = read(koOutput);
+  const enRendered = withoutComments(read(enOutput));
+  const koRendered = withoutComments(read(koOutput));
   const enOgTitle = enRendered.match(/<meta property="og:title" content="([^"]+)">/u)?.[1] ?? '';
   const koOgTitle = koRendered.match(/<meta property="og:title" content="([^"]+)">/u)?.[1] ?? '';
   const enTwitterTitle = enRendered.match(/<meta name="twitter:title" content="([^"]+)">/u)?.[1] ?? '';
