@@ -42,6 +42,13 @@ function body(content) {
   return content.match(/^---\n[\s\S]*?\n---\n([\s\S]*)$/u)?.[1]?.trimStart() ?? '';
 }
 
+function frontmatterKeys(content) {
+  return frontmatter(content)
+    .split('\n')
+    .map((line) => line.match(/^([A-Za-z][A-Za-z0-9]*):/u)?.[1])
+    .filter(Boolean);
+}
+
 function requireIncludes(path, expected, label) {
   if (!read(path).includes(expected)) failures.push(`${label}: ${path} is missing ${JSON.stringify(expected)}`);
 }
@@ -57,22 +64,45 @@ if (!existsSync(manifestPath)) {
 } else {
   try {
     manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
-    entries = Array.isArray(manifest) ? manifest : manifest.articles;
-    if (!Array.isArray(entries)) failures.push('The 2024 article manifest must contain an articles array');
+    if (!manifest || Array.isArray(manifest) || typeof manifest !== 'object') {
+      failures.push('The 2024 article manifest must be an object, not a bare article array');
+      manifest = {};
+    }
+    if (!Array.isArray(manifest.articles)) failures.push('The 2024 article manifest must contain an articles array');
+    entries = Array.isArray(manifest.articles) ? manifest.articles : [];
   } catch (error) {
     failures.push(`The 2024 article manifest is invalid JSON: ${error.message}`);
+    manifest = {};
   }
 }
 
 const excludedSources = Array.isArray(manifest?.excludedSources) ? manifest.excludedSources : [];
-if (manifest && !Array.isArray(manifest)) {
+if (manifest) {
   if (manifest.sourceYear !== 2024) failures.push('The manifest source year must be 2024');
   if (manifest.sourceCount !== 55) failures.push('The complete 2024 corpus must contain 55 logical Markdown sources');
+  if (manifest.retainedCount !== 54) failures.push('The manifest must retain exactly 54 publishable sources');
+  if (manifest.excludedCount !== 1) failures.push('The manifest must explicitly exclude exactly one source');
   if (manifest.retainedCount !== entries.length) failures.push('The manifest retained count must match its article entries');
   if (manifest.excludedCount !== excludedSources.length) failures.push('The manifest excluded count must match its excluded entries');
   if (entries.length + excludedSources.length !== manifest.sourceCount) failures.push('Every 2024 source must be retained or explicitly excluded');
-  const sourceFiles = [...entries, ...excludedSources].map((entry) => entry.sourceFile);
+  const allSources = [...entries, ...excludedSources];
+  const sourceFiles = allSources.map((entry) => entry.sourceFile);
+  const sourceIds = allSources.map((entry) => String(entry.sourceId));
+  const expectedSourceIds = [
+    '1', '2', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+    '21', '22', '23', '24', '25', '26', '28', '29', '30', '31', '32', '33', '34', '35', '36', '40', '41', '42',
+    '43', '46', '47', '48', '49', '50', '51', '52', '53', '54', '56', '57', '58', '59', '61a', '61b', '62', '63',
+  ];
   if (new Set(sourceFiles).size !== manifest.sourceCount) failures.push('Every 2024 source file must appear exactly once in the manifest');
+  if (new Set(sourceIds).size !== expectedSourceIds.length || expectedSourceIds.some((sourceId) => !sourceIds.includes(sourceId))) {
+    failures.push('The manifest must contain the exact 55 logical 2024 source IDs once each');
+  }
+  if (allSources.some((entry) => !String(entry.sourceFile ?? '').normalize('NFC').startsWith(`24_${String(entry.sourceId).replace(/[ab]$/u, '')}_`))) {
+    failures.push('Every manifest source file must match its logical source ID');
+  }
+  const technicalCount = entries.filter((entry) => entry.classification === 'keep-technical').length;
+  const developerCount = entries.filter((entry) => entry.classification === 'keep-developer-related').length;
+  if (technicalCount !== 45 || developerCount !== 9) failures.push('The retained corpus must contain 45 technical and 9 developer-practice sources');
   if (
     excludedSources.length !== 1 ||
     String(excludedSources[0]?.sourceId) !== '18' ||
@@ -113,9 +143,14 @@ for (const [index, entry] of entries.entries()) {
   const koTags = list(ko, 'tags');
   const enBody = body(en);
   const koBody = body(ko);
+  const expectedFrontmatterKeys = ['title', 'description', 'lang', 'translationKey', 'publishedAt', 'tags', 'draft'];
 
   if (!enTitle || !koTitle || !enDescription || !koDescription) failures.push(`Titles and descriptions are required for ${slug}`);
   if (enTitle !== entry.enTitle || koTitle !== entry.koTitle) failures.push(`Bilingual titles must match the manifest for ${slug}`);
+  if (enDescription !== entry.enDescription || koDescription !== entry.koDescription) failures.push(`Bilingual descriptions must match the manifest for ${slug}`);
+  if (JSON.stringify(frontmatterKeys(en)) !== JSON.stringify(expectedFrontmatterKeys) || JSON.stringify(frontmatterKeys(ko)) !== JSON.stringify(expectedFrontmatterKeys)) {
+    failures.push(`Both locales must use the exact approved frontmatter fields and order for ${slug}`);
+  }
   if (!String(entry.classification ?? '').startsWith('keep-')) failures.push(`Published source needs a keep classification for ${slug}`);
   if (enDescription.length > 180 || koDescription.length > 180) failures.push(`Descriptions must be at most 180 characters for ${slug}`);
   if (value(en, 'lang') !== 'en' || value(ko, 'lang') !== 'ko') failures.push(`Locale front matter is invalid for ${slug}`);
