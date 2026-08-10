@@ -52,7 +52,10 @@ function frontmatterKeys(content) {
 function activeMarkup(content) {
   return content
     .replace(/<!--[\s\S]*?-->/gu, '')
-    .replace(/<(?:script|style|template)\b[^>]*>[\s\S]*?<\/(?:script|style|template)>/giu, '');
+    .replace(/<!--[\s\S]*$/gu, '')
+    .replace(/<!\[CDATA\[[\s\S]*?\]\]>/gu, '')
+    .replace(/<(?:script|style|template|title|textarea|noscript|xmp|iframe|noembed|noframes)\b[^>]*>[\s\S]*?<\/(?:script|style|template|title|textarea|noscript|xmp|iframe|noembed|noframes)>/giu, '')
+    .replace(/<plaintext\b[^>]*>[\s\S]*$/giu, '');
 }
 
 function requireIncludes(path, expected, label) {
@@ -68,9 +71,13 @@ function requireExactlyOnce(path, expected, label) {
   if (count !== 1) failures.push(`${label}: ${path} must contain ${JSON.stringify(expected)} exactly once, found ${count}`);
 }
 
-function requireExactlyOneMatch(path, pattern, label) {
+function requireMatchCount(path, pattern, expectedCount, label) {
   const count = activeMarkup(read(path)).match(pattern)?.length ?? 0;
-  if (count !== 1) failures.push(`${label}: ${path} must contain exactly one active matching element, found ${count}`);
+  if (count !== expectedCount) failures.push(`${label}: ${path} must contain ${expectedCount} active matching elements, found ${count}`);
+}
+
+function requireExactlyOneMatch(path, pattern, label) {
+  requireMatchCount(path, pattern, 1, label);
 }
 
 function decodeHtml(value) {
@@ -206,25 +213,37 @@ for (const [index, entry] of entries.entries()) {
   const enOutput = `dist/articles/${slug}/index.html`;
   const koOutput = `dist/ko/articles/${slug}/index.html`;
   requireIncludes(enOutput, '<html lang="en">', `English document language for ${slug}`);
-  requireIncludes(enOutput, `<link rel="canonical" href="https://geminikim.github.io/articles/${slug}/">`, `English canonical for ${slug}`);
-  requireIncludes(enOutput, `hreflang="ko" href="https://geminikim.github.io/ko/articles/${slug}/"`, `English Korean alternate for ${slug}`);
-  requireIncludes(enOutput, `hreflang="x-default" href="https://geminikim.github.io/articles/${slug}/"`, `English x-default for ${slug}`);
+  requireExactlyOnce(enOutput, `<link rel="canonical" href="https://geminikim.github.io/articles/${slug}/">`, `English canonical for ${slug}`);
+  requireExactlyOneMatch(enOutput, /<link\b[^>]*\srel="canonical"[^>]*>/gu, `English canonical element for ${slug}`);
+  requireExactlyOnce(enOutput, `hreflang="en" href="https://geminikim.github.io/articles/${slug}/"`, `English self alternate for ${slug}`);
+  requireExactlyOnce(enOutput, `hreflang="ko" href="https://geminikim.github.io/ko/articles/${slug}/"`, `English Korean alternate for ${slug}`);
+  requireExactlyOnce(enOutput, `hreflang="x-default" href="https://geminikim.github.io/articles/${slug}/"`, `English x-default for ${slug}`);
+  requireMatchCount(enOutput, /<link\b[^>]*\shreflang="(?:en|ko|x-default)"[^>]*>/gu, 3, `English hreflang set for ${slug}`);
   requireIncludes(enOutput, '<a href="https://www.youtube.com/@geminikims">Gemini’s Devpractice</a>', `English source link for ${slug}`);
   requireIncludes(enOutput, '<code>gpt-5.6-sol</code>', `English model disclosure for ${slug}`);
-  requireIncludes(enOutput, `<meta property="article:published_time" content="${expectedDate}T00:00:00.000Z">`, `English publication metadata for ${slug}`);
+  requireExactlyOnce(enOutput, `<meta property="article:published_time" content="${expectedDate}T00:00:00.000Z">`, `English publication metadata for ${slug}`);
+  requireExactlyOneMatch(enOutput, /<meta\b[^>]*\sproperty="article:published_time"[^>]*>/gu, `English publication metadata element for ${slug}`);
   requireExcludes(enOutput, 'article:modified_time', `English modified metadata for ${slug}`);
 
   requireIncludes(koOutput, '<html lang="ko">', `Korean document language for ${slug}`);
-  requireIncludes(koOutput, `<link rel="canonical" href="https://geminikim.github.io/ko/articles/${slug}/">`, `Korean canonical for ${slug}`);
-  requireIncludes(koOutput, `hreflang="en" href="https://geminikim.github.io/articles/${slug}/"`, `Korean English alternate for ${slug}`);
-  requireIncludes(koOutput, `hreflang="x-default" href="https://geminikim.github.io/articles/${slug}/"`, `Korean x-default for ${slug}`);
+  requireExactlyOnce(koOutput, `<link rel="canonical" href="https://geminikim.github.io/ko/articles/${slug}/">`, `Korean canonical for ${slug}`);
+  requireExactlyOneMatch(koOutput, /<link\b[^>]*\srel="canonical"[^>]*>/gu, `Korean canonical element for ${slug}`);
+  requireExactlyOnce(koOutput, `hreflang="en" href="https://geminikim.github.io/articles/${slug}/"`, `Korean English alternate for ${slug}`);
+  requireExactlyOnce(koOutput, `hreflang="ko" href="https://geminikim.github.io/ko/articles/${slug}/"`, `Korean self alternate for ${slug}`);
+  requireExactlyOnce(koOutput, `hreflang="x-default" href="https://geminikim.github.io/articles/${slug}/"`, `Korean x-default for ${slug}`);
+  requireMatchCount(koOutput, /<link\b[^>]*\shreflang="(?:en|ko|x-default)"[^>]*>/gu, 3, `Korean hreflang set for ${slug}`);
   requireIncludes(koOutput, '<a href="https://www.youtube.com/@geminikims">제미니의 개발실무</a>', `Korean source link for ${slug}`);
   requireIncludes(koOutput, '<code>gpt-5.6-sol</code>', `Korean model disclosure for ${slug}`);
-  requireIncludes(koOutput, `<meta property="article:published_time" content="${expectedDate}T00:00:00.000Z">`, `Korean publication metadata for ${slug}`);
+  requireExactlyOnce(koOutput, `<meta property="article:published_time" content="${expectedDate}T00:00:00.000Z">`, `Korean publication metadata for ${slug}`);
+  requireExactlyOneMatch(koOutput, /<meta\b[^>]*\sproperty="article:published_time"[^>]*>/gu, `Korean publication metadata element for ${slug}`);
   requireExcludes(koOutput, 'article:modified_time', `Korean modified metadata for ${slug}`);
 
   const enRendered = activeMarkup(read(enOutput));
   const koRendered = activeMarkup(read(koOutput));
+  requireExactlyOneMatch(enOutput, /<meta\b[^>]*\sproperty="og:title"[^>]*>/gu, `English Open Graph title element for ${slug}`);
+  requireExactlyOneMatch(koOutput, /<meta\b[^>]*\sproperty="og:title"[^>]*>/gu, `Korean Open Graph title element for ${slug}`);
+  requireExactlyOneMatch(enOutput, /<meta\b[^>]*\sname="twitter:title"[^>]*>/gu, `English Twitter title element for ${slug}`);
+  requireExactlyOneMatch(koOutput, /<meta\b[^>]*\sname="twitter:title"[^>]*>/gu, `Korean Twitter title element for ${slug}`);
   const enOgTitle = enRendered.match(/<meta property="og:title" content="([^"]+)">/u)?.[1] ?? '';
   const koOgTitle = koRendered.match(/<meta property="og:title" content="([^"]+)">/u)?.[1] ?? '';
   const enTwitterTitle = enRendered.match(/<meta name="twitter:title" content="([^"]+)">/u)?.[1] ?? '';
