@@ -49,16 +49,37 @@ function frontmatterKeys(content) {
     .filter(Boolean);
 }
 
-function withoutComments(content) {
-  return content.replace(/<!--[\s\S]*?-->/gu, '');
+function activeMarkup(content) {
+  return content
+    .replace(/<!--[\s\S]*?-->/gu, '')
+    .replace(/<(?:script|style|template)\b[^>]*>[\s\S]*?<\/(?:script|style|template)>/giu, '');
 }
 
 function requireIncludes(path, expected, label) {
-  if (!withoutComments(read(path)).includes(expected)) failures.push(`${label}: ${path} is missing ${JSON.stringify(expected)}`);
+  if (!activeMarkup(read(path)).includes(expected)) failures.push(`${label}: ${path} is missing ${JSON.stringify(expected)}`);
 }
 
 function requireExcludes(path, unexpected, label) {
-  if (withoutComments(read(path)).includes(unexpected)) failures.push(`${label}: ${path} contains ${JSON.stringify(unexpected)}`);
+  if (activeMarkup(read(path)).includes(unexpected)) failures.push(`${label}: ${path} contains ${JSON.stringify(unexpected)}`);
+}
+
+function requireExactlyOnce(path, expected, label) {
+  const count = activeMarkup(read(path)).split(expected).length - 1;
+  if (count !== 1) failures.push(`${label}: ${path} must contain ${JSON.stringify(expected)} exactly once, found ${count}`);
+}
+
+function requireExactlyOneMatch(path, pattern, label) {
+  const count = activeMarkup(read(path)).match(pattern)?.length ?? 0;
+  if (count !== 1) failures.push(`${label}: ${path} must contain exactly one active matching element, found ${count}`);
+}
+
+function decodeHtml(value) {
+  return value
+    .replace(/&amp;/gu, '&')
+    .replace(/&quot;/gu, '"')
+    .replace(/&#(?:39|x27);/giu, "'")
+    .replace(/&lt;/gu, '<')
+    .replace(/&gt;/gu, '>');
 }
 
 let manifest = null;
@@ -135,6 +156,7 @@ for (const [index, entry] of entries.entries()) {
 
   const enPath = `src/content/blog/en/${slug}.md`;
   const koPath = `src/content/blog/ko/${slug}.md`;
+  const escapedSlug = slug.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&');
   const en = read(enPath, `English source for ${slug}`);
   const ko = read(koPath, `Korean source for ${slug}`);
   if (!en || !ko) continue;
@@ -201,21 +223,22 @@ for (const [index, entry] of entries.entries()) {
   requireIncludes(koOutput, `<meta property="article:published_time" content="${expectedDate}T00:00:00.000Z">`, `Korean publication metadata for ${slug}`);
   requireExcludes(koOutput, 'article:modified_time', `Korean modified metadata for ${slug}`);
 
-  const enRendered = withoutComments(read(enOutput));
-  const koRendered = withoutComments(read(koOutput));
+  const enRendered = activeMarkup(read(enOutput));
+  const koRendered = activeMarkup(read(koOutput));
   const enOgTitle = enRendered.match(/<meta property="og:title" content="([^"]+)">/u)?.[1] ?? '';
   const koOgTitle = koRendered.match(/<meta property="og:title" content="([^"]+)">/u)?.[1] ?? '';
   const enTwitterTitle = enRendered.match(/<meta name="twitter:title" content="([^"]+)">/u)?.[1] ?? '';
   const koTwitterTitle = koRendered.match(/<meta name="twitter:title" content="([^"]+)">/u)?.[1] ?? '';
-  if (!enOgTitle || enOgTitle !== koOgTitle) failures.push(`Open Graph titles must use the English title in both locales for ${slug}`);
-  if (!enTwitterTitle || enTwitterTitle !== koTwitterTitle) failures.push(`Twitter titles must use the English title in both locales for ${slug}`);
+  const expectedSocialTitle = `${entry.enTitle} — Gemini Kim`;
+  if (decodeHtml(enOgTitle) !== expectedSocialTitle || decodeHtml(koOgTitle) !== expectedSocialTitle) failures.push(`Open Graph titles must match the branded manifest English title in both locales for ${slug}`);
+  if (decodeHtml(enTwitterTitle) !== expectedSocialTitle || decodeHtml(koTwitterTitle) !== expectedSocialTitle) failures.push(`Twitter titles must match the branded manifest English title in both locales for ${slug}`);
 
-  requireIncludes('dist/articles/index.html', `/articles/${slug}/`, `English archive entry for ${slug}`);
-  requireIncludes('dist/ko/articles/index.html', `/ko/articles/${slug}/`, `Korean archive entry for ${slug}`);
-  requireIncludes('dist/rss.xml', `/articles/${slug}/`, `English RSS entry for ${slug}`);
-  requireIncludes('dist/ko/rss.xml', `/ko/articles/${slug}/`, `Korean RSS entry for ${slug}`);
-  requireIncludes('dist/sitemap-0.xml', `<loc>https://geminikim.github.io/articles/${slug}/</loc>`, `English sitemap entry for ${slug}`);
-  requireIncludes('dist/sitemap-0.xml', `<loc>https://geminikim.github.io/ko/articles/${slug}/</loc>`, `Korean sitemap entry for ${slug}`);
+  requireExactlyOneMatch('dist/articles/index.html', new RegExp(`<a\\b[^>]*\\shref="/articles/${escapedSlug}/"[^>]*>`, 'gu'), `English archive entry for ${slug}`);
+  requireExactlyOneMatch('dist/ko/articles/index.html', new RegExp(`<a\\b[^>]*\\shref="/ko/articles/${escapedSlug}/"[^>]*>`, 'gu'), `Korean archive entry for ${slug}`);
+  requireExactlyOnce('dist/rss.xml', `<link>https://geminikim.github.io/articles/${slug}/</link>`, `English RSS item for ${slug}`);
+  requireExactlyOnce('dist/ko/rss.xml', `<link>https://geminikim.github.io/ko/articles/${slug}/</link>`, `Korean RSS item for ${slug}`);
+  requireExactlyOnce('dist/sitemap-0.xml', `<loc>https://geminikim.github.io/articles/${slug}/</loc>`, `English sitemap entry for ${slug}`);
+  requireExactlyOnce('dist/sitemap-0.xml', `<loc>https://geminikim.github.io/ko/articles/${slug}/</loc>`, `Korean sitemap entry for ${slug}`);
 }
 
 if (new Set(slugs).size !== slugs.length) failures.push('The 2024 manifest contains duplicate slugs');
