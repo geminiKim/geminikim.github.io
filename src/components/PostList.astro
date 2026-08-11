@@ -4,6 +4,7 @@ import type { Locale } from '../i18n/config';
 import { ui } from '../i18n/config';
 import { formatDate } from '../lib/date';
 import { getPostUrl } from '../lib/posts';
+import TopicLinks from './TopicLinks.astro';
 
 interface Props {
   posts: CollectionEntry<'blog'>[];
@@ -28,11 +29,7 @@ const text = ui[locale];
             </div>
             <h3>{post.data.title}</h3>
             <p>{post.data.description}</p>
-            {post.data.tags.length > 0 && (
-              <ul class="tag-list" aria-label={text.tags}>
-                {post.data.tags.map((tag) => <li>{tag}</li>)}
-              </ul>
-            )}
+            <TopicLinks tags={post.data.tags} locale={locale} linked={false} />
             <span class="read-more" aria-hidden="true">{text.read} <span>↗</span></span>
           </a>
         </article>

@@ -35,10 +35,10 @@ function missing(path, label) {
 }
 
 includes('dist/index.html', '<html lang="en">', 'English is the default document language');
-includes('dist/index.html', '<link rel="canonical" href="https://geminikim.github.io/">', 'English home is canonical');
-includes('dist/index.html', 'hreflang="en" href="https://geminikim.github.io/"', 'English home hreflang');
-includes('dist/index.html', 'hreflang="ko" href="https://geminikim.github.io/ko/"', 'Korean home hreflang');
-includes('dist/index.html', 'hreflang="x-default" href="https://geminikim.github.io/"', 'English is x-default');
+includes('dist/index.html', '<link rel="canonical" href="https://geminikim.com/">', 'English home is canonical');
+includes('dist/index.html', 'hreflang="en" href="https://geminikim.com/"', 'English home hreflang');
+includes('dist/index.html', 'hreflang="ko" href="https://geminikim.com/ko/"', 'Korean home hreflang');
+includes('dist/index.html', 'hreflang="x-default" href="https://geminikim.com/"', 'English is x-default');
 includes(
   'dist/index.html',
   '<h1>Build it. Run it.<br><em>Learn</em> from it.</h1>',
@@ -55,10 +55,10 @@ excludes('dist/ko/index.html', '기술을 만들고,', 'Korean home removes the 
 excludes('dist/ko/index.html', '만들고, 운영하고,', 'Korean home does not localize the hero slogan');
 includes(
   'dist/ko/index.html',
-  '<title>Gemini Kim — Software engineering notes</title>',
-  'Korean home browser title is English',
+  '<title>Gemini Kim — 소프트웨어 엔지니어링 노트</title>',
+  'Korean home browser title is localized',
 );
-includes('dist/ko/index.html', '<link rel="canonical" href="https://geminikim.github.io/ko/">', 'Korean home canonical');
+includes('dist/ko/index.html', '<link rel="canonical" href="https://geminikim.com/ko/">', 'Korean home canonical');
 includes(
   'dist/ko/index.html',
   '<meta property="og:title" content="Gemini Kim — Software engineering notes">',
@@ -92,8 +92,8 @@ excludes(
 );
 includes(
   'dist/ko/articles/index.html',
-  '<title>Articles — Gemini Kim</title>',
-  'Korean archive document title matches the shared heading',
+  '<title>글 — Gemini Kim</title>',
+  'Korean archive document title is localized',
 );
 const expected2023ArticleSlugs = [
   'normalization-from-requirements',
@@ -156,6 +156,16 @@ function frontmatterList(content, key) {
 
 function markdownBody(content) {
   return content.match(/^---\n[\s\S]*?\n---\n([\s\S]*)$/u)?.[1]?.trimStart() ?? '';
+}
+
+function decodeHtml(value) {
+  return value
+    .replaceAll('&amp;', '&')
+    .replaceAll('&quot;', '"')
+    .replaceAll('&#39;', "'")
+    .replaceAll('&apos;', "'")
+    .replaceAll('&lt;', '<')
+    .replaceAll('&gt;', '>');
 }
 
 const englishArticleSlugs = readdirSync(new URL('../src/content/blog/en/', import.meta.url))
@@ -248,17 +258,17 @@ for (const slug of expected2023ArticleSlugs) {
   includes(englishOutput, '<html lang="en">', `English article language for ${slug}`);
   includes(
     englishOutput,
-    `<link rel="canonical" href="https://geminikim.github.io/articles/${slug}/">`,
+    `<link rel="canonical" href="https://geminikim.com/articles/${slug}/">`,
     `English article canonical for ${slug}`,
   );
   includes(
     englishOutput,
-    `hreflang="ko" href="https://geminikim.github.io/ko/articles/${slug}/"`,
+    `hreflang="ko" href="https://geminikim.com/ko/articles/${slug}/"`,
     `English article Korean alternate for ${slug}`,
   );
   includes(
     englishOutput,
-    `hreflang="x-default" href="https://geminikim.github.io/articles/${slug}/"`,
+    `hreflang="x-default" href="https://geminikim.com/articles/${slug}/"`,
     `English article x-default for ${slug}`,
   );
   includes(
@@ -278,17 +288,17 @@ for (const slug of expected2023ArticleSlugs) {
   includes(koreanOutput, '<html lang="ko">', `Korean article language for ${slug}`);
   includes(
     koreanOutput,
-    `<link rel="canonical" href="https://geminikim.github.io/ko/articles/${slug}/">`,
+    `<link rel="canonical" href="https://geminikim.com/ko/articles/${slug}/">`,
     `Korean article canonical for ${slug}`,
   );
   includes(
     koreanOutput,
-    `hreflang="en" href="https://geminikim.github.io/articles/${slug}/"`,
+    `hreflang="en" href="https://geminikim.com/articles/${slug}/"`,
     `Korean article English alternate for ${slug}`,
   );
   includes(
     koreanOutput,
-    `hreflang="x-default" href="https://geminikim.github.io/articles/${slug}/"`,
+    `hreflang="x-default" href="https://geminikim.com/articles/${slug}/"`,
     `Korean article x-default for ${slug}`,
   );
   includes(
@@ -317,6 +327,14 @@ for (const slug of expected2023ArticleSlugs) {
   if (!englishTwitterTitle || englishTwitterTitle !== koreanTwitterTitle) {
     failures.push(`English and Korean Twitter titles must use the English title for ${slug}`);
   }
+  const englishBrowserTitle = decodeHtml(englishRendered.match(/<title>(.*?)<\/title>/su)?.[1] ?? '');
+  const koreanBrowserTitle = decodeHtml(koreanRendered.match(/<title>(.*?)<\/title>/su)?.[1] ?? '');
+  if (englishBrowserTitle !== `${englishTitle} — Gemini Kim`) {
+    failures.push(`English article browser title is incorrect for ${slug}`);
+  }
+  if (koreanBrowserTitle !== `${koreanTitle} — Gemini Kim`) {
+    failures.push(`Korean article browser title is incorrect for ${slug}`);
+  }
 
   includes('dist/articles/index.html', `/articles/${slug}/`, `English archive includes ${slug}`);
   includes('dist/ko/articles/index.html', `/ko/articles/${slug}/`, `Korean archive includes ${slug}`);
@@ -324,12 +342,12 @@ for (const slug of expected2023ArticleSlugs) {
   includes('dist/ko/rss.xml', `/ko/articles/${slug}/`, `Korean RSS includes ${slug}`);
   includes(
     'dist/sitemap-0.xml',
-    `<loc>https://geminikim.github.io/articles/${slug}/</loc>`,
+    `<loc>https://geminikim.com/articles/${slug}/</loc>`,
     `Sitemap includes the English route for ${slug}`,
   );
   includes(
     'dist/sitemap-0.xml',
-    `<loc>https://geminikim.github.io/ko/articles/${slug}/</loc>`,
+    `<loc>https://geminikim.com/ko/articles/${slug}/</loc>`,
     `Sitemap includes the Korean route for ${slug}`,
   );
 }
@@ -348,8 +366,8 @@ for (let index = 1; index < expected2023PublicationDates.length; index += 1) {
 }
 includes(
   'dist/ko/about/index.html',
-  '<title>About — Gemini Kim</title>',
-  'Korean about browser title is English',
+  '<title>소개 — Gemini Kim</title>',
+  'Korean about browser title is localized',
 );
 includes(
   'dist/ko/about/index.html',
@@ -395,25 +413,25 @@ includes('dist/404.html', '<html lang="en">', 'Global 404 defaults to English');
 
 const sitemap = read('dist/sitemap-0.xml');
 for (const url of [
-  'https://geminikim.github.io/',
-  'https://geminikim.github.io/articles/',
-  'https://geminikim.github.io/ko/',
-  'https://geminikim.github.io/ko/articles/',
+  'https://geminikim.com/',
+  'https://geminikim.com/articles/',
+  'https://geminikim.com/ko/',
+  'https://geminikim.com/ko/articles/',
 ]) {
   if (!sitemap.includes(`<loc>${url}</loc>`)) failures.push(`Sitemap is missing ${url}`);
 }
 for (const removedUrl of [
-  'https://geminikim.github.io/articles/hello-world/',
-  'https://geminikim.github.io/ko/articles/hello-world/',
+  'https://geminikim.com/articles/hello-world/',
+  'https://geminikim.com/ko/articles/hello-world/',
 ]) {
   if (sitemap.includes(`<loc>${removedUrl}</loc>`)) {
     failures.push(`Sitemap must exclude removed placeholder article ${removedUrl}`);
   }
 }
 for (const legacyPrefix of [
-  'https://geminikim.github.io/en/',
-  'https://geminikim.github.io/posts/',
-  'https://geminikim.github.io/ko/posts/',
+  'https://geminikim.com/en/',
+  'https://geminikim.com/posts/',
+  'https://geminikim.com/ko/posts/',
 ]) {
   if (sitemap.includes(`<loc>${legacyPrefix}`)) {
     failures.push(`Sitemap must exclude legacy redirect aliases under ${legacyPrefix}`);
@@ -435,10 +453,13 @@ for (const htmlFile of collectFiles(new URL('../dist/', import.meta.url)).filter
 )) {
   const content = readFileSync(htmlFile, 'utf8');
   const title = content.match(/<title>(.*?)<\/title>/s)?.[1];
+  const isKoreanCanonical = htmlFile.pathname.includes('/dist/ko/');
   if (!title) {
     failures.push(`Browser title is missing in ${htmlFile.pathname}`);
-  } else if (/[\u3131-\u318e\uac00-\ud7a3]/u.test(title)) {
-    failures.push(`Browser title must be English in ${htmlFile.pathname}: ${JSON.stringify(title)}`);
+  } else if (isKoreanCanonical && !/[\u3131-\u318e\uac00-\ud7a3]/u.test(title)) {
+    failures.push(`Korean canonical browser title must be localized in ${htmlFile.pathname}: ${JSON.stringify(title)}`);
+  } else if (!isKoreanCanonical && /[\u3131-\u318e\uac00-\ud7a3]/u.test(title)) {
+    failures.push(`English or compatibility browser title must stay English in ${htmlFile.pathname}: ${JSON.stringify(title)}`);
   }
 }
 

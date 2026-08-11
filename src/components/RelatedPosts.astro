@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '../i18n/config';
+import { formatDate } from '../lib/date';
+import { getPostUrl } from '../lib/posts';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  locale: Locale;
+}
+
+const { posts, locale } = Astro.props;
+const heading = locale === 'ko' ? '관련 글' : 'Related articles';
+const ariaLabel = locale === 'ko' ? '이 글과 같은 주제의 글' : 'Articles on related topics';
+---
+
+{posts.length > 0 && (
+  <section class="related-posts" aria-labelledby="related-posts-title">
+    <p class="section-kicker">Keep reading</p>
+    <h2 id="related-posts-title">{heading}</h2>
+    <ol aria-label={ariaLabel}>
+      {posts.map((post) => (
+        <li>
+          <a class="related-post-link" href={getPostUrl(post)}>
+            <span>{post.data.title}</span>
+            <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt, locale)}</time>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+)}

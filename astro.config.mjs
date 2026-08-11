@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { SITE_ORIGIN } from './site.config.mjs';
 
 export default defineConfig({
-  site: 'https://geminikim.github.io',
+  site: SITE_ORIGIN,
   integrations: [
     sitemap({
       filter: (page) => {
