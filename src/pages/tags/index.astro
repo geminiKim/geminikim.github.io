@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { topics } from '../../data/tag-taxonomy.mjs';
+import { getPostsForTopic, getVisiblePosts } from '../../lib/posts';
+
+const posts = await getVisiblePosts('en');
+const alternates = { en: '/tags/', ko: '/ko/tags/' };
+const topicRows = topics.map((topic) => ({ topic, count: getPostsForTopic(posts, topic.slug).length }));
+---
+
+<BaseLayout
+  title="Topics"
+  description="Browse Gemini Kim’s software engineering articles by durable topics instead of one-off tags."
+  locale="en"
+  alternates={alternates}
+>
+  <header class="page-header page-shell">
+    <p class="section-kicker">Explore</p>
+    <h1>Topics</h1>
+    <p>Durable themes across architecture, operations, delivery, and engineering practice.</p>
+  </header>
+  <section class="topic-index page-shell" aria-label="Article topics">
+    <ol>
+      {topicRows.map(({ topic, count }) => (
+        <li>
+          <a class="topic-card" href={`/tags/${topic.slug}/`}>
+            <span>
+              <strong>{topic.label.en}</strong>
+              <small>{count} {count === 1 ? 'article' : 'articles'}</small>
+            </span>
+            <p>{topic.description.en}</p>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+</BaseLayout>

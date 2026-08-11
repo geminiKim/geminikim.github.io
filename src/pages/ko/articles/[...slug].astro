@@ -3,8 +3,11 @@ import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import type { LocaleLinks } from '../../../i18n/config';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import RelatedPosts from '../../../components/RelatedPosts.astro';
+import TopicLinks from '../../../components/TopicLinks.astro';
 import { formatDate } from '../../../lib/date';
-import { getPostAlternates, getPostSlug, getVisiblePosts } from '../../../lib/posts';
+import { getPostAlternates, getPostSlug, getRelatedPosts, getVisiblePosts } from '../../../lib/posts';
+import { articleStructuredData, siteOrigin } from '../../../lib/structuredData';
 
 export async function getStaticPaths() {
   const koPosts = await getVisiblePosts('ko');
@@ -19,7 +22,7 @@ export async function getStaticPaths() {
       props: {
         post,
         alternates: getPostAlternates(post, allPosts),
-        englishTitle: englishPost?.data.title ?? 'Article',
+        relatedPosts: getRelatedPosts(post, koPosts),
         ogTitle: englishPost
           ? `${englishPost.data.title} — Gemini Kim`
           : 'Gemini Kim — Software engineering notes',
@@ -31,16 +34,17 @@ export async function getStaticPaths() {
 interface Props {
   post: CollectionEntry<'blog'>;
   alternates: LocaleLinks;
-  englishTitle: string;
+  relatedPosts: CollectionEntry<'blog'>[];
   ogTitle: string;
 }
 
-const { post, alternates, englishTitle, ogTitle } = Astro.props;
+const { post, alternates, relatedPosts, ogTitle } = Astro.props;
 const { Content } = await render(post);
+const canonicalUrl = `${siteOrigin}/ko/articles/${getPostSlug(post)}/`;
 ---
 
 <BaseLayout
-  title={englishTitle}
+  title={post.data.title}
   ogTitle={ogTitle}
   description={post.data.description}
   type="article"
@@ -48,6 +52,13 @@ const { Content } = await render(post);
   updatedAt={post.data.updatedAt}
   locale="ko"
   alternates={alternates}
+  structuredData={articleStructuredData({
+    headline: post.data.title,
+    description: post.data.description,
+    publishedAt: post.data.publishedAt,
+    locale: 'ko',
+    canonicalUrl,
+  })}
 >
   <article class="article page-shell">
     <header class="article-header">
@@ -58,15 +69,12 @@ const { Content } = await render(post);
       </div>
       <h1>{post.data.title}</h1>
       <p>{post.data.description}</p>
-      {post.data.tags.length > 0 && (
-        <ul class="tag-list" aria-label="태그">
-          {post.data.tags.map((tag) => <li>{tag}</li>)}
-        </ul>
-      )}
+      <TopicLinks tags={post.data.tags} locale="ko" />
     </header>
     <div class="prose">
       <Content />
     </div>
+    <RelatedPosts posts={relatedPosts} locale="ko" />
     <footer class="article-footer">
       <p>끝까지 읽어주셔서 감사합니다.</p>
       <a href="/ko/articles/">다른 글 보기 <span aria-hidden="true">→</span></a>

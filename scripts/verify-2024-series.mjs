@@ -213,11 +213,11 @@ for (const [index, entry] of entries.entries()) {
   const enOutput = `dist/articles/${slug}/index.html`;
   const koOutput = `dist/ko/articles/${slug}/index.html`;
   requireIncludes(enOutput, '<html lang="en">', `English document language for ${slug}`);
-  requireExactlyOnce(enOutput, `<link rel="canonical" href="https://geminikim.github.io/articles/${slug}/">`, `English canonical for ${slug}`);
+  requireExactlyOnce(enOutput, `<link rel="canonical" href="https://geminikim.com/articles/${slug}/">`, `English canonical for ${slug}`);
   requireExactlyOneMatch(enOutput, /<link\b[^>]*\srel="canonical"[^>]*>/gu, `English canonical element for ${slug}`);
-  requireExactlyOnce(enOutput, `hreflang="en" href="https://geminikim.github.io/articles/${slug}/"`, `English self alternate for ${slug}`);
-  requireExactlyOnce(enOutput, `hreflang="ko" href="https://geminikim.github.io/ko/articles/${slug}/"`, `English Korean alternate for ${slug}`);
-  requireExactlyOnce(enOutput, `hreflang="x-default" href="https://geminikim.github.io/articles/${slug}/"`, `English x-default for ${slug}`);
+  requireExactlyOnce(enOutput, `hreflang="en" href="https://geminikim.com/articles/${slug}/"`, `English self alternate for ${slug}`);
+  requireExactlyOnce(enOutput, `hreflang="ko" href="https://geminikim.com/ko/articles/${slug}/"`, `English Korean alternate for ${slug}`);
+  requireExactlyOnce(enOutput, `hreflang="x-default" href="https://geminikim.com/articles/${slug}/"`, `English x-default for ${slug}`);
   requireMatchCount(enOutput, /<link\b[^>]*\shreflang="(?:en|ko|x-default)"[^>]*>/gu, 3, `English hreflang set for ${slug}`);
   requireIncludes(enOutput, '<a href="https://www.youtube.com/@geminikims">Gemini’s Devpractice</a>', `English source link for ${slug}`);
   requireIncludes(enOutput, '<code>gpt-5.6-sol</code>', `English model disclosure for ${slug}`);
@@ -226,11 +226,11 @@ for (const [index, entry] of entries.entries()) {
   requireExcludes(enOutput, 'article:modified_time', `English modified metadata for ${slug}`);
 
   requireIncludes(koOutput, '<html lang="ko">', `Korean document language for ${slug}`);
-  requireExactlyOnce(koOutput, `<link rel="canonical" href="https://geminikim.github.io/ko/articles/${slug}/">`, `Korean canonical for ${slug}`);
+  requireExactlyOnce(koOutput, `<link rel="canonical" href="https://geminikim.com/ko/articles/${slug}/">`, `Korean canonical for ${slug}`);
   requireExactlyOneMatch(koOutput, /<link\b[^>]*\srel="canonical"[^>]*>/gu, `Korean canonical element for ${slug}`);
-  requireExactlyOnce(koOutput, `hreflang="en" href="https://geminikim.github.io/articles/${slug}/"`, `Korean English alternate for ${slug}`);
-  requireExactlyOnce(koOutput, `hreflang="ko" href="https://geminikim.github.io/ko/articles/${slug}/"`, `Korean self alternate for ${slug}`);
-  requireExactlyOnce(koOutput, `hreflang="x-default" href="https://geminikim.github.io/articles/${slug}/"`, `Korean x-default for ${slug}`);
+  requireExactlyOnce(koOutput, `hreflang="en" href="https://geminikim.com/articles/${slug}/"`, `Korean English alternate for ${slug}`);
+  requireExactlyOnce(koOutput, `hreflang="ko" href="https://geminikim.com/ko/articles/${slug}/"`, `Korean self alternate for ${slug}`);
+  requireExactlyOnce(koOutput, `hreflang="x-default" href="https://geminikim.com/articles/${slug}/"`, `Korean x-default for ${slug}`);
   requireMatchCount(koOutput, /<link\b[^>]*\shreflang="(?:en|ko|x-default)"[^>]*>/gu, 3, `Korean hreflang set for ${slug}`);
   requireIncludes(koOutput, '<a href="https://www.youtube.com/@geminikims">제미니의 개발실무</a>', `Korean source link for ${slug}`);
   requireIncludes(koOutput, '<code>gpt-5.6-sol</code>', `Korean model disclosure for ${slug}`);
@@ -254,10 +254,10 @@ for (const [index, entry] of entries.entries()) {
 
   requireExactlyOneMatch('dist/articles/index.html', new RegExp(`<a\\b[^>]*\\shref="/articles/${escapedSlug}/"[^>]*>`, 'gu'), `English archive entry for ${slug}`);
   requireExactlyOneMatch('dist/ko/articles/index.html', new RegExp(`<a\\b[^>]*\\shref="/ko/articles/${escapedSlug}/"[^>]*>`, 'gu'), `Korean archive entry for ${slug}`);
-  requireExactlyOnce('dist/rss.xml', `<link>https://geminikim.github.io/articles/${slug}/</link>`, `English RSS item for ${slug}`);
-  requireExactlyOnce('dist/ko/rss.xml', `<link>https://geminikim.github.io/ko/articles/${slug}/</link>`, `Korean RSS item for ${slug}`);
-  requireExactlyOnce('dist/sitemap-0.xml', `<loc>https://geminikim.github.io/articles/${slug}/</loc>`, `English sitemap entry for ${slug}`);
-  requireExactlyOnce('dist/sitemap-0.xml', `<loc>https://geminikim.github.io/ko/articles/${slug}/</loc>`, `Korean sitemap entry for ${slug}`);
+  requireExactlyOnce('dist/rss.xml', `<link>https://geminikim.com/articles/${slug}/</link>`, `English RSS item for ${slug}`);
+  requireExactlyOnce('dist/ko/rss.xml', `<link>https://geminikim.com/ko/articles/${slug}/</link>`, `Korean RSS item for ${slug}`);
+  requireExactlyOnce('dist/sitemap-0.xml', `<loc>https://geminikim.com/articles/${slug}/</loc>`, `English sitemap entry for ${slug}`);
+  requireExactlyOnce('dist/sitemap-0.xml', `<loc>https://geminikim.com/ko/articles/${slug}/</loc>`, `Korean sitemap entry for ${slug}`);
 }
 
 if (new Set(slugs).size !== slugs.length) failures.push('The 2024 manifest contains duplicate slugs');

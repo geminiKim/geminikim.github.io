@@ -1,0 +1,29 @@
+---
+import type { Locale } from '../i18n/config';
+import { localePath } from '../i18n/config';
+import { getTopicsForTags } from '../data/tag-taxonomy.mjs';
+
+interface Props {
+  tags: readonly string[];
+  locale: Locale;
+  linked?: boolean;
+}
+
+const { tags, locale, linked = true } = Astro.props;
+const resolvedTopics = getTopicsForTags(tags);
+const label = locale === 'ko' ? '주제' : 'Topics';
+---
+
+{resolvedTopics.length > 0 && (
+  <ul class="tag-list" aria-label={label}>
+    {resolvedTopics.map((topic) => (
+      <li>
+        {linked ? (
+          <a href={localePath(locale, `tags/${topic.slug}`)}>{topic.label[locale]}</a>
+        ) : (
+          <span>{topic.label[locale]}</span>
+        )}
+      </li>
+    ))}
+  </ul>
+)}

@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { topics } from '../../data/tag-taxonomy.mjs';
+import { formatDate } from '../../lib/date';
+import { getPostsForTopic, getPostUrl, getVisiblePosts } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getVisiblePosts('en');
+  return topics.map((topic) => ({
+    params: { tag: topic.slug },
+    props: { topic, posts: getPostsForTopic(posts, topic.slug) },
+  }));
+}
+
+interface Props {
+  topic: (typeof topics)[number];
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { topic, posts } = Astro.props;
+const alternates = { en: `/tags/${topic.slug}/`, ko: `/ko/tags/${topic.slug}/` };
+---
+
+<BaseLayout
+  title={topic.label.en}
+  description={topic.description.en}
+  locale="en"
+  alternates={alternates}
+>
+  <header class="page-header page-shell">
+    <a class="back-link" href="/tags/"><span aria-hidden="true">←</span> All topics</a>
+    <p class="section-kicker">Topic</p>
+    <h1>{topic.label.en}</h1>
+    <p>{topic.description.en}</p>
+  </header>
+  <section class="topic-archive page-shell" aria-label={`${topic.label.en} articles`}>
+    <ol>
+      {posts.map((post) => (
+        <li>
+          <a class="topic-article-link" href={getPostUrl(post)}>
+            <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt, 'en')}</time>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+</BaseLayout>

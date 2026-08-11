@@ -3,8 +3,11 @@ import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import type { LocaleLinks } from '../../i18n/config';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+import TopicLinks from '../../components/TopicLinks.astro';
 import { formatDate } from '../../lib/date';
-import { getPostAlternates, getPostSlug, getVisiblePosts } from '../../lib/posts';
+import { getPostAlternates, getPostSlug, getRelatedPosts, getVisiblePosts } from '../../lib/posts';
+import { articleStructuredData, siteOrigin } from '../../lib/structuredData';
 
 export async function getStaticPaths() {
   const koPosts = await getVisiblePosts('ko');
@@ -12,17 +15,23 @@ export async function getStaticPaths() {
   const allPosts = [...koPosts, ...enPosts];
   return enPosts.map((post) => ({
     params: { slug: getPostSlug(post) },
-    props: { post, alternates: getPostAlternates(post, allPosts) },
+    props: {
+      post,
+      alternates: getPostAlternates(post, allPosts),
+      relatedPosts: getRelatedPosts(post, enPosts),
+    },
   }));
 }
 
 interface Props {
   post: CollectionEntry<'blog'>;
   alternates: LocaleLinks;
+  relatedPosts: CollectionEntry<'blog'>[];
 }
 
-const { post, alternates } = Astro.props;
+const { post, alternates, relatedPosts } = Astro.props;
 const { Content } = await render(post);
+const canonicalUrl = `${siteOrigin}/articles/${getPostSlug(post)}/`;
 ---
 
 <BaseLayout
@@ -33,6 +42,13 @@ const { Content } = await render(post);
   updatedAt={post.data.updatedAt}
   locale="en"
   alternates={alternates}
+  structuredData={articleStructuredData({
+    headline: post.data.title,
+    description: post.data.description,
+    publishedAt: post.data.publishedAt,
+    locale: 'en',
+    canonicalUrl,
+  })}
 >
   <article class="article page-shell">
     <header class="article-header">
@@ -43,15 +59,12 @@ const { Content } = await render(post);
       </div>
       <h1>{post.data.title}</h1>
       <p>{post.data.description}</p>
-      {post.data.tags.length > 0 && (
-        <ul class="tag-list" aria-label="Tags">
-          {post.data.tags.map((tag) => <li>{tag}</li>)}
-        </ul>
-      )}
+      <TopicLinks tags={post.data.tags} locale="en" />
     </header>
     <div class="prose">
       <Content />
     </div>
+    <RelatedPosts posts={relatedPosts} locale="en" />
     <footer class="article-footer">
       <p>Thanks for reading.</p>
       <a href="/articles/">Read another article <span aria-hidden="true">→</span></a>

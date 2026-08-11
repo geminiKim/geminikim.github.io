@@ -2,12 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostList from '../components/PostList.astro';
 import { getVisiblePosts } from '../lib/posts';
+import { homeStructuredData } from '../lib/structuredData';
 
 const posts = (await getVisiblePosts('en')).slice(0, 5);
 const alternates = { en: '/', ko: '/ko/' };
 ---
 
-<BaseLayout locale="en" alternates={alternates} isHome>
+<BaseLayout locale="en" alternates={alternates} isHome structuredData={homeStructuredData('en')}>
   <section class="hero page-shell">
     <p class="eyebrow"><span aria-hidden="true"></span> Engineer · Writer</p>
     <h1>Build it. Run it.<br /><em>Learn</em> from it.</h1>
