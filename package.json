@@ -10,7 +10,7 @@
     "preview": "astro preview",
     "verify:i18n": "node scripts/verify-i18n.mjs && node scripts/verify-2024-series.mjs",
     "verify:2024": "node scripts/verify-2024-series.mjs",
-    "verify:seo": "node scripts/verify-seo.mjs && node scripts/verify-taxonomy.mjs && node scripts/verify-structured-data.mjs",
+    "verify:seo": "node scripts/verify-seo.mjs && node scripts/verify-taxonomy.mjs && node scripts/verify-article-seo.mjs && node scripts/verify-structured-data.mjs",
     "verify": "npm run verify:i18n && npm run verify:seo"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "js-yaml": "^4.3.1",
     "typescript": "^6.0.3"
   }
 }
