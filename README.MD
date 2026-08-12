@@ -14,3 +14,13 @@ npm run build
 ```
 
 The build fails when article pairs, SEO metadata, taxonomy mapping, related articles, RSS, sitemap, JSON-LD, or multilingual routing drift from the repository contract. Pull requests run the same build before deployment.
+
+## Google Analytics
+
+GA4 is wired through the shared layout and remains disabled until a valid measurement ID is provided at build time.
+
+1. Copy `.env.example` to `.env` for local development.
+2. Replace `G-XXXXXXXXXX` with the GA4 measurement ID.
+3. For GitHub Pages, add the same value as a repository variable named `PUBLIC_GA_MEASUREMENT_ID`; the deployment workflow already exposes it to the Astro build step.
+
+The example placeholder and missing or malformed values emit no Google Analytics scripts. `.env` files stay ignored; never commit the real value.
