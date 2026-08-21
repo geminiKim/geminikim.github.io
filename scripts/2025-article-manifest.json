@@ -1,0 +1,861 @@
+{
+  "sourceYear": 2025,
+  "sourceCount": 51,
+  "retainedCount": 50,
+  "excludedCount": 1,
+  "datePolicy": "Editorial estimates at seven-day intervals preserve ascending source ID order from 2025-01-05. They are not researched upload dates.",
+  "articles": [
+    {
+      "order": 1,
+      "sourceId": "0",
+      "sourceFile": "25_00_스웨거와_레스트독스_상황별_선택_전략.MD",
+      "classification": "keep-technical",
+      "slug": "swagger-vs-rest-docs-for-tested-api-contracts",
+      "enTitle": "Swagger vs REST Docs: Choose API Documentation by Context",
+      "koTitle": "스웨거와 REST Docs, API 문서화 도구를 상황별로 고르는 법",
+      "publishedAt": "2025-01-05",
+      "enDescription": "Compare Swagger and REST Docs by test enforcement, code intrusion, customization, and a pragmatic migration path for legacy APIs.",
+      "koDescription": "테스트 강제, 코드 침투성, 문서 확장성, 레거시 API의 점진적 전환 기준으로 두 도구를 비교합니다.",
+      "tags": [
+        "api-design",
+        "testing",
+        "software-delivery"
+      ]
+    },
+    {
+      "order": 2,
+      "sourceId": "1",
+      "sourceFile": "25_01_모호한_매니저와_프로세서는_리팩토링_신호.MD",
+      "classification": "keep-technical",
+      "slug": "vague-manager-processor-classes-refactoring-signals",
+      "enTitle": "Why Manager and Processor Classes Are Refactoring Signals",
+      "koTitle": "Manager와 Processor 클래스가 리팩터링 대상이라는 신호",
+      "publishedAt": "2025-01-12",
+      "enDescription": "Use vague class names as code-smell signals, then narrow responsibilities and right-size layers without denying necessary transitional design.",
+      "koDescription": "모호한 클래스 이름을 코드 스멜로 읽고, 과도한 책임과 레이어를 점진적으로 정리하는 기준을 설명합니다.",
+      "tags": [
+        "architecture",
+        "software-delivery"
+      ]
+    },
+    {
+      "order": 3,
+      "sourceId": "3",
+      "sourceFile": "25_03_모듈_독립성을_지키는_예외_변환과_전파_규칙.MD",
+      "classification": "keep-technical",
+      "slug": "module-exception-translation-boundaries",
+      "enTitle": "Translate Exceptions at Module Boundaries",
+      "koTitle": "모듈 경계에서 예외를 변환하고 전파하는 법",
+      "publishedAt": "2025-01-19",
+      "enDescription": "Keep implementation exceptions inside their modules and define explicit translation boundaries that prevent dependencies from leaking upward.",
+      "koDescription": "구현 예외를 소유 모듈 안에 가두고, 상위 계층으로 의존성이 새지 않도록 변환 경계를 설계합니다.",
+      "tags": [
+        "architecture",
+        "backend",
+        "api-design"
+      ]
+    },
+    {
+      "order": 4,
+      "sourceId": "4",
+      "sourceFile": "25_04_레이어_규칙_자동화보다_팀의_사고가_먼저다.MD",
+      "classification": "keep-technical",
+      "slug": "architecture-rules-automation-vs-team-judgment",
+      "enTitle": "Architecture Rules Need Team Judgment Before Automation",
+      "koTitle": "아키텍처 규칙 자동화보다 팀의 판단이 먼저다",
+      "publishedAt": "2025-01-26",
+      "enDescription": "Balance automated layer enforcement against review capacity, repository scale, developer growth, and a team's need to reason about architecture.",
+      "koDescription": "레이어 규칙 자동화를 리뷰 여력, 저장소 규모, 개발자 성장, 팀의 아키텍처 토론과 함께 판단합니다.",
+      "tags": [
+        "architecture",
+        "collaboration",
+        "testing"
+      ]
+    },
+    {
+      "order": 5,
+      "sourceId": "5",
+      "sourceFile": "25_05_핵심_엔티티를_무겁게_만드는_연관관계_피하기.MD",
+      "classification": "keep-technical",
+      "slug": "keep-core-entities-light-with-delayed-associations",
+      "enTitle": "Keep Core Entities Light by Delaying ORM Associations",
+      "koTitle": "핵심 엔티티를 가볍게 지키는 연관관계 설계",
+      "publishedAt": "2025-02-02",
+      "enDescription": "Decide ORM associations by lifecycle and responsibility, separating searchable supporting data so core entities stay focused and adaptable.",
+      "koDescription": "생명주기와 책임으로 ORM 연관관계를 판단하고, 검색용 부가 데이터를 분리해 핵심 엔티티를 단순하게 유지합니다.",
+      "tags": [
+        "domain-modeling",
+        "data-modeling",
+        "architecture"
+      ]
+    },
+    {
+      "order": 6,
+      "sourceId": "6",
+      "sourceFile": "25_06_주문_스냅샷을_지키는_소프트_삭제와_격벽.MD",
+      "classification": "keep-technical",
+      "slug": "order-snapshots-soft-delete-domain-boundaries",
+      "enTitle": "Protect Order Snapshots with Soft Delete and Boundaries",
+      "koTitle": "주문 스냅샷을 지키는 소프트 삭제와 도메인 경계",
+      "publishedAt": "2025-02-09",
+      "enDescription": "Separate current products from immutable order snapshots, preserve refund history, and use status transitions or archives before destructive deletion.",
+      "koDescription": "현재 상품과 주문 스냅샷의 경계를 나누고, 환불 이력을 보존하며 파괴적 삭제 전에 상태 전환과 보관을 검토합니다.",
+      "tags": [
+        "domain-modeling",
+        "data-modeling",
+        "reliability"
+      ]
+    },
+    {
+      "order": 7,
+      "sourceId": "7",
+      "sourceFile": "25_07_개발자의_최우선_역량은_기술보다_일의_완수.MD",
+      "classification": "keep-developer-related",
+      "slug": "developer-growth-starts-with-finishing-the-work",
+      "enTitle": "Developer Growth Starts with Finishing the Work",
+      "koTitle": "개발자 성장은 맡은 일을 끝내는 데서 시작한다",
+      "publishedAt": "2025-02-16",
+      "enDescription": "Build professional trust by completing valuable work within a quality baseline, then refactor, learn, and prepare deliberately for the next step.",
+      "koDescription": "최소 품질선을 지키며 가치 있는 일을 완수하고, 이후 리팩터링과 학습으로 다음 성장을 준비하는 태도를 다룹니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration",
+        "software-delivery"
+      ]
+    },
+    {
+      "order": 8,
+      "sourceId": "8",
+      "sourceFile": "25_08_도메인_학습과_기술_실험을_분리하는_두_트랙.MD",
+      "classification": "keep-developer-related",
+      "slug": "separate-domain-learning-from-technology-experiments",
+      "enTitle": "Separate Domain Learning from Technology Experiments",
+      "koTitle": "도메인 학습과 기술 실험을 분리하는 두 가지 트랙",
+      "publishedAt": "2025-02-23",
+      "enDescription": "Use familiar tools to launch domain projects, and isolate unfamiliar infrastructure in minimal experiments with focused performance tests.",
+      "koDescription": "도메인 프로젝트는 익숙한 기술로 출시하고, 낯선 인프라는 최소 프로젝트와 성능 테스트로 따로 검증합니다.",
+      "tags": [
+        "engineering-practice",
+        "performance",
+        "software-delivery"
+      ]
+    },
+    {
+      "order": 9,
+      "sourceId": "9",
+      "sourceFile": "25_09_목록_좋아요_수는_단순_조회부터_시작하라.MD",
+      "classification": "keep-technical",
+      "slug": "paginated-like-counts-start-with-simple-queries",
+      "enTitle": "Paginated Like Counts: Start with a Simple Query",
+      "koTitle": "목록 좋아요 수는 단순한 조회부터 시작하라",
+      "publishedAt": "2025-03-02",
+      "enDescription": "Count likes for the current page with a bounded query before adding counter columns or Redis and their added management costs.",
+      "koDescription": "현재 페이지의 좋아요만 제한적으로 조회하고, 카운터 컬럼이나 Redis는 규모가 커져 필요할 때 관리 비용과 함께 검토합니다.",
+      "tags": [
+        "data-modeling",
+        "performance",
+        "backend"
+      ]
+    },
+    {
+      "order": 10,
+      "sourceId": "10",
+      "sourceFile": "25_10_생성과_변경_주기로_판단하는_개념의_생명주기.MD",
+      "classification": "keep-technical",
+      "slug": "domain-boundaries-through-concept-lifecycles",
+      "enTitle": "Find Domain Boundaries Through Concept Lifecycles",
+      "koTitle": "개념의 생명주기로 도메인 경계를 찾는 법",
+      "publishedAt": "2025-03-09",
+      "enDescription": "Compare creation, reads, changes, and deletion to judge cohesion, coupling, and boundaries among products, orders, payments, shipping, and settlement.",
+      "koDescription": "생성, 조회, 수정, 삭제 주기를 비교해 상품, 주문, 결제, 배송, 정산의 응집과 경계를 판단합니다.",
+      "tags": [
+        "domain-modeling",
+        "architecture",
+        "data-modeling"
+      ]
+    },
+    {
+      "order": 11,
+      "sourceId": "11",
+      "sourceFile": "25_11_작은_문제를_적은_자원으로_푸는_엔지니어링.MD",
+      "classification": "keep-technical",
+      "slug": "solve-small-problems-with-proportional-engineering",
+      "enTitle": "Solve Small Problems with Proportional Engineering",
+      "koTitle": "작은 문제를 적은 자원으로 푸는 엔지니어링",
+      "publishedAt": "2025-03-16",
+      "enDescription": "Measure what existing systems can do, solve small problems proportionally, and add caches or distributed infrastructure only when evidence demands it.",
+      "koDescription": "현재 시스템의 한계를 측정하고 작은 문제를 비례 있게 해결하며, 근거가 생길 때 캐시와 분산 인프라를 추가합니다.",
+      "tags": [
+        "architecture",
+        "performance",
+        "reliability",
+        "engineering-practice"
+      ]
+    },
+    {
+      "order": 12,
+      "sourceId": "12",
+      "sourceFile": "25_12_빅뱅_대신_작은_배포로_완성하는_레거시_개편.MD",
+      "classification": "keep-technical",
+      "slug": "incremental-legacy-modernization-with-small-deployments",
+      "enTitle": "Modernize Legacy Systems with Small Deployments",
+      "koTitle": "빅뱅 대신 작은 배포로 완성하는 레거시 개편",
+      "publishedAt": "2025-03-23",
+      "enDescription": "Reduce modernization risk with small verified deployments, practical rollback boundaries, visible progress, and value that survives a paused project.",
+      "koDescription": "검증 가능한 작은 배포와 롤백 경계로 개편 위험을 낮추고, 프로젝트가 멈춰도 남는 가치와 진척을 만듭니다.",
+      "tags": [
+        "software-delivery",
+        "reliability",
+        "testing"
+      ]
+    },
+    {
+      "order": 13,
+      "sourceId": "13",
+      "sourceFile": "25_13_레거시_개선의_첫걸음은_죽은_코드_삭제다.MD",
+      "classification": "keep-technical",
+      "slug": "legacy-cleanup-starts-with-safe-dead-code-removal",
+      "enTitle": "Legacy Cleanup Starts with Safe Dead-Code Removal",
+      "koTitle": "레거시 개선은 죽은 코드를 안전하게 지우는 데서 시작한다",
+      "publishedAt": "2025-03-30",
+      "enDescription": "Shrink legacy systems safely by combining runtime evidence, database checks, API consumer verification, and incremental dead-code deletion.",
+      "koDescription": "런타임 증거, 데이터 확인, API 소비자 검증을 결합해 죽은 코드를 점진적으로 삭제하고 레거시를 줄입니다.",
+      "tags": [
+        "software-delivery",
+        "testing",
+        "reliability"
+      ]
+    },
+    {
+      "order": 14,
+      "sourceId": "14",
+      "sourceFile": "25_14_경력_있는_신입은_업무_경험으로_차별화하라.MD",
+      "classification": "keep-developer-related",
+      "slug": "entry-level-developers-with-experience-interview-evidence",
+      "enTitle": "How Experienced Entry-Level Developers Can Stand Out",
+      "koTitle": "경력 있는 신입 개발자는 업무 경험으로 차별화하라",
+      "publishedAt": "2025-04-06",
+      "enDescription": "Prepare prior work for interviews by explaining what you did, the problem you faced, how you approached it, the solution you tried, and the action you took.",
+      "koDescription": "이전에 한 일과 문제, 접근 방식, 시도한 해법과 실제 행동을 면접에서 구체적으로 설명하는 법을 다룹니다.",
+      "tags": [
+        "engineering-practice",
+        "hiring"
+      ]
+    },
+    {
+      "order": 15,
+      "sourceId": "15",
+      "sourceFile": "25_15_모든_조회를_삼키는_만능_메서드에서_탈출하기.MD",
+      "classification": "keep-technical",
+      "slug": "split-god-query-methods-by-purpose",
+      "enTitle": "Split God Query Methods by Purpose",
+      "koTitle": "모든 조회를 삼키는 만능 메서드를 목적별로 쪼개라",
+      "publishedAt": "2025-04-13",
+      "enDescription": "Replace universal dynamic queries with purpose-specific methods, migrate callers incrementally, and shrink the side-effect surface before deeper refactoring.",
+      "koDescription": "만능 동적 조회를 목적별 메서드로 나누고 호출부를 점진적으로 옮겨, 리팩터링의 사이드 이펙트를 줄입니다.",
+      "tags": [
+        "backend",
+        "testing",
+        "software-delivery"
+      ]
+    },
+    {
+      "order": 16,
+      "sourceId": "16",
+      "sourceFile": "25_16_아이디_간격으로_안전한_DB_마이그레이션_만들기.MD",
+      "classification": "keep-technical",
+      "slug": "database-migration-id-range-gaps-for-safe-rollback",
+      "enTitle": "Use ID Range Gaps for Safer Database Rollbacks",
+      "koTitle": "아이디 범위를 띄워 DB 마이그레이션 롤백을 안전하게 만들기",
+      "publishedAt": "2025-04-20",
+      "enDescription": "Separate legacy and new identifier ranges to prevent rollback collisions, simplify reverse migration, and make operational traffic easier to trace.",
+      "koDescription": "레거시와 신규 아이디 범위를 분리해 롤백 충돌을 막고, 역마이그레이션과 운영 트래픽 추적을 단순하게 만듭니다.",
+      "tags": [
+        "data-modeling",
+        "software-delivery",
+        "reliability"
+      ]
+    },
+    {
+      "order": 17,
+      "sourceId": "17",
+      "sourceFile": "25_17_좋아요_정렬은_핵심_테이블과_집계_데이터를_분리하라.MD",
+      "classification": "keep-technical",
+      "slug": "separate-core-data-from-like-count-aggregates",
+      "enTitle": "Separate Core Data from Like-Count Aggregates",
+      "koTitle": "좋아요 정렬을 위한 핵심 데이터와 집계 데이터 분리",
+      "publishedAt": "2025-04-27",
+      "enDescription": "Design scalable like-based ranking with separate aggregates, explicit freshness goals, async updates, reconciliation, and search boundaries that follow real demand.",
+      "koDescription": "집계 분리, 명시적인 최신성 기준, 비동기 갱신, 정합성 보정, 검색 경계로 좋아요 기반 정렬을 확장합니다.",
+      "tags": [
+        "data-modeling",
+        "performance",
+        "reliability",
+        "architecture"
+      ]
+    },
+    {
+      "order": 18,
+      "sourceId": "18",
+      "sourceFile": "25_18_연차보다_다음_세대의_유산을_책임지는_시니어.MD",
+      "classification": "keep-developer-related",
+      "slug": "senior-engineer-legacy-maintainable-teams",
+      "enTitle": "What Senior Engineers Owe the Developers Who Come Next",
+      "koTitle": "시니어 개발자가 다음 개발자에게 남겨야 할 유산",
+      "publishedAt": "2025-05-04",
+      "enDescription": "Seniority is more than tenure: learn how maintainable code, tests, guidance, and team continuity define responsible senior engineering.",
+      "koDescription": "연차가 아니라 유지보수 가능한 코드, 테스트, 가이드와 팀의 지속가능성으로 시니어의 책임을 살펴봅니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration",
+        "testing"
+      ]
+    },
+    {
+      "order": 19,
+      "sourceId": "20",
+      "sourceFile": "25_20_로그인_전_데이터_마스킹은_프레젠테이션에_격리하라.MD",
+      "classification": "keep-technical",
+      "slug": "presentation-layer-data-masking",
+      "enTitle": "Keep Guest Data Masking in the Presentation Layer",
+      "koTitle": "로그인 전 데이터 마스킹을 프레젠테이션 계층에 두는 법",
+      "publishedAt": "2025-05-11",
+      "enDescription": "Learn why guest masking and author flags belong at the presentation boundary, keeping domain logic clean while preventing raw data exposure.",
+      "koDescription": "게스트 마스킹과 작성자 표시를 프레젠테이션 경계에 격리해 도메인 로직과 원문 데이터를 보호하는 방법을 설명합니다.",
+      "tags": [
+        "architecture",
+        "api-design",
+        "backend"
+      ]
+    },
+    {
+      "order": 20,
+      "sourceId": "21",
+      "sourceFile": "25_21_프로필과_계정을_연결하지_않는_완전_익명_설계.MD",
+      "classification": "keep-technical",
+      "slug": "unlink-accounts-profiles-anonymous-design",
+      "enTitle": "Reduce Account-to-Profile Linkability in Anonymous Services",
+      "koTitle": "계정과 프로필 연결 가능성을 낮추는 익명 설계",
+      "publishedAt": "2025-05-18",
+      "enDescription": "Explore identifier separation, disposable mapping keys, minimal retention, and the recovery tradeoffs behind a privacy-oriented account model.",
+      "koDescription": "식별자 분리, 휘발성 매핑 키, 최소 보관과 계정 복구 제약을 통해 익명 계정 모델의 트레이드오프를 살펴봅니다.",
+      "tags": [
+        "data-modeling",
+        "architecture",
+        "backend"
+      ]
+    },
+    {
+      "order": 21,
+      "sourceId": "22",
+      "sourceFile": "25_22_회사는_성장시켜_주는_곳이_아니라_일하는_곳이다.MD",
+      "classification": "keep-developer-related",
+      "slug": "developer-growth-own-your-learning",
+      "enTitle": "Your Company Provides Experience, Not Developer Growth",
+      "koTitle": "회사가 아닌 개발자가 자신의 성장을 책임지는 법",
+      "publishedAt": "2025-05-25",
+      "enDescription": "Developer growth comes from turning work, books, projects, and communities into personal judgment—not waiting for an employer to do it.",
+      "koDescription": "회사, 책, 프로젝트와 커뮤니티의 경험을 자기 판단으로 바꾸며 개발자 성장을 스스로 책임지는 관점을 다룹니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration"
+      ]
+    },
+    {
+      "order": 22,
+      "sourceId": "23",
+      "sourceFile": "25_23_애자일을_핑계로_필요한_문서화를_거부하지_마라.MD",
+      "classification": "keep-developer-related",
+      "slug": "agile-documentation-when-teams-need-it",
+      "enTitle": "Agile Does Not Mean No Documentation",
+      "koTitle": "애자일은 문서화를 하지 말라는 뜻이 아니다",
+      "publishedAt": "2025-06-01",
+      "enDescription": "Agile values working software without banning documentation. Write what teams, continuity, security, and regulated operations genuinely require.",
+      "koDescription": "애자일을 문서화 거부의 핑계로 삼지 않고 팀의 연속성, 보안, 규제와 운영에 필요한 문서를 판단하는 기준을 다룹니다.",
+      "tags": [
+        "collaboration",
+        "software-delivery",
+        "engineering-practice"
+      ]
+    },
+    {
+      "order": 23,
+      "sourceId": "24",
+      "sourceFile": "25_24_바이브_코딩에_휩쓸리지_않고_사고력을_지키는_법.MD",
+      "classification": "keep-developer-related",
+      "slug": "vibe-coding-with-engineering-judgment",
+      "enTitle": "Vibe Coding Still Requires Engineering Judgment",
+      "koTitle": "바이브 코딩 시대에도 개발자 판단력이 필요한 이유",
+      "publishedAt": "2025-06-08",
+      "enDescription": "Use AI coding tools without surrendering problem definition, code review, quality standards, or the technical knowledge needed to verify results.",
+      "koDescription": "AI 코딩을 활용하면서도 문제 정의, 코드 검토, 품질 기준과 결과를 검증할 기술 지식을 지키는 방법을 다룹니다.",
+      "tags": [
+        "engineering-practice",
+        "testing",
+        "backend"
+      ]
+    },
+    {
+      "order": 24,
+      "sourceId": "25",
+      "sourceFile": "25_25_동작하는_스파게티_코드를_테스트로_정복하는_법.MD",
+      "classification": "keep-technical",
+      "slug": "characterization-tests-for-spaghetti-code",
+      "enTitle": "Refactor Spaghetti Code with Characterization Tests",
+      "koTitle": "동작하는 스파게티 코드를 특성 테스트로 리팩터링하기",
+      "publishedAt": "2025-06-15",
+      "enDescription": "Capture legacy behavior with broad API tests, refactor behind the safety net, and deploy small reversible changes while coverage grows.",
+      "koDescription": "넓은 API 특성 테스트로 레거시 동작을 고정하고 안전망 안에서 리팩터링한 뒤 작은 가역적 변경으로 배포하는 전략을 설명합니다.",
+      "tags": [
+        "testing",
+        "software-delivery",
+        "architecture"
+      ]
+    },
+    {
+      "order": 25,
+      "sourceId": "26",
+      "sourceFile": "25_26_수신_가공_송신을_분리해_배치_재실행_비용_줄이기.MD",
+      "classification": "keep-technical",
+      "slug": "split-batch-ingestion-and-processing",
+      "enTitle": "Split Batch Ingestion from Processing to Reduce Retry Cost",
+      "koTitle": "배치 재실행 비용을 줄이기 위해 수신과 가공을 분리하는 법",
+      "publishedAt": "2025-06-22",
+      "enDescription": "Stage external data, rerun internal transformations without repeating provider calls, and reduce the traffic and recovery costs of oversized batch jobs.",
+      "koDescription": "외부 데이터를 저장한 뒤 제공자 호출 없이 내부 가공만 재실행해 대형 배치의 트래픽과 복구 비용을 줄이는 방법입니다.",
+      "tags": [
+        "data-modeling",
+        "reliability",
+        "software-delivery"
+      ]
+    },
+    {
+      "order": 26,
+      "sourceId": "27",
+      "sourceFile": "25_27_페이징_카운트_쿼리가_DB를_느리게_만드는_이유.MD",
+      "classification": "keep-technical",
+      "slug": "pagination-count-query-performance",
+      "enTitle": "Why Pagination Count Queries Slow Down Databases",
+      "koTitle": "페이징 카운트 쿼리가 데이터베이스를 느리게 하는 이유",
+      "publishedAt": "2025-06-29",
+      "enDescription": "Understand why exact totals can cost more than limited queries and when to consider slices, cached metadata, estimates, or product changes.",
+      "koDescription": "정확한 전체 건수가 제한 조회보다 비싼 이유와 슬라이스, 캐시 메타데이터, 추정치 또는 요구사항 변경을 선택할 기준을 설명합니다.",
+      "tags": [
+        "performance",
+        "data-modeling",
+        "backend"
+      ]
+    },
+    {
+      "order": 27,
+      "sourceId": "28",
+      "sourceFile": "25_28_분산_서비스_로그_추적과_기록_비용을_함께_설계하라.MD",
+      "classification": "keep-technical",
+      "slug": "distributed-tracing-minimal-safe-logging",
+      "enTitle": "Design Distributed Tracing and Safe Production Logs Together",
+      "koTitle": "분산 추적과 안전한 운영 로그를 함께 설계하는 법",
+      "publishedAt": "2025-07-06",
+      "enDescription": "Correlate requests across services while controlling log volume, masking sensitive fields, limiting access, and retaining only useful operational data.",
+      "koDescription": "서비스 간 요청을 추적하면서 로그 용량, 민감정보 마스킹, 접근 권한과 보관 기간을 함께 설계하는 실무 기준을 다룹니다.",
+      "tags": [
+        "reliability",
+        "backend",
+        "data-modeling"
+      ]
+    },
+    {
+      "order": 28,
+      "sourceId": "29",
+      "sourceFile": "25_29_엉망인_테이블을_코드_격벽으로_점진_개선하는_법.MD",
+      "classification": "keep-technical",
+      "slug": "legacy-schema-code-boundary",
+      "enTitle": "Improve a Bad Legacy Schema Behind a Code Boundary",
+      "koTitle": "엉망인 레거시 스키마를 코드 경계 뒤에서 개선하는 법",
+      "publishedAt": "2025-07-13",
+      "enDescription": "Hide cryptic tables behind repositories and meaningful types, regain control in code, then approach improvements to the legacy database.",
+      "koDescription": "의미 없는 테이블과 컬럼을 리포지토리와 타입 뒤에 숨겨 코드 통제력을 회복한 뒤 데이터베이스를 점진 개선하는 전략입니다.",
+      "tags": [
+        "data-modeling",
+        "software-delivery",
+        "architecture"
+      ]
+    },
+    {
+      "order": 29,
+      "sourceId": "30",
+      "sourceFile": "25_30_도메인_지식은_실무_문제_해결_경험으로_증명하라.MD",
+      "classification": "keep-developer-related",
+      "slug": "prove-domain-knowledge-through-problem-solving",
+      "enTitle": "Prove Domain Knowledge Through Real Problem Solving",
+      "koTitle": "도메인 지식을 실무 문제 해결로 증명하는 법",
+      "publishedAt": "2025-07-20",
+      "enDescription": "Domain expertise grows through real operations, policy, and cross-team problems. Show it through concrete problem solving, not terminology alone.",
+      "koDescription": "운영, 정책과 부서 간 문제에서 도메인 지식을 쌓고 용어가 아니라 실제 판단과 해결 과정으로 역량을 증명하는 방법을 다룹니다.",
+      "tags": [
+        "engineering-practice",
+        "domain-modeling",
+        "collaboration"
+      ]
+    },
+    {
+      "order": 30,
+      "sourceId": "32",
+      "sourceFile": "25_32_새_언어_도입은_인력과_유지보수까지_계산하라.MD",
+      "classification": "keep-technical",
+      "slug": "programming-language-adoption-total-cost",
+      "enTitle": "Calculate the Full Cost of a New Programming Language",
+      "koTitle": "새 프로그래밍 언어 도입의 전체 비용을 계산하는 법",
+      "publishedAt": "2025-07-27",
+      "enDescription": "Evaluate language adoption through hiring, learning, observability, shared libraries, integration, and maintenance—not technical fit alone.",
+      "koDescription": "기술 적합성만 보지 않고 채용, 학습, 관측성, 공통 라이브러리, 통합과 유지보수 비용으로 새 언어 도입을 판단합니다.",
+      "tags": [
+        "architecture",
+        "reliability",
+        "collaboration"
+      ]
+    },
+    {
+      "order": 31,
+      "sourceId": "33",
+      "sourceFile": "25_33_QA_티켓을_당연시하지_않는_개발자의_품질_책임.MD",
+      "classification": "keep-developer-related",
+      "slug": "developer-testing-responsibility-before-qa",
+      "enTitle": "Developer Testing Responsibility Before QA Handoff",
+      "koTitle": "QA 전달 전에 개발자가 먼저 검증해야 하는 이유",
+      "publishedAt": "2025-08-03",
+      "enDescription": "Verify expected behavior before QA handoff so testers can pursue edge cases, reduce release loops, and build stronger cross-functional trust.",
+      "koDescription": "QA 전달 전 개발자가 정상 동작을 검증해 반복 수정 비용을 줄이고 QA가 경계 조건과 제품 품질에 집중하도록 만드는 방법입니다.",
+      "tags": [
+        "testing",
+        "collaboration",
+        "software-delivery"
+      ]
+    },
+    {
+      "order": 32,
+      "sourceId": "34",
+      "sourceFile": "25_34_테이블_수와_도메인_개념_수가_다른_이유.MD",
+      "classification": "keep-technical",
+      "slug": "domain-concepts-not-database-tables",
+      "enTitle": "Why Domain Concepts Should Not Mirror Database Tables",
+      "koTitle": "도메인 개념과 데이터베이스 테이블이 일대일이 아닌 이유",
+      "publishedAt": "2025-08-10",
+      "enDescription": "Model business importance, hierarchy, and behavior instead of creating one domain object and repository for every persistence table.",
+      "koDescription": "모든 테이블을 도메인 객체와 리포지토리로 복제하지 않고 비즈니스 중요도, 위계와 행동을 기준으로 모델링하는 법을 설명합니다.",
+      "tags": [
+        "domain-modeling",
+        "data-modeling",
+        "architecture"
+      ]
+    },
+    {
+      "order": 33,
+      "sourceId": "35",
+      "sourceFile": "25_35_정보와_행동을_함께_보는_다각도_개념_도출법.MD",
+      "classification": "keep-technical",
+      "slug": "multi-perspective-domain-concept-discovery",
+      "enTitle": "Discover Domain Concepts from Information and Behavior",
+      "koTitle": "정보와 행동을 함께 보는 도메인 개념 도출법",
+      "publishedAt": "2025-08-17",
+      "enDescription": "Use information and process or behavior from case-dependent viewpoints to distinguish transport events from domain concepts.",
+      "koDescription": "정보와 프로세스 또는 행동을 사례별 관점에서 살펴 전송 이벤트와 도메인 개념을 구분하는 방법입니다.",
+      "tags": [
+        "domain-modeling",
+        "architecture",
+        "data-modeling"
+      ]
+    },
+    {
+      "order": 34,
+      "sourceId": "36",
+      "sourceFile": "25_36_어렵고_긴_작업은_완벽을_버리고_작게_정복하라.MD",
+      "classification": "keep-technical",
+      "slug": "ship-long-legacy-work-in-small-safe-steps",
+      "enTitle": "How to Break Long Legacy Migrations into Small, Deployable Steps",
+      "koTitle": "긴 레거시 개편을 작은 배포로 나누는 법",
+      "publishedAt": "2025-08-24",
+      "enDescription": "Break exhausting legacy work into small development, verification, and deployment increments that create feedback before a perfect rewrite.",
+      "koDescription": "지치는 레거시 개편을 작은 개발·검증·배포로 나눠 빠르게 피드백을 얻고 완벽주의의 함정을 피하는 방법입니다.",
+      "tags": [
+        "software-delivery",
+        "testing",
+        "collaboration"
+      ]
+    },
+    {
+      "order": 35,
+      "sourceId": "37",
+      "sourceFile": "25_37_자바_옵셔널은_데이터_조회_경계에서만_사용하라.MD",
+      "classification": "keep-technical",
+      "slug": "java-optional-at-data-boundaries",
+      "enTitle": "Java Optional Rules: Keep Absence at Data Boundaries",
+      "koTitle": "자바 Optional은 데이터 경계에서만 쓰는 이유",
+      "publishedAt": "2025-08-31",
+      "enDescription": "Use Java Optional where a missing return value gives callers a real choice, while keeping fields, parameters, and trusted internal flows explicit.",
+      "koDescription": "값의 부재를 호출자가 실제로 결정해야 하는 반환 경계에서만 Optional을 쓰고 내부 흐름은 명확하게 유지하는 기준입니다.",
+      "tags": [
+        "backend",
+        "architecture"
+      ]
+    },
+    {
+      "order": 36,
+      "sourceId": "38",
+      "sourceFile": "25_38_탈퇴_회원_데이터의_법적_보관과_분리_전략.MD",
+      "classification": "keep-technical",
+      "slug": "design-data-retention-after-account-deletion",
+      "enTitle": "Account Deletion Data: Retention, Separation, and Recovery Design",
+      "koTitle": "회원 탈퇴 데이터의 보관·분리·복구 설계",
+      "publishedAt": "2025-09-07",
+      "enDescription": "Design deleted-account data around verified retention rules, isolated storage, encryption, expiry, and the operational flows that may still need recovery.",
+      "koDescription": "탈퇴 회원 데이터를 검증된 보관 기준, 분리 저장, 암호화, 만료와 취소·재가입 같은 운영 흐름에 맞춰 설계합니다.",
+      "tags": [
+        "data-modeling",
+        "reliability",
+        "software-delivery"
+      ]
+    },
+    {
+      "order": 37,
+      "sourceId": "41",
+      "sourceFile": "25_41_리뷰_개수보다_피드백을_줄여_가는_과정이_중요하다.MD",
+      "classification": "keep-developer-related",
+      "slug": "measure-code-review-alignment-over-time",
+      "enTitle": "Code Review Health Is a Trend, Not a Comment Count",
+      "koTitle": "코드 리뷰 품질은 댓글 수보다 줄어드는 추이로 본다",
+      "publishedAt": "2025-09-14",
+      "enDescription": "Use automation and draft pull requests to align teammates early, then track whether repeated feedback declines as shared conventions become real practice.",
+      "koDescription": "자동화와 드래프트 PR로 초기에 합을 맞추고, 공통 규칙이 자리 잡으며 반복 피드백이 줄어드는지를 확인합니다.",
+      "tags": [
+        "collaboration",
+        "engineering-practice",
+        "software-delivery"
+      ]
+    },
+    {
+      "order": 38,
+      "sourceId": "42",
+      "sourceFile": "25_42_강점과_경험을_조합해_나만의_커리어_설계하기.MD",
+      "classification": "keep-developer-related",
+      "slug": "design-a-developer-career-around-strengths",
+      "enTitle": "Design Your Developer Career Around Strengths and Experiments",
+      "koTitle": "강점과 실험으로 개발자 커리어를 설계하는 법",
+      "publishedAt": "2025-09-21",
+      "enDescription": "Map your strongest capabilities, test different kinds of engineering work, and keep revising a future direction from evidence rather than vague ambition.",
+      "koDescription": "자신의 강점을 구조화하고 여러 개발 경험을 직접 시험하며, 막연한 포부 대신 근거로 미래 방향을 계속 고치는 방법입니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration"
+      ]
+    },
+    {
+      "order": 39,
+      "sourceId": "43",
+      "sourceFile": "25_43_리더_직함은_이미_리더_역할을_하는_사람에게_온다.MD",
+      "classification": "keep-developer-related",
+      "slug": "earn-engineering-leadership-before-the-title",
+      "enTitle": "Engineering Leadership Starts Before the Title",
+      "koTitle": "개발 리더십은 직함을 받기 전에 시작된다",
+      "publishedAt": "2025-09-28",
+      "enDescription": "Prepare for engineering leadership by already handling reviews, incidents, broad problems, and peer trust before an organization adds the formal title.",
+      "koDescription": "리뷰, 장애, 넓은 문제와 동료의 신뢰를 먼저 책임지며 직함이 붙기 전부터 개발 리더십을 준비하는 기준입니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration"
+      ]
+    },
+    {
+      "order": 40,
+      "sourceId": "44",
+      "sourceFile": "25_44_연봉보다_다음_경험의_재료로_이직_회사를_고르기.MD",
+      "classification": "keep-developer-related",
+      "slug": "choose-developer-jobs-for-experience-value",
+      "enTitle": "Choose Your Next Developer Job for Experience, Not Salary Alone",
+      "koTitle": "개발자 이직은 연봉만이 아니라 다음 경험으로 고른다",
+      "publishedAt": "2025-10-05",
+      "enDescription": "Compare developer jobs by the domains, operating problems, and responsibilities you can turn into lasting capability, while respecting real financial constraints.",
+      "koDescription": "현실적인 금전 제약을 존중하면서도 도메인, 운영 문제, 책임을 장기 역량으로 바꿀 수 있는지를 이직 기준에 넣습니다.",
+      "tags": [
+        "engineering-practice",
+        "reliability"
+      ]
+    },
+    {
+      "order": 41,
+      "sourceId": "45",
+      "sourceFile": "25_45_오라클_레거시를_MySQL로_점진_이관한_전략.MD",
+      "classification": "keep-technical",
+      "slug": "migrate-oracle-to-mysql-with-adapters-and-flags",
+      "enTitle": "Oracle to MySQL Migration with Adapters, Dual Writes, and Flags",
+      "koTitle": "어댑터·듀얼 라이트·플래그로 Oracle을 MySQL로 이관하기",
+      "publishedAt": "2025-10-12",
+      "enDescription": "A reversible Oracle-to-MySQL migration using compatible adapters, dormant deployments, dual writes, tested switches, deliberate rollback, and legacy cleanup.",
+      "koDescription": "호환 어댑터, 사전 배포, 듀얼 라이트, 검증된 스위치와 롤백으로 Oracle 레거시를 MySQL로 점진 이관합니다.",
+      "tags": [
+        "data-modeling",
+        "software-delivery",
+        "reliability",
+        "testing"
+      ]
+    },
+    {
+      "order": 42,
+      "sourceId": "47",
+      "sourceFile": "25_47_대기업과_스타트업을_오가며_커리어_다양성_키우기.MD",
+      "classification": "keep-developer-related",
+      "slug": "build-career-range-across-company-scales",
+      "enTitle": "Build Engineering Career Range Across Company Sizes",
+      "koTitle": "회사 규모를 넘나들며 개발자 경험의 폭을 넓히는 법",
+      "publishedAt": "2025-10-19",
+      "enDescription": "Match company scale to your long-term path: broaden operating and leadership experience when needed, or preserve focus when deep technical craft is the goal.",
+      "koDescription": "장기 목표에 맞춰 작은 조직의 넓은 책임과 큰 조직의 깊은 전문성 중 필요한 경험의 폭을 의도적으로 선택합니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration"
+      ]
+    },
+    {
+      "order": 43,
+      "sourceId": "48",
+      "sourceFile": "25_48_어드민_공통_모듈보다_서비스별_경계를_지켜라.MD",
+      "classification": "keep-technical",
+      "slug": "avoid-admin-common-module-domain-coupling",
+      "enTitle": "Avoid the Admin Common Module That Owns Every Domain",
+      "koTitle": "모든 도메인을 삼키는 어드민 공통 모듈을 피하라",
+      "publishedAt": "2025-10-26",
+      "enDescription": "Keep admin features from reversing domain dependencies. Preserve service boundaries and accept small duplication while admin requirements continue to diverge.",
+      "koDescription": "어드민 요구가 도메인 의존성을 뒤집지 않게 서비스 경계를 지키고, 요구가 계속 갈라지는 동안 작은 중복을 허용합니다.",
+      "tags": [
+        "architecture",
+        "backend",
+        "domain-modeling"
+      ]
+    },
+    {
+      "order": 44,
+      "sourceId": "49",
+      "sourceFile": "25_49_암묵지를_컨벤션_문서와_리뷰로_살아_있게_만들기.MD",
+      "classification": "keep-developer-related",
+      "slug": "turn-tacit-engineering-rules-into-living-conventions",
+      "enTitle": "Turn Tacit Engineering Rules into Living Team Conventions",
+      "koTitle": "암묵지를 살아 있는 팀 컨벤션으로 만드는 법",
+      "publishedAt": "2025-11-02",
+      "enDescription": "Document the engineering rules teammates carry in their heads, explain why they exist, permit team overrides, and keep them alive through review and onboarding.",
+      "koDescription": "팀원의 머릿속에만 있는 개발 규칙을 이유와 함께 기록하고, 팀별 재정의와 리뷰·온보딩으로 살아 있게 관리합니다.",
+      "tags": [
+        "collaboration",
+        "architecture",
+        "engineering-practice"
+      ]
+    },
+    {
+      "order": 45,
+      "sourceId": "50",
+      "sourceFile": "25_50_미래_예측보다_조직_현실에_맞춰_관계를_설계하라.MD",
+      "classification": "keep-technical",
+      "slug": "design-data-relationships-for-organizational-reality",
+      "enTitle": "Design Data Relationships for Organizational Reality",
+      "koTitle": "조직 현실까지 고려한 데이터 관계 설계",
+      "publishedAt": "2025-11-09",
+      "enDescription": "Prefer simple relationship cardinality, then account for observed requirement churn, decision habits, and deadline constraints instead of predicting every future change.",
+      "koDescription": "단순한 관계에서 시작하되 실제 요구사항 변경, 의사결정 습관과 일정 제약을 관찰해 데이터 관계 설계에 반영합니다.",
+      "tags": [
+        "domain-modeling",
+        "architecture",
+        "collaboration"
+      ]
+    },
+    {
+      "order": 46,
+      "sourceId": "52",
+      "sourceFile": "25_52_새_회사_개발_문화는_내_팀의_작은_성공부터_바꿔라.MD",
+      "classification": "keep-developer-related",
+      "slug": "change-engineering-culture-through-small-wins",
+      "enTitle": "Change Engineering Culture Through Trust and Small Wins",
+      "koTitle": "신뢰와 작은 성공으로 개발 문화를 바꾸는 법",
+      "publishedAt": "2025-11-16",
+      "enDescription": "Learn a new organization before prescribing fixes, earn trust through delivery, and let visible gains from tests and shared policy work spread beyond your team.",
+      "koDescription": "새 조직을 먼저 이해하고 일로 신뢰를 얻은 뒤, 테스트와 정책 공유의 작은 성과를 보여 개발 문화를 확산합니다.",
+      "tags": [
+        "collaboration",
+        "testing",
+        "engineering-practice"
+      ]
+    },
+    {
+      "order": 47,
+      "sourceId": "57",
+      "sourceFile": "25_57_최소한의_핵심_문서만_최신_상태로_관리하라.MD",
+      "classification": "keep-developer-related",
+      "slug": "keep-a-small-trusted-documentation-set",
+      "enTitle": "Keep a Small Documentation Set the Team Can Trust",
+      "koTitle": "팀이 믿을 수 있는 최소 문서만 최신화하라",
+      "publishedAt": "2025-11-23",
+      "enDescription": "Reduce documentation sprawl by maintaining a trusted core of policy, concepts, system flows, and API contracts with clear ownership and onboarding feedback.",
+      "koDescription": "정책, 핵심 개념, 시스템 흐름과 API 계약을 소수의 신뢰할 문서로 관리하고 온보딩 피드백으로 계속 최신화합니다.",
+      "tags": [
+        "collaboration",
+        "architecture",
+        "software-delivery"
+      ]
+    },
+    {
+      "order": 48,
+      "sourceId": "59",
+      "sourceFile": "25_59_애매한_경력도_면접_서사를_만드는_강점으로_쓰기.MD",
+      "classification": "keep-developer-related",
+      "slug": "turn-an-unusual-developer-background-into-a-strength",
+      "enTitle": "Turn an Unusual Developer Background into an Interview Strength",
+      "koTitle": "애매한 개발 경력을 정직한 면접 강점으로 바꾸는 법",
+      "publishedAt": "2025-11-30",
+      "enDescription": "Keep your full work history honest, then tailor project emphasis to each role so adjacent experience gives interviewers credible reasons to hire you.",
+      "koDescription": "전체 경력은 정직하게 유지하되 지원 역할마다 프로젝트 강조점을 바꿔, 인접 경험을 채용할 만한 근거로 만듭니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration"
+      ]
+    },
+    {
+      "order": 49,
+      "sourceId": "60",
+      "sourceFile": "25_60_앱_하위_호환성을_지키는_서버_주도_응답_설계.MD",
+      "classification": "keep-technical",
+      "slug": "server-driven-api-responses-for-app-compatibility",
+      "enTitle": "Server-Driven API Responses for Mobile App Compatibility",
+      "koTitle": "앱 하위 호환성을 위한 서버 주도 API 응답 설계",
+      "publishedAt": "2025-12-07",
+      "enDescription": "Keep changing display policy and experiments server-side for old app versions, but isolate that translation at the API boundary to protect the domain model.",
+      "koDescription": "구버전 앱을 위해 변하는 표시 정책과 실험은 서버가 맡되, 변환을 API 경계에 격리해 도메인 모델을 보호합니다.",
+      "tags": [
+        "api-design",
+        "architecture",
+        "backend"
+      ]
+    },
+    {
+      "order": 50,
+      "sourceId": "61",
+      "sourceFile": "25_61_통_라이브러리를_쪼개_불필요한_의존성을_막아라.MD",
+      "classification": "keep-technical",
+      "slug": "split-all-in-one-libraries-into-composable-modules",
+      "enTitle": "Split All-in-One Libraries into Composable Dependency Modules",
+      "koTitle": "통 라이브러리를 조합 가능한 의존성 모듈로 쪼개라",
+      "publishedAt": "2025-12-14",
+      "enDescription": "Avoid hidden infrastructure, runtime cost, and dependency conflicts by splitting company libraries into modules each service can understand and compose deliberately.",
+      "koDescription": "전사 통 라이브러리를 서비스가 이해하고 선택할 수 있는 모듈로 나눠 숨은 인프라 연결, 자원 낭비와 의존성 충돌을 막습니다.",
+      "tags": [
+        "architecture",
+        "backend",
+        "reliability"
+      ]
+    }
+  ],
+  "excludedSources": [
+    {
+      "sourceId": "19",
+      "sourceFile": "25_19_완전_익명_직장_평가_서비스_레이트인_설계_공개.MD",
+      "classification": "exclude-self-promotion",
+      "reason": "Although the body includes useful architecture and privacy details, its central purpose is to launch, demonstrate, and recruit users for the speaker's own service."
+    }
+  ]
+}
