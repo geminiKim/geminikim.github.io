@@ -1,0 +1,605 @@
+{
+  "sourceYear": 2026,
+  "sourceCount": 18,
+  "datePolicy": "Editorial estimates at seven-day intervals preserve ascending source ID order from 2026-01-04. They are not researched upload dates.",
+  "sources": [
+    {
+      "sourceId": "03",
+      "sourceFile": "26_03_회원_탈퇴_후처리를_구현체_목록으로_느슨하게_연결하기.MD",
+      "finalLineRead": 98,
+      "classification": "keep-technical",
+      "thesis": "In a small service, account-deletion cleanup can stay explicit and loosely coupled by collecting domain-specific interface implementations and invoking them in sequence instead of adding messaging infrastructure prematurely.",
+      "reason": "The source is centrally about a backend coordination pattern and its scale-dependent trade-offs; course references only explain where the technical question came from.",
+      "risks": [
+        "The ASR transcript garbles several architecture terms, and the on-screen example code is not preserved in the Markdown.",
+        "Synchronous versus asynchronous failure handling, retries, transactions, data-retention duties, and deletion ordering are not worked through, so the pattern should not be presented as a complete account-erasure design."
+      ],
+      "evidence": [
+        {
+          "lines": "31-40",
+          "paraphrase": "The speaker compares an event-based approach with an interface whose implementations are injected as a list and iterated, favoring the latter for a small service."
+        },
+        {
+          "lines": "61-83",
+          "paraphrase": "The user service avoids direct dependencies on each domain implementation, and the recommendation is explicitly tied to limited scale, infrastructure, and a desire for visible control flow."
+        }
+      ],
+      "slug": "account-deletion-cleanup-handlers",
+      "enTitle": "Coordinate Account Deletion Cleanup Without a Message Broker",
+      "koTitle": "메시지 브로커 없이 회원 탈퇴 후처리 연결하기",
+      "enDescription": "For small services, collect domain-specific cleanup handlers behind one interface so account deletion stays explicit without extra messaging infrastructure.",
+      "koDescription": "작은 서비스에서 도메인별 정리 구현체를 모아 순회하며, 별도 메시징 인프라 없이 회원 탈퇴 흐름과 결합도를 관리하는 방법을 다룹니다.",
+      "tags": [
+        "backend",
+        "dependencies",
+        "software-design"
+      ],
+      "estimatedPublishedAt": "2026-01-04"
+    },
+    {
+      "sourceId": "05",
+      "sourceFile": "26_05_미리보기_데이터는_서버_응답에서_안전하게_가리기.MD",
+      "finalLineRead": 146,
+      "classification": "keep-technical",
+      "thesis": "When content is gated by login or payment, the server-facing response boundary should replace protected text rather than sending the original and relying on client-side blur, while preserving honest preview shape.",
+      "reason": "The central purpose is API and presentation-boundary design for access-controlled data, not promotion of the example service or its login flow.",
+      "risks": [
+        "Product names and a few implementation terms may be mistranscribed, and the transcript describes on-screen code that is not included.",
+        "Text replacement is not encryption or full authorization; cache behavior, alternate endpoints, metadata leakage, and server-side policy enforcement still require separate review."
+      ],
+      "evidence": [
+        {
+          "lines": "40-61",
+          "paraphrase": "The speaker shows that CSS blur can be removed and that original content remains obtainable from the network response if masking is performed only in the frontend."
+        },
+        {
+          "lines": "69-80",
+          "paraphrase": "The response is transformed at the presentation/API layer according to login state, preserving whitespace and length while replacing the actual characters."
+        }
+      ],
+      "slug": "hide-preview-content-server-side",
+      "enTitle": "Hide Preview Content at the Server Boundary, Not in CSS",
+      "koTitle": "CSS가 아니라 서버 응답에서 미리보기 원문 숨기기",
+      "enDescription": "Do not ship gated text and merely blur it in the client; transform previews at the server response boundary while preserving an honest layout cue.",
+      "koDescription": "보호할 원문을 내려준 뒤 화면에서 흐리지 말고, 정직한 미리보기 형태는 유지하면서 서버 응답 경계에서 내용을 변환하는 방법을 설명합니다.",
+      "tags": [
+        "api",
+        "authorization",
+        "client-server"
+      ],
+      "estimatedPublishedAt": "2026-01-11"
+    },
+    {
+      "sourceId": "06",
+      "sourceFile": "26_06_순번_키의_연결_고리를_끊어_익명_사용자_추적_막기.MD",
+      "finalLineRead": 112,
+      "classification": "keep-technical",
+      "thesis": "For a service whose promise depends on anonymity, avoid correlated sequential identifiers across identity-related tables and use independent random identifiers to make direct record linkage harder.",
+      "reason": "The source is a concrete data-modeling and privacy design discussion, including explicit limitations, rather than a general personal retrospective.",
+      "risks": [
+        "The ASR may misidentify the external login provider and other code-level names shown on screen.",
+        "Independent UUIDs only reduce an obvious linkage path; they do not guarantee anonymity when operators can join other attributes, the population is small, or a persistent external key remains stored."
+      ],
+      "evidence": [
+        {
+          "lines": "58-80",
+          "paraphrase": "Matching sequential primary keys across signup and user records make the same person easy to infer, so the speaker changes the identity-side keys to UUID-backed strings."
+        },
+        {
+          "lines": "87-107",
+          "paraphrase": "The speaker acknowledges that tiny user populations remain inferable and that an external uniqueness key is still required, framing the change as making tracking harder rather than eliminating all inference."
+        }
+      ],
+      "slug": "break-sequential-id-links-for-anonymity",
+      "enTitle": "Break Sequential ID Links in Anonymous Services",
+      "koTitle": "익명 서비스에서 순번 키의 연결 고리 끊기",
+      "enDescription": "Use independent random identifiers for identity-related records to remove obvious sequential links, while recognizing that UUIDs alone cannot guarantee anonymity.",
+      "koDescription": "신원 관련 레코드에 독립적인 무작위 식별자를 사용해 순번 키의 직접 연결을 끊되, UUID만으로 익명성이 보장되지는 않음을 짚습니다.",
+      "tags": [
+        "data-modeling",
+        "database",
+        "technical-decisions"
+      ],
+      "estimatedPublishedAt": "2026-01-18"
+    },
+    {
+      "sourceId": "11",
+      "sourceFile": "26_11_임시_저장의_의미에_따라_상태와_별도_테이블_선택하기.MD",
+      "finalLineRead": 174,
+      "classification": "keep-technical",
+      "thesis": "Model a draft as a status on the main record when it is merely an earlier lifecycle state, but consider a separate versioned draft store when it is a distinct preparatory concept with different or incomplete data.",
+      "reason": "The source is a domain-modeling and persistence trade-off analysis grounded in the business meaning, lifecycle, compatibility, and schema cost of temporary data.",
+      "risks": [
+        "Several domain and code terms are uncertain in the ASR, and the exact JSON-column layout is recalled tentatively by the speaker.",
+        "A JSON draft store adds unaddressed concerns around validation, indexing, migrations, transactions, retention, and backward compatibility; the recommendation depends on the actual domain and expiry policy."
+      ],
+      "evidence": [
+        {
+          "lines": "42-68",
+          "paraphrase": "The decision begins with what temporary saving means to the service: an ordinary pre-order stage belongs in the order table as a state, while a special intermediate concept may not."
+        },
+        {
+          "lines": "87-105",
+          "paraphrase": "A prior design stored preparatory data as versioned JSON and materialized the final order later, trading fewer mirrored tables for parsing and long-term compatibility obligations."
+        }
+      ],
+      "slug": "model-drafts-by-business-meaning",
+      "enTitle": "Model Drafts by Meaning: Status or Separate Storage?",
+      "koTitle": "임시 저장의 의미로 상태와 별도 저장소 선택하기",
+      "enDescription": "Choose a status for ordinary lifecycle stages and separate versioned storage for distinct preparatory data, based on domain meaning and compatibility cost.",
+      "koDescription": "일반적인 생명주기 단계는 상태로, 별도 의미를 가진 준비 데이터는 버전 저장소로 다루되 도메인 의미와 호환 비용을 기준으로 선택합니다.",
+      "tags": [
+        "data-modeling",
+        "database",
+        "domain-boundaries"
+      ],
+      "estimatedPublishedAt": "2026-01-25"
+    },
+    {
+      "sourceId": "13",
+      "sourceFile": "26_13_문제_있는_팀장과_과도한_업무를_조직에서_드러내는_법.MD",
+      "finalLineRead": 444,
+      "classification": "keep-developer-related",
+      "thesis": "Engineering teams should make leadership failures and overload visible through shared evidence, small work units, progress signals, and context-sensitive escalation, while building the trust needed to change organizational habits.",
+      "reason": "Although framed as responses to workplace questions, the source centers on engineering leadership, workload negotiation, team coordination, escalation, and sustainable developer practice.",
+      "risks": [
+        "Names, company context, and several technical phrases are uncertain in the ASR, while the two workplace cases are incomplete and one-sided.",
+        "Some confrontational language and suggestions could expose a worker to retaliation if generalized; HR, labor-law, health, compensation, and formal grievance considerations are outside the discussion."
+      ],
+      "evidence": [
+        {
+          "lines": "131-158",
+          "paraphrase": "The speaker advises aligning with teammates, making recurring failures visible instead of silently repairing them, and collecting concrete cases before escalating."
+        },
+        {
+          "lines": "298-340",
+          "paraphrase": "For excessive workload, the recommended mechanism is to split work into visible units, track progress and remaining scope, and use that evidence to negotiate plans and resources upward."
+        }
+      ],
+      "slug": "make-engineering-overload-visible",
+      "enTitle": "Make Overwork and Leadership Failures Visible",
+      "koTitle": "과도한 업무와 리더십 문제를 조직에 드러내기",
+      "enDescription": "Turn engineering overload into visible work, shared evidence, and scoped escalation so teams can negotiate resources and expose recurring leadership failures.",
+      "koDescription": "과도한 개발 업무를 작은 단위와 공동의 증거로 가시화해 자원을 협상하고, 반복되는 리더십 문제를 맥락에 맞게 드러내는 방법을 다룹니다.",
+      "tags": [
+        "collaboration",
+        "engineering-culture",
+        "project-management"
+      ],
+      "estimatedPublishedAt": "2026-02-01"
+    },
+    {
+      "sourceId": "14",
+      "sourceFile": "26_14_AI_생산력에_맞춰_모듈과_계층을_단순하게_설계하기.MD",
+      "finalLineRead": 218,
+      "classification": "keep-technical",
+      "thesis": "AI-assisted greenfield projects may benefit from fewer modules, interfaces, and layers that reduce context burden and favor clarity, but this remains an experiment and does not justify forcing the same structure onto legacy systems.",
+      "reason": "The source's central purpose is an architecture and developer-productivity hypothesis, with explicit constraints for new projects and quality trade-offs; project and channel references are incidental examples.",
+      "risks": [
+        "The claims are explicitly tentative experiments without measured productivity, defect, review, or maintenance data, and several tool or code references may be mistranscribed.",
+        "The advice is scoped to AI-assisted greenfield work; necessary ports and adapters, larger systems, team constraints, and legacy conventions can reverse the conclusion."
+      ],
+      "evidence": [
+        {
+          "lines": "103-130",
+          "paraphrase": "The speaker reports that many interfaces and modules increase agent mistakes and context setup, hypothesizing that older structures may not maximize AI-assisted output while stressing that testing is ongoing."
+        },
+        {
+          "lines": "168-194",
+          "paraphrase": "The proposed simplification is balanced against quality and clarity, and it is restricted to new projects; existing codebases should follow current conventions and improve incrementally."
+        }
+      ],
+      "slug": "simplify-architecture-for-ai-greenfield-work",
+      "enTitle": "Simplify Modules and Layers for AI-Assisted Greenfield Work",
+      "koTitle": "AI와 만드는 새 프로젝트의 모듈과 계층 단순화",
+      "enDescription": "Explore fewer modules, interfaces, and layers for AI-assisted greenfield work, while protecting clarity, quality, and incremental treatment of legacy systems.",
+      "koDescription": "AI와 새 프로젝트를 만들 때 모듈·인터페이스·계층을 줄이는 가설을 검토하되, 명확성과 품질 및 레거시의 점진적 개선을 지킵니다.",
+      "tags": [
+        "architecture",
+        "ai-agents",
+        "engineering-practice"
+      ],
+      "estimatedPublishedAt": "2026-02-08"
+    },
+    {
+      "sourceId": "15",
+      "sourceFile": "26_15_AI_시대_새_프로젝트의_구조와_기술_스택_선택_기준.MD",
+      "finalLineRead": 240,
+      "classification": "keep-technical",
+      "thesis": "AI can accelerate implementation, but project boundaries and technology choices should still reflect team size, existing expertise, reviewability, and the cost of failure.",
+      "reason": "The central purpose is technical guidance on repository boundaries, stack selection, human review, and risk-sensitive project structure in AI-assisted development.",
+      "risks": [
+        "The source repeatedly marks its conclusions as provisional and dependent on company size, product type, and team strategy.",
+        "Several technical names and one apparent reference to legacy-code pain are ASR-sensitive and should be checked against the video before quotation.",
+        "The discussion includes spoken references to project layouts that are not preserved as diagrams in the transcript."
+      ],
+      "evidence": [
+        {
+          "lines": "20-35",
+          "paraphrase": "The speaker says front-end and back-end separation and specialist roles still depend on organizational scale, while expert judgment remains necessary to evaluate AI-generated results."
+        },
+        {
+          "lines": "205-229",
+          "paraphrase": "A single-module experiment went too far, and the acceptable level of human code review and structural rigor should vary with business risk, such as casual services versus money or contracts."
+        }
+      ],
+      "slug": "choosing-project-structure-and-stack-in-ai-era",
+      "enTitle": "Choosing Project Structure and Tech Stacks in the AI Era",
+      "koTitle": "AI 시대의 프로젝트 구조와 기술 스택 선택 기준",
+      "enDescription": "Choose project boundaries and technology stacks by team size, existing expertise, reviewability, and failure cost—not AI output speed alone.",
+      "koDescription": "AI의 생성 속도만 보지 말고 팀 규모, 기존 전문성, 리뷰 가능성, 실패 비용에 맞춰 프로젝트 경계와 기술 스택을 고르는 기준을 다룹니다.",
+      "tags": [
+        "ai-agents",
+        "architecture",
+        "technical-decisions"
+      ],
+      "estimatedPublishedAt": "2026-02-15"
+    },
+    {
+      "sourceId": "17",
+      "sourceFile": "26_17_부트캠프_간판보다_목적과_멘토_역량을_먼저_검증하기.MD",
+      "finalLineRead": 504,
+      "classification": "keep-developer-related",
+      "thesis": "Developers should judge a bootcamp by concrete learning goals, mentor capability, credible outcomes, and its limits rather than treating its brand or network as a shortcut to employment.",
+      "reason": "The source is a developer-learning and career judgment piece: it helps prospective learners evaluate training claims, mentors, projects, outcomes, cost, and fit rather than promoting enrollment.",
+      "risks": [
+        "The rhetoric about bootcamps and mentors is deliberately harsh and sometimes makes broad causal claims that should be softened in publication.",
+        "Comments about outside employment and Korean law are explicitly based on shallow knowledge and should not be presented as legal guidance.",
+        "Claims about hiring conditions, AI education, and bootcamp effectiveness are experience-based rather than supported by measured market data."
+      ],
+      "evidence": [
+        {
+          "lines": "46-75",
+          "paraphrase": "Prospective students are told to name at least three concrete gains and not assume peer networking will materially improve their employment prospects."
+        },
+        {
+          "lines": "462-466",
+          "paraphrase": "The closing decision test asks what three practical benefits the learner expects and whether those benefits justify the price."
+        }
+      ],
+      "slug": "evaluating-bootcamps-beyond-the-brand",
+      "enTitle": "How to Evaluate a Bootcamp Beyond Its Brand",
+      "koTitle": "부트캠프 간판보다 목적과 멘토를 검증하는 법",
+      "enDescription": "Evaluate a bootcamp through concrete learning goals, mentor capability, credible outcomes, practical limits, and whether the price is justified.",
+      "koDescription": "구체적인 학습 목표, 멘토 역량, 실제 성과와 한계, 비용의 타당성을 기준으로 부트캠프를 판단하는 방법을 다룹니다.",
+      "tags": [
+        "career",
+        "learning",
+        "hiring"
+      ],
+      "estimatedPublishedAt": "2026-02-22"
+    },
+    {
+      "sourceId": "18",
+      "sourceFile": "26_18_실제_이력서로_기술_면접_질문을_만드는_강의_모집.MD",
+      "finalLineRead": 108,
+      "classification": "exclude-promotion",
+      "thesis": "The recording recruits résumé contributors for a technical-interview course and offers selected applicants free course access in exchange for permission to use anonymized material.",
+      "reason": "Course recruitment is the central purpose: nearly the entire recording explains who should apply, how résumés will be selected and anonymized, and what course access contributors may receive; technical interview instruction is only promised future content.",
+      "risks": [
+        "The proposal involves sensitive résumé data, so anonymization and later deletion claims would require careful privacy handling if reused.",
+        "The application window, June release target, coupon-like benefit, and selection count are time-bound promotional details.",
+        "The source contains almost no standalone technical-interview guidance to support a non-promotional article."
+      ],
+      "evidence": [
+        {
+          "lines": "18-45",
+          "paraphrase": "The speaker introduces a course in production, asks subscribers to provide résumés for course examples, and offers free course access to contributors."
+        },
+        {
+          "lines": "52-63",
+          "paraphrase": "Viewers are directed to apply through a form, with three to five résumés selected according to their fit with the course and the lessons the speaker can present."
+        }
+      ],
+      "slug": "resume-recruitment-for-technical-interview-course",
+      "enTitle": "Recruiting Résumés for a Technical Interview Course",
+      "koTitle": "기술 면접 강의를 위한 이력서 모집 안내",
+      "enDescription": "This source recruits résumé contributors for a paid technical-interview course, offering selected applicants free access in return.",
+      "koDescription": "유료 기술 면접 강의의 사례로 쓸 이력서를 모집하고, 선정된 제공자에게 무료 수강을 제안하는 안내입니다.",
+      "tags": [
+        "hiring",
+        "career",
+        "communication"
+      ]
+    },
+    {
+      "sourceId": "19",
+      "sourceFile": "26_19_프론트오피스와_백오피스_분리_기준을_다시_점검하기.MD",
+      "finalLineRead": 315,
+      "classification": "keep-technical",
+      "thesis": "Front-office and back-office systems should be combined or separated according to their real purpose, lifecycle, functional overlap, team workflow, and operational cost rather than labels alone.",
+      "reason": "The source is an architecture consultation grounded in modularity, deployment boundaries, shared data, team topology, schema ownership, and the maintenance cost of different separation strategies.",
+      "risks": [
+        "The advice is based on an incomplete anonymous question, and the speaker repeatedly notes that system size and history are unknown.",
+        "Several arguments rely on diagrams drawn during the recording that are absent from the transcript.",
+        "The Flyway and production-migration comments are explicitly limited by the speaker's own experience and should not be generalized."
+      ],
+      "evidence": [
+        {
+          "lines": "114-125",
+          "paraphrase": "For a small team, the speaker prefers starting together and splitting only when distinct properties, lifecycles, domains, or codebase size make the boundary real."
+        },
+        {
+          "lines": "252-275",
+          "paraphrase": "A separately versioned entity library is rejected as costly, while the degree of feature overlap and genuine purpose difference is proposed as the key test for keeping systems separate."
+        }
+      ],
+      "slug": "when-to-split-front-and-back-office-systems",
+      "enTitle": "When to Split Front-Office and Back-Office Systems",
+      "koTitle": "프론트오피스와 백오피스는 언제 분리해야 할까",
+      "enDescription": "Decide whether front- and back-office systems belong together by comparing purpose, lifecycle, feature overlap, team workflow, and operational cost.",
+      "koDescription": "목적, 생명주기, 기능 중복, 팀의 작업 방식과 운영 비용을 비교해 프론트오피스와 백오피스의 분리 여부를 판단합니다.",
+      "tags": [
+        "architecture",
+        "modularity",
+        "team-practice"
+      ],
+      "estimatedPublishedAt": "2026-03-01"
+    },
+    {
+      "sourceId": "21",
+      "sourceFile": "26_21_업무_시간의_공부보다_경력_경험의_밀도를_높이는_법.MD",
+      "finalLineRead": 256,
+      "classification": "keep-developer-related",
+      "thesis": "Career growth comes primarily from dense, explainable experience in meaningful company work, while work-hour study is most defensible when it directly supports the team's needs and is agreed with the manager.",
+      "reason": "The central purpose is developer career practice: how to balance job responsibility, relevant learning, manager communication, interview evidence, and the density of real-world experience.",
+      "risks": [
+        "The recommendation is strongly context-dependent on seniority, company type, workload, manager style, and the relevance of the proposed study.",
+        "The source can sound like an endorsement of overwork, although it also accepts leaving on time and studying afterward.",
+        "Hiring-market and interviewer-preference claims are personal experience rather than measured evidence."
+      ],
+      "evidence": [
+        {
+          "lines": "86-119",
+          "paraphrase": "Unrelated personal study and toy projects are said to carry less weight than company work involving real stakeholders, operations, and delivery, so doing the job well remains the stronger career foundation."
+        },
+        {
+          "lines": "194-224",
+          "paraphrase": "For early-career developers, interviewers may judge whether the amount and depth of actual work match the tenure, which the speaker calls the density of experience."
+        }
+      ],
+      "slug": "build-career-density-through-real-work",
+      "enTitle": "Build Career Density, Not Just Study Time",
+      "koTitle": "공부 시간보다 경력 경험의 밀도를 높여라",
+      "enDescription": "Career growth comes less from unrelated study during work hours than from building dense, explainable experience through meaningful company work.",
+      "koDescription": "업무와 무관한 공부 시간을 늘리기보다 실제 회사 일에서 설명할 수 있는 경험의 밀도를 높이는 커리어 원칙을 다룹니다.",
+      "tags": [
+        "career",
+        "learning",
+        "engineering-practice"
+      ],
+      "estimatedPublishedAt": "2026-03-08"
+    },
+    {
+      "sourceId": "24",
+      "sourceFile": "26_24_좋은_기술_면접은_지원자와_면접관의_긴장감을_지킨다.MD",
+      "finalLineRead": 124,
+      "classification": "exclude-promotion",
+      "thesis": "The recording uses the idea that good interviews maintain balanced tension and mutual curiosity as the hook for promoting a paid technical-interview course, discount, and mock-interview event.",
+      "reason": "Although it contains a useful developer-career metaphor, the recording opens with detailed sales messaging and later explicitly describes the discussion as course promotion; the limited interview advice functions mainly as a promotional sample.",
+      "risks": [
+        "A potentially reusable interview principle is embedded in promotion, so extracting it could obscure the source's central commercial purpose.",
+        "Discount availability, launch timing, event details, and claims about the hiring market are time-sensitive.",
+        "Some interview wording is impressionistic, and one key ASR sentence about the hiring decision is garbled."
+      ],
+      "evidence": [
+        {
+          "lines": "18-28",
+          "paraphrase": "The recording begins by advertising the newly opened course, subscriber discount, purchase path, and a mock-interview event tied to the launch."
+        },
+        {
+          "lines": "88-107",
+          "paraphrase": "The speaker twice identifies the discussion as course promotion, lists course strategies, explains why the course was made, and asks viewers with interview concerns to consider it."
+        }
+      ],
+      "slug": "maintaining-tension-in-technical-interviews",
+      "enTitle": "Why Good Technical Interviews Keep Both Sides Engaged",
+      "koTitle": "좋은 기술 면접이 양쪽의 긴장감을 지키는 이유",
+      "enDescription": "A useful idea about balanced interview tension is framed mainly as promotion for a paid interview course, discount, and mock-interview event.",
+      "koDescription": "면접의 긴장감을 균형 있게 유지하자는 조언을 유료 강의, 할인, 모의 면접 이벤트 홍보의 중심 소재로 사용합니다.",
+      "tags": [
+        "hiring",
+        "communication",
+        "career"
+      ]
+    },
+    {
+      "sourceId": "25",
+      "sourceFile": "26_25_AI_버즈워드보다_실제_업무_효용과_경험에_집중하기.MD",
+      "finalLineRead": 242,
+      "classification": "keep-developer-related",
+      "thesis": "Developers should resist AI buzzword anxiety by trying practices such as prompting, context management, harnesses, and loops in real work, then judging them by demonstrated utility rather than novelty.",
+      "reason": "The central purpose is developer learning and judgment: it encourages firsthand experimentation, connects successive AI terms instead of treating each as a replacement, and makes practical usefulness the standard. Marketing and channel references frame the concern but do not drive the source.",
+      "risks": [
+        "Automatic transcription appears to garble several AI and infrastructure terms in the operational example, so the article should preserve the general example without repairing uncertain product or service names.",
+        "Statements about national adoption rates, how few practitioners achieve real utility, and when another buzzword will appear are personal impressions rather than measured findings."
+      ],
+      "evidence": [
+        {
+          "lines": "126-151",
+          "paraphrase": "The speaker argues that new labels do not erase earlier practices: effective harnesses still depend on maintaining context, and effective context still depends on prompting."
+        },
+        {
+          "lines": "167-194",
+          "paraphrase": "The recommended response to anxiety is to try the tools, apply them to actual work or a project, and evaluate whether they create useful results rather than merely following the terminology."
+        }
+      ],
+      "slug": "judge-ai-practices-by-real-workplace-utility",
+      "enTitle": "Judge AI Practices by Real Workplace Utility, Not Buzzwords",
+      "koTitle": "AI 버즈워드보다 실제 업무 효용으로 판단하기",
+      "enDescription": "Test AI practices in real work instead of chasing labels, and use firsthand experience to separate durable methods from marketing-driven fear.",
+      "koDescription": "유행하는 AI 용어를 좇기보다 실제 업무와 프로젝트에 적용해 보고, 직접 만든 경험으로 효용과 불안을 구분하는 법을 다룹니다.",
+      "tags": [
+        "ai-agents",
+        "learning"
+      ],
+      "estimatedPublishedAt": "2026-03-15"
+    },
+    {
+      "sourceId": "26",
+      "sourceFile": "26_26_AI_에이전트의_생산력과_사람의_사고_확장력_비교하기.MD",
+      "finalLineRead": 231,
+      "classification": "keep-developer-related",
+      "thesis": "AI agents can increase output without needing motivation, but complex organizational work still requires people to supply context, memory, criteria, and the self-directed expansion that strong colleagues contribute.",
+      "reason": "The source is a developer- and team-related examination of AI-assisted productivity, organizational context, cost, maintainable quality, and human judgment. Its product and model mentions are incidental examples within a broader comparison of work practices.",
+      "risks": [
+        "The conclusions come from the speaker's ongoing personal experiments, not a controlled productivity study, and are repeatedly qualified by task, person, quality bar, and the source's recording-time state.",
+        "The hypothetical team sizes and workforce reduction example are illustrative, while several model, vendor, and subscription references appear uncertain or ASR-garbled."
+      ],
+      "evidence": [
+        {
+          "lines": "52-78",
+          "paraphrase": "For complex work shaped by operations, marketing, leadership, regulation, and industry change, the agent needs extensive context supplied explicitly, which raises token and cost concerns in the speaker's experiments."
+        },
+        {
+          "lines": "187-217",
+          "paraphrase": "The speaker distinguishes higher production from true productivity and says agent memory and guided tasks still fall short of the relationship-building and thought expansion provided by strong human judgment."
+        }
+      ],
+      "slug": "ai-output-is-not-engineering-productivity",
+      "enTitle": "AI Output Is Not the Same as Engineering Productivity",
+      "koTitle": "AI 생산력과 엔지니어링 생산성은 같지 않다",
+      "enDescription": "AI agents can raise output, but complex work still depends on context, memory, judgment, and the self-directed thinking of strong teammates.",
+      "koDescription": "AI 에이전트가 생산량을 높여도 복잡한 실무에는 맥락, 메모리, 판단, 좋은 동료의 자발적인 사고 확장이 왜 필요한지 살펴봅니다.",
+      "tags": [
+        "ai-agents",
+        "engineering-practice",
+        "teamwork"
+      ],
+      "estimatedPublishedAt": "2026-03-22"
+    },
+    {
+      "sourceId": "27",
+      "sourceFile": "26_27_AI가_만든_대규모_변경을_리뷰_가능한_PR로_쪼개기.MD",
+      "finalLineRead": 214,
+      "classification": "keep-technical",
+      "thesis": "AI-generated changes remain the author's responsibility and should be scoped, reorganized, and split into reviewable commits and pull requests that preserve context for teammates and future operations.",
+      "reason": "The body teaches a concrete software-delivery and collaboration practice: use small scopes, separate preparatory refactoring, reconstruct commits for comprehension, write useful PR context, and apply stricter review to costly failure domains.",
+      "risks": [
+        "The examples involving 200 or 500 changed files illustrate excessive scope; they are not universal numeric thresholds for acceptable commits or pull requests.",
+        "The advice explicitly varies for toy or solo projects versus shared, high-traffic, financial, payment, or settlement systems, and ASR may have garbled plugin names near the PR-description example."
+      ],
+      "evidence": [
+        {
+          "lines": "97-116",
+          "paraphrase": "Large AI-produced commits become hard to understand and risky to review, especially where failures create real business loss; generated tests alone do not guarantee prevention."
+        },
+        {
+          "lines": "141-173",
+          "paraphrase": "A very large change may reveal that the request scope was too broad, so the work should be decomposed and the agent can be asked to separate commits, branches, and pull requests while context is still available."
+        }
+      ],
+      "slug": "split-ai-changes-into-reviewable-pull-requests",
+      "enTitle": "Split AI Changes into Pull Requests Teammates Can Review",
+      "koTitle": "AI 변경을 동료가 리뷰할 수 있는 PR로 쪼개기",
+      "enDescription": "Keep AI-generated code accountable by narrowing scope, rebuilding coherent commits, and splitting risky changes into pull requests teammates can understand.",
+      "koDescription": "AI가 만든 코드도 작업자가 책임질 수 있도록 범위를 줄이고, 커밋과 PR을 동료가 이해하고 검토할 수 있는 단위로 나눕니다.",
+      "tags": [
+        "git",
+        "collaboration",
+        "testing"
+      ],
+      "estimatedPublishedAt": "2026-03-29"
+    },
+    {
+      "sourceId": "28",
+      "sourceFile": "26_28_파일_업로드는_스토리지_키만_저장하고_주소는_조합하기.MD",
+      "finalLineRead": 151,
+      "classification": "keep-technical",
+      "thesis": "File-upload records should usually store a stable object key or relative path, compose the changeable delivery URL in the server response, and keep collision-resistant internal names separate from original filenames.",
+      "reason": "This is a backend implementation discussion covering object storage, database representation, CDN or domain changes, key generation, filename collisions, response composition, and migration consequences.",
+      "risks": [
+        "The stated '99%' preference is rhetorical and based on the speaker's experience, not a measured rule; direct server upload versus presigned upload still depends on file size and system requirements.",
+        "The transcript refers to a diagram that is not present in Markdown, and several words around resolvers, migration, identifiers, and performance appear ASR-garbled."
+      ],
+      "evidence": [
+        {
+          "lines": "43-69",
+          "paraphrase": "Because an object is addressable by its storage key, the database can keep the stable key or relative path while the server's presentation layer combines it with a configurable delivery URL."
+        },
+        {
+          "lines": "99-129",
+          "paraphrase": "User filenames can collide, so the storage key should be generated from an internal rule or unique identifier while the original filename is retained separately when the product needs to display it."
+        }
+      ],
+      "slug": "store-object-keys-not-file-urls",
+      "enTitle": "Store Object Keys, Not File URLs",
+      "koTitle": "파일 URL 대신 스토리지 키를 저장하라",
+      "enDescription": "Design file uploads around stable object keys, server-composed delivery URLs, collision-resistant names, and separately retained original filenames.",
+      "koDescription": "안정적인 스토리지 키와 서버에서 조합하는 주소, 중복 없는 내부 이름, 별도로 보존하는 원본 파일명으로 업로드 구조를 단순화합니다.",
+      "tags": [
+        "backend",
+        "data-modeling",
+        "migration"
+      ],
+      "estimatedPublishedAt": "2026-04-05"
+    },
+    {
+      "sourceId": "29",
+      "sourceFile": "26_29_AI_작업_흐름에_맞춰_개발_템플릿을_다시_설계하기.MD",
+      "finalLineRead": 238,
+      "classification": "keep-technical",
+      "thesis": "A development template should evolve from repeated use rather than trend chasing, moving checks and workspace support to fit AI-assisted execution while keeping project-specific instructions out of the universal base.",
+      "reason": "The source explains technical changes to a reusable development template—commit-time linting, agent-managed validation, worktrees, ignored local files, shared instruction files, and conservative team-level defaults—based on months of experimentation rather than promotion.",
+      "risks": [
+        "The template changes describe the speaker's current experimental workflow and are not presented as universal enterprise defaults; some choices explicitly assume a personal operating system and familiar stack.",
+        "Tool, model, version, file, and feature names are frequently ASR-garbled, and statements about available hooks or model behavior are tentative and limited to the 2026 recording context."
+      ],
+      "evidence": [
+        {
+          "lines": "23-68",
+          "paraphrase": "After repeated AI-assisted use, the speaker removes a commit-time lint hook because commits and validation are now delegated in the workflow, but stresses that the template changes follow actual use rather than fashion."
+        },
+        {
+          "lines": "115-140",
+          "paraphrase": "General-purpose skill sets are left out of the base template because they may not fit every project; the preferred default is to select or create instructions for the specific context and keep new teammates in mind."
+        }
+      ],
+      "slug": "evolve-development-templates-from-ai-workflows",
+      "enTitle": "Evolve Development Templates from Observed AI Workflows",
+      "koTitle": "실제로 검증한 AI 작업 흐름으로 개발 템플릿 바꾸기",
+      "enDescription": "Update development templates from repeated AI-assisted use, while keeping validation explicit and project-specific instructions out of universal defaults.",
+      "koDescription": "반복해서 검증한 AI 작업 흐름에 맞춰 개발 템플릿을 바꾸되, 검증은 명시적으로 남기고 프로젝트별 지침은 공통 기본값과 분리합니다.",
+      "tags": [
+        "ai-agents",
+        "git",
+        "engineering-practice"
+      ],
+      "estimatedPublishedAt": "2026-04-12"
+    },
+    {
+      "sourceId": "30",
+      "sourceFile": "26_30_인텔리제이와_에이전트를_잇는_온오프라인_개발_환경.MD",
+      "finalLineRead": 370,
+      "classification": "keep-technical",
+      "thesis": "An AI-assisted development environment can divide work by context and risk: use an IDE for sensitive inspection and debugging, desktop agents for focused execution, and a persistent remote setup for short, explicit mobile tasks that return reviewable results.",
+      "reason": "The central purpose is a detailed developer-tooling workflow across IDE, terminal, desktop, mobile, remote hardware, pull requests, research, and task scoping. Supported licenses and favorable product impressions are disclosed, but they occupy a minority of the source and do not replace the operational thesis.",
+      "risks": [
+        "Several named tools or licenses were provided to the speaker, and the source includes favorable product impressions; publication should disclose that limitation and avoid turning the workflow into an endorsement.",
+        "Tool, model, protocol, and feature names are often ASR-garbled or explicitly uncertain, the ecosystem claims are time-bound to 2026, and the local-model idea is described as untested.",
+        "The setup is a personal workflow rather than a security or operations guide; an always-on machine, remote access, mobile approvals, screenshots, credentials, and automated pull requests would require safeguards not specified in the source."
+      ],
+      "evidence": [
+        {
+          "lines": "53-81",
+          "paraphrase": "The speaker keeps an IDE for practical inspection and debugging, especially in sensitive domains, while weighing that need against the budget for multiple AI coding tools rather than naming one universal winner."
+        },
+        {
+          "lines": "267-273",
+          "paraphrase": "Because the mobile and desktop sessions do not preserve one continuous context, mobile development requests are kept short and context-explicit while focused work is reserved for the desktop."
+        }
+      ],
+      "slug": "split-ai-development-work-by-context-and-risk",
+      "enTitle": "Split AI Development Work by Context, Device, and Risk",
+      "koTitle": "AI 개발 작업을 맥락과 기기, 위험도에 따라 나누기",
+      "enDescription": "Combine IDE review, desktop agents, and a remote mobile workflow by assigning each task according to context size, inspection needs, and operational risk.",
+      "koDescription": "IDE 검토, 데스크톱 에이전트, 원격 모바일 흐름을 연결하되 맥락의 크기와 검토 필요성, 운영 위험에 따라 작업을 나눕니다.",
+      "tags": [
+        "ai-agents",
+        "engineering-practice",
+        "software-delivery"
+      ],
+      "estimatedPublishedAt": "2026-04-19"
+    }
+  ]
+}
