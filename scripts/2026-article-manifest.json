@@ -1,0 +1,294 @@
+{
+  "sourceYear": 2026,
+  "sourceCount": 18,
+  "retainedCount": 16,
+  "excludedCount": 2,
+  "datePolicy": "Editorial estimates at seven-day intervals preserve ascending source ID order from 2026-01-04. They are not researched upload dates.",
+  "articles": [
+    {
+      "order": 1,
+      "sourceId": "03",
+      "sourceFile": "26_03_회원_탈퇴_후처리를_구현체_목록으로_느슨하게_연결하기.MD",
+      "classification": "keep-technical",
+      "slug": "account-deletion-cleanup-handlers",
+      "enTitle": "Coordinate Account Deletion Cleanup Without a Message Broker",
+      "koTitle": "메시지 브로커 없이 회원 탈퇴 후처리 연결하기",
+      "publishedAt": "2026-01-04",
+      "enDescription": "For small services, collect domain-specific cleanup handlers behind one interface so account deletion stays explicit without extra messaging infrastructure.",
+      "koDescription": "작은 서비스에서 도메인별 정리 구현체를 모아 순회하며, 별도 메시징 인프라 없이 회원 탈퇴 흐름과 결합도를 관리하는 방법을 다룹니다.",
+      "tags": [
+        "backend",
+        "dependencies",
+        "software-design"
+      ]
+    },
+    {
+      "order": 2,
+      "sourceId": "05",
+      "sourceFile": "26_05_미리보기_데이터는_서버_응답에서_안전하게_가리기.MD",
+      "classification": "keep-technical",
+      "slug": "hide-preview-content-server-side",
+      "enTitle": "Hide Preview Content at the Server Boundary, Not in CSS",
+      "koTitle": "CSS가 아니라 서버 응답에서 미리보기 원문 숨기기",
+      "publishedAt": "2026-01-11",
+      "enDescription": "Do not ship gated text and merely blur it in the client; transform previews at the server response boundary while preserving an honest layout cue.",
+      "koDescription": "보호할 원문을 내려준 뒤 화면에서 흐리지 말고, 정직한 미리보기 형태는 유지하면서 서버 응답 경계에서 내용을 변환하는 방법을 설명합니다.",
+      "tags": [
+        "api",
+        "authorization",
+        "client-server"
+      ]
+    },
+    {
+      "order": 3,
+      "sourceId": "06",
+      "sourceFile": "26_06_순번_키의_연결_고리를_끊어_익명_사용자_추적_막기.MD",
+      "classification": "keep-technical",
+      "slug": "break-sequential-id-links-for-anonymity",
+      "enTitle": "Break Sequential ID Links in Anonymous Services",
+      "koTitle": "익명 서비스에서 순번 키의 연결 고리 끊기",
+      "publishedAt": "2026-01-18",
+      "enDescription": "Use independent random identifiers for identity-related records to remove obvious sequential links, while recognizing that UUIDs alone cannot guarantee anonymity.",
+      "koDescription": "신원 관련 레코드에 독립적인 무작위 식별자를 사용해 순번 키의 직접 연결을 끊되, UUID만으로 익명성이 보장되지는 않음을 짚습니다.",
+      "tags": [
+        "data-modeling",
+        "database",
+        "technical-decisions"
+      ]
+    },
+    {
+      "order": 4,
+      "sourceId": "11",
+      "sourceFile": "26_11_임시_저장의_의미에_따라_상태와_별도_테이블_선택하기.MD",
+      "classification": "keep-technical",
+      "slug": "model-drafts-by-business-meaning",
+      "enTitle": "Model Drafts by Meaning: Status or Separate Storage?",
+      "koTitle": "임시 저장의 의미로 상태와 별도 저장소 선택하기",
+      "publishedAt": "2026-01-25",
+      "enDescription": "Choose a status for ordinary lifecycle stages and separate versioned storage for distinct preparatory data, based on domain meaning and compatibility cost.",
+      "koDescription": "일반적인 생명주기 단계는 상태로, 별도 의미를 가진 준비 데이터는 버전 저장소로 다루되 도메인 의미와 호환 비용을 기준으로 선택합니다.",
+      "tags": [
+        "data-modeling",
+        "database",
+        "domain-boundaries"
+      ]
+    },
+    {
+      "order": 5,
+      "sourceId": "13",
+      "sourceFile": "26_13_문제_있는_팀장과_과도한_업무를_조직에서_드러내는_법.MD",
+      "classification": "keep-developer-related",
+      "slug": "make-engineering-overload-visible",
+      "enTitle": "Make Overwork and Leadership Failures Visible",
+      "koTitle": "과도한 업무와 리더십 문제를 조직에 드러내기",
+      "publishedAt": "2026-02-01",
+      "enDescription": "Turn engineering overload into visible work, shared evidence, and scoped escalation so teams can negotiate resources and expose recurring leadership failures.",
+      "koDescription": "과도한 개발 업무를 작은 단위와 공동의 증거로 가시화해 자원을 협상하고, 반복되는 리더십 문제를 맥락에 맞게 드러내는 방법을 다룹니다.",
+      "tags": [
+        "collaboration",
+        "engineering-culture",
+        "project-management"
+      ]
+    },
+    {
+      "order": 6,
+      "sourceId": "14",
+      "sourceFile": "26_14_AI_생산력에_맞춰_모듈과_계층을_단순하게_설계하기.MD",
+      "classification": "keep-technical",
+      "slug": "simplify-architecture-for-ai-greenfield-work",
+      "enTitle": "Simplify Modules and Layers for AI-Assisted Greenfield Work",
+      "koTitle": "AI와 만드는 새 프로젝트의 모듈과 계층 단순화",
+      "publishedAt": "2026-02-08",
+      "enDescription": "Explore fewer modules, interfaces, and layers for AI-assisted greenfield work, while protecting clarity, quality, and incremental treatment of legacy systems.",
+      "koDescription": "AI와 새 프로젝트를 만들 때 모듈·인터페이스·계층을 줄이는 가설을 검토하되, 명확성과 품질 및 레거시의 점진적 개선을 지킵니다.",
+      "tags": [
+        "architecture",
+        "ai-agents",
+        "engineering-practice"
+      ]
+    },
+    {
+      "order": 7,
+      "sourceId": "15",
+      "sourceFile": "26_15_AI_시대_새_프로젝트의_구조와_기술_스택_선택_기준.MD",
+      "classification": "keep-technical",
+      "slug": "choosing-project-structure-and-stack-in-ai-era",
+      "enTitle": "Choosing Project Structure and Tech Stacks in the AI Era",
+      "koTitle": "AI 시대의 프로젝트 구조와 기술 스택 선택 기준",
+      "publishedAt": "2026-02-15",
+      "enDescription": "Choose project boundaries and technology stacks by team size, existing expertise, reviewability, and failure cost—not AI output speed alone.",
+      "koDescription": "AI의 생성 속도만 보지 말고 팀 규모, 기존 전문성, 리뷰 가능성, 실패 비용에 맞춰 프로젝트 경계와 기술 스택을 고르는 기준을 다룹니다.",
+      "tags": [
+        "ai-agents",
+        "architecture",
+        "technical-decisions"
+      ]
+    },
+    {
+      "order": 8,
+      "sourceId": "17",
+      "sourceFile": "26_17_부트캠프_간판보다_목적과_멘토_역량을_먼저_검증하기.MD",
+      "classification": "keep-developer-related",
+      "slug": "evaluating-bootcamps-beyond-the-brand",
+      "enTitle": "How to Evaluate a Bootcamp Beyond Its Brand",
+      "koTitle": "부트캠프 간판보다 목적과 멘토를 검증하는 법",
+      "publishedAt": "2026-02-22",
+      "enDescription": "Evaluate a bootcamp through concrete learning goals, mentor capability, credible outcomes, practical limits, and whether the price is justified.",
+      "koDescription": "구체적인 학습 목표, 멘토 역량, 실제 성과와 한계, 비용의 타당성을 기준으로 부트캠프를 판단하는 방법을 다룹니다.",
+      "tags": [
+        "career",
+        "learning",
+        "hiring"
+      ]
+    },
+    {
+      "order": 9,
+      "sourceId": "19",
+      "sourceFile": "26_19_프론트오피스와_백오피스_분리_기준을_다시_점검하기.MD",
+      "classification": "keep-technical",
+      "slug": "when-to-split-front-and-back-office-systems",
+      "enTitle": "When to Split Front-Office and Back-Office Systems",
+      "koTitle": "프론트오피스와 백오피스는 언제 분리해야 할까",
+      "publishedAt": "2026-03-01",
+      "enDescription": "Decide whether front- and back-office systems belong together by comparing purpose, lifecycle, feature overlap, team workflow, and operational cost.",
+      "koDescription": "목적, 생명주기, 기능 중복, 팀의 작업 방식과 운영 비용을 비교해 프론트오피스와 백오피스의 분리 여부를 판단합니다.",
+      "tags": [
+        "architecture",
+        "modularity",
+        "team-practice"
+      ]
+    },
+    {
+      "order": 10,
+      "sourceId": "21",
+      "sourceFile": "26_21_업무_시간의_공부보다_경력_경험의_밀도를_높이는_법.MD",
+      "classification": "keep-developer-related",
+      "slug": "build-career-density-through-real-work",
+      "enTitle": "Build Career Density, Not Just Study Time",
+      "koTitle": "공부 시간보다 경력 경험의 밀도를 높여라",
+      "publishedAt": "2026-03-08",
+      "enDescription": "Career growth comes less from unrelated study during work hours than from building dense, explainable experience through meaningful company work.",
+      "koDescription": "업무와 무관한 공부 시간을 늘리기보다 실제 회사 일에서 설명할 수 있는 경험의 밀도를 높이는 커리어 원칙을 다룹니다.",
+      "tags": [
+        "career",
+        "learning",
+        "engineering-practice"
+      ]
+    },
+    {
+      "order": 11,
+      "sourceId": "25",
+      "sourceFile": "26_25_AI_버즈워드보다_실제_업무_효용과_경험에_집중하기.MD",
+      "classification": "keep-developer-related",
+      "slug": "judge-ai-practices-by-real-workplace-utility",
+      "enTitle": "Judge AI Practices by Real Workplace Utility, Not Buzzwords",
+      "koTitle": "AI 버즈워드보다 실제 업무 효용으로 판단하기",
+      "publishedAt": "2026-03-15",
+      "enDescription": "Test AI practices in real work instead of chasing labels, and use firsthand experience to separate durable methods from marketing-driven fear.",
+      "koDescription": "유행하는 AI 용어를 좇기보다 실제 업무와 프로젝트에 적용해 보고, 직접 만든 경험으로 효용과 불안을 구분하는 법을 다룹니다.",
+      "tags": [
+        "ai-agents",
+        "learning"
+      ]
+    },
+    {
+      "order": 12,
+      "sourceId": "26",
+      "sourceFile": "26_26_AI_에이전트의_생산력과_사람의_사고_확장력_비교하기.MD",
+      "classification": "keep-developer-related",
+      "slug": "ai-output-is-not-engineering-productivity",
+      "enTitle": "AI Output Is Not the Same as Engineering Productivity",
+      "koTitle": "AI 생산력과 엔지니어링 생산성은 같지 않다",
+      "publishedAt": "2026-03-22",
+      "enDescription": "AI agents can raise output, but complex work still depends on context, memory, judgment, and the self-directed thinking of strong teammates.",
+      "koDescription": "AI 에이전트가 생산량을 높여도 복잡한 실무에는 맥락, 메모리, 판단, 좋은 동료의 자발적인 사고 확장이 왜 필요한지 살펴봅니다.",
+      "tags": [
+        "ai-agents",
+        "engineering-practice",
+        "teamwork"
+      ]
+    },
+    {
+      "order": 13,
+      "sourceId": "27",
+      "sourceFile": "26_27_AI가_만든_대규모_변경을_리뷰_가능한_PR로_쪼개기.MD",
+      "classification": "keep-technical",
+      "slug": "split-ai-changes-into-reviewable-pull-requests",
+      "enTitle": "Split AI Changes into Pull Requests Teammates Can Review",
+      "koTitle": "AI 변경을 동료가 리뷰할 수 있는 PR로 쪼개기",
+      "publishedAt": "2026-03-29",
+      "enDescription": "Keep AI-generated code accountable by narrowing scope, rebuilding coherent commits, and splitting risky changes into pull requests teammates can understand.",
+      "koDescription": "AI가 만든 코드도 작업자가 책임질 수 있도록 범위를 줄이고, 커밋과 PR을 동료가 이해하고 검토할 수 있는 단위로 나눕니다.",
+      "tags": [
+        "git",
+        "collaboration",
+        "testing"
+      ]
+    },
+    {
+      "order": 14,
+      "sourceId": "28",
+      "sourceFile": "26_28_파일_업로드는_스토리지_키만_저장하고_주소는_조합하기.MD",
+      "classification": "keep-technical",
+      "slug": "store-object-keys-not-file-urls",
+      "enTitle": "Store Object Keys, Not File URLs",
+      "koTitle": "파일 URL 대신 스토리지 키를 저장하라",
+      "publishedAt": "2026-04-05",
+      "enDescription": "Design file uploads around stable object keys, server-composed delivery URLs, collision-resistant names, and separately retained original filenames.",
+      "koDescription": "안정적인 스토리지 키와 서버에서 조합하는 주소, 중복 없는 내부 이름, 별도로 보존하는 원본 파일명으로 업로드 구조를 단순화합니다.",
+      "tags": [
+        "backend",
+        "data-modeling",
+        "migration"
+      ]
+    },
+    {
+      "order": 15,
+      "sourceId": "29",
+      "sourceFile": "26_29_AI_작업_흐름에_맞춰_개발_템플릿을_다시_설계하기.MD",
+      "classification": "keep-technical",
+      "slug": "evolve-development-templates-from-ai-workflows",
+      "enTitle": "Evolve Development Templates from Observed AI Workflows",
+      "koTitle": "실제로 검증한 AI 작업 흐름으로 개발 템플릿 바꾸기",
+      "publishedAt": "2026-04-12",
+      "enDescription": "Update development templates from repeated AI-assisted use, while keeping validation explicit and project-specific instructions out of universal defaults.",
+      "koDescription": "반복해서 검증한 AI 작업 흐름에 맞춰 개발 템플릿을 바꾸되, 검증은 명시적으로 남기고 프로젝트별 지침은 공통 기본값과 분리합니다.",
+      "tags": [
+        "ai-agents",
+        "git",
+        "engineering-practice"
+      ]
+    },
+    {
+      "order": 16,
+      "sourceId": "30",
+      "sourceFile": "26_30_인텔리제이와_에이전트를_잇는_온오프라인_개발_환경.MD",
+      "classification": "keep-technical",
+      "slug": "split-ai-development-work-by-context-and-risk",
+      "enTitle": "Split AI Development Work by Context, Device, and Risk",
+      "koTitle": "AI 개발 작업을 맥락과 기기, 위험도에 따라 나누기",
+      "publishedAt": "2026-04-19",
+      "enDescription": "Combine IDE review, desktop agents, and a remote mobile workflow by assigning each task according to context size, inspection needs, and operational risk.",
+      "koDescription": "IDE 검토, 데스크톱 에이전트, 원격 모바일 흐름을 연결하되 맥락의 크기와 검토 필요성, 운영 위험에 따라 작업을 나눕니다.",
+      "tags": [
+        "ai-agents",
+        "engineering-practice",
+        "software-delivery"
+      ]
+    }
+  ],
+  "excludedSources": [
+    {
+      "sourceId": "18",
+      "sourceFile": "26_18_실제_이력서로_기술_면접_질문을_만드는_강의_모집.MD",
+      "classification": "exclude-promotion",
+      "reason": "Course recruitment is the central purpose: nearly the entire recording explains who should apply, how résumés will be selected and anonymized, and what course access contributors may receive; technical interview instruction is only promised future content."
+    },
+    {
+      "sourceId": "24",
+      "sourceFile": "26_24_좋은_기술_면접은_지원자와_면접관의_긴장감을_지킨다.MD",
+      "classification": "exclude-promotion",
+      "reason": "Although it contains a useful developer-career metaphor, the recording opens with detailed sales messaging and later explicitly describes the discussion as course promotion; the limited interview advice functions mainly as a promotional sample."
+    }
+  ]
+}

@@ -8,9 +8,10 @@
     "build": "astro check && astro build && npm run verify",
     "check": "astro check",
     "preview": "astro preview",
-    "verify:i18n": "node scripts/verify-i18n.mjs && node scripts/verify-2024-series.mjs && node scripts/verify-2025-series.mjs",
+    "verify:i18n": "node scripts/verify-i18n.mjs && node scripts/verify-2024-series.mjs && node scripts/verify-2025-series.mjs && node scripts/verify-2026-series.mjs",
     "verify:2024": "node scripts/verify-2024-series.mjs",
     "verify:2025": "node scripts/verify-2025-series.mjs",
+    "verify:2026": "node scripts/verify-2026-series.mjs",
     "verify:seo": "node scripts/verify-seo.mjs && node scripts/verify-taxonomy.mjs && node scripts/verify-article-seo.mjs && node scripts/verify-structured-data.mjs",
     "verify": "npm run verify:i18n && npm run verify:seo"
   },
