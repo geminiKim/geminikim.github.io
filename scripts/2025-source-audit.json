@@ -1,0 +1,1680 @@
+{
+  "sourceYear": 2025,
+  "sourceCount": 51,
+  "datePolicy": "Editorial estimates at seven-day intervals preserve ascending source ID order from 2025-01-05. They are not researched upload dates.",
+  "sources": [
+    {
+      "sourceId": "0",
+      "sourceFile": "25_00_스웨거와_레스트독스_상황별_선택_전략.MD",
+      "finalLineRead": 291,
+      "classification": "keep-technical",
+      "thesis": "Choose API documentation tooling by operational context: REST Docs links tested contracts to flexible documentation, while Swagger can bootstrap visibility in poorly documented legacy systems.",
+      "reason": "The body is a technical comparison of API documentation, controller testing, source-code intrusion, and an incremental legacy adoption strategy; video references only introduce the question.",
+      "risks": [
+        "Automatic transcription may garble library names, and some claims depend on code or UI shown on screen. The preference is conditional rather than a universal tool verdict."
+      ],
+      "evidence": [
+        {
+          "lines": "38-65",
+          "paraphrase": "Swagger annotations and configuration enter the production source set, which the speaker considers an intrusive cost of producing richer documentation."
+        },
+        {
+          "lines": "186-220",
+          "paraphrase": "For an undocumented legacy system, the speaker recommends Swagger for existing APIs and REST Docs for new APIs, then improving the documentation incrementally."
+        }
+      ],
+      "slug": "swagger-vs-rest-docs-for-tested-api-contracts",
+      "enTitle": "Swagger vs REST Docs: Choose API Documentation by Context",
+      "koTitle": "스웨거와 REST Docs, API 문서화 도구를 상황별로 고르는 법",
+      "enDescription": "Compare Swagger and REST Docs by test enforcement, code intrusion, customization, and a pragmatic migration path for legacy APIs.",
+      "koDescription": "테스트 강제, 코드 침투성, 문서 확장성, 레거시 API의 점진적 전환 기준으로 두 도구를 비교합니다.",
+      "tags": [
+        "api-design",
+        "testing",
+        "software-delivery"
+      ],
+      "estimatedPublishedAt": "2025-01-05"
+    },
+    {
+      "sourceId": "1",
+      "sourceFile": "25_01_모호한_매니저와_프로세서는_리팩토링_신호.MD",
+      "finalLineRead": 195,
+      "classification": "keep-technical",
+      "thesis": "Repeated Manager, Processor, and Handler classes are refactoring signals because vague names often hide unclear or excessive responsibilities.",
+      "reason": "The source analyzes naming, single responsibility, layer sizing, and a controlled incremental state in software design, with concrete guidance for reviewing a codebase.",
+      "risks": [
+        "The examples are illustrative and based on an on-screen project. A vague class name is a diagnostic signal, not proof that every such class is defective."
+      ],
+      "evidence": [
+        {
+          "lines": "63-69",
+          "paraphrase": "A project containing many classes named Processor, Handler, or Manager is described as having a code smell and likely refactoring targets."
+        },
+        {
+          "lines": "124-145",
+          "paraphrase": "A generic class that accumulates CRUD, search, and other behavior violates a clear single responsibility; its vague name can intentionally expose that debt."
+        }
+      ],
+      "slug": "vague-manager-processor-classes-refactoring-signals",
+      "enTitle": "Why Manager and Processor Classes Are Refactoring Signals",
+      "koTitle": "Manager와 Processor 클래스가 리팩터링 대상이라는 신호",
+      "enDescription": "Use vague class names as code-smell signals, then narrow responsibilities and right-size layers without denying necessary transitional design.",
+      "koDescription": "모호한 클래스 이름을 코드 스멜로 읽고, 과도한 책임과 레이어를 점진적으로 정리하는 기준을 설명합니다.",
+      "tags": [
+        "architecture",
+        "software-delivery"
+      ],
+      "estimatedPublishedAt": "2025-01-12"
+    },
+    {
+      "sourceId": "3",
+      "sourceFile": "25_03_모듈_독립성을_지키는_예외_변환과_전파_규칙.MD",
+      "finalLineRead": 193,
+      "classification": "keep-technical",
+      "thesis": "Keep module-specific exceptions inside their owning module and translate them at chosen boundaries so implementation dependencies do not leak upward.",
+      "reason": "The body gives implementation-level guidance for exception ownership, module isolation, controller boundaries, validation, and scale-sensitive propagation rules.",
+      "risks": [
+        "Names of code elements may be mistranscribed, and the example omits some on-screen context. Exception placement still depends on module structure, business semantics, and system size."
+      ],
+      "evidence": [
+        {
+          "lines": "31-56",
+          "paraphrase": "A module should remain independently movable, own the exceptions caused by its implementation, and expose a module-level exception instead of leaking a client library exception."
+        },
+        {
+          "lines": "95-124",
+          "paraphrase": "The consuming code should decide where an external module's exception stops, translate it behind a boundary, and preserve each module as an intact unit."
+        }
+      ],
+      "slug": "module-exception-translation-boundaries",
+      "enTitle": "Translate Exceptions at Module Boundaries",
+      "koTitle": "모듈 경계에서 예외를 변환하고 전파하는 법",
+      "enDescription": "Keep implementation exceptions inside their modules and define explicit translation boundaries that prevent dependencies from leaking upward.",
+      "koDescription": "구현 예외를 소유 모듈 안에 가두고, 상위 계층으로 의존성이 새지 않도록 변환 경계를 설계합니다.",
+      "tags": [
+        "architecture",
+        "backend",
+        "api-design"
+      ],
+      "estimatedPublishedAt": "2025-01-19"
+    },
+    {
+      "sourceId": "4",
+      "sourceFile": "25_04_레이어_규칙_자동화보다_팀의_사고가_먼저다.MD",
+      "finalLineRead": 212,
+      "classification": "keep-technical",
+      "thesis": "Automate layer rules only when scale or review constraints justify it; small teams should preserve room to reason about and revise architecture together.",
+      "reason": "Its central purpose is architecture governance: weighing compile-time dependency enforcement against team discussion, developer judgment, growth, and project scale.",
+      "risks": [
+        "The speaker had not used the named enforcement tools and was uncertain about their names. The argument is opinionated and should not be generalized to regulated or high-risk boundaries."
+      ],
+      "evidence": [
+        {
+          "lines": "41-64",
+          "paraphrase": "The speaker treats software as a team activity and worries that stronger automatic layer rules can replace architectural thought, preferring looser rules by default."
+        },
+        {
+          "lines": "57-82",
+          "paraphrase": "Mechanical enforcement becomes reasonable for repositories with many occasional contributors or too little review time, while layer and component choices should otherwise remain team discussion topics."
+        }
+      ],
+      "slug": "architecture-rules-automation-vs-team-judgment",
+      "enTitle": "Architecture Rules Need Team Judgment Before Automation",
+      "koTitle": "아키텍처 규칙 자동화보다 팀의 판단이 먼저다",
+      "enDescription": "Balance automated layer enforcement against review capacity, repository scale, developer growth, and a team's need to reason about architecture.",
+      "koDescription": "레이어 규칙 자동화를 리뷰 여력, 저장소 규모, 개발자 성장, 팀의 아키텍처 토론과 함께 판단합니다.",
+      "tags": [
+        "architecture",
+        "collaboration",
+        "testing"
+      ],
+      "estimatedPublishedAt": "2025-01-26"
+    },
+    {
+      "sourceId": "5",
+      "sourceFile": "25_05_핵심_엔티티를_무겁게_만드는_연관관계_피하기.MD",
+      "finalLineRead": 308,
+      "classification": "keep-technical",
+      "thesis": "Delay ORM associations that do not reflect shared lifecycle and core responsibility, keeping important entities small while storing searchable supporting data separately.",
+      "reason": "The source is a detailed software and data-modeling discussion of JPA associations, entity responsibility, lifecycle, query needs, table separation, and incremental design.",
+      "risks": [
+        "The review, image, and tag model is an improvised example without full product requirements. ASR obscures some JPA terminology and the advice is intentionally conditional."
+      ],
+      "evidence": [
+        {
+          "lines": "100-124",
+          "paraphrase": "A core Review entity need not know about tags or optional images; adding every association makes the central entity heavier, so relationships can be deferred."
+        },
+        {
+          "lines": "183-200",
+          "paraphrase": "Associations are useful when lifecycles truly match, but indiscriminate additions turn an entity into a god object that owns unrelated comments, types, tags, and images."
+        }
+      ],
+      "slug": "keep-core-entities-light-with-delayed-associations",
+      "enTitle": "Keep Core Entities Light by Delaying ORM Associations",
+      "koTitle": "핵심 엔티티를 가볍게 지키는 연관관계 설계",
+      "enDescription": "Decide ORM associations by lifecycle and responsibility, separating searchable supporting data so core entities stay focused and adaptable.",
+      "koDescription": "생명주기와 책임으로 ORM 연관관계를 판단하고, 검색용 부가 데이터를 분리해 핵심 엔티티를 단순하게 유지합니다.",
+      "tags": [
+        "domain-modeling",
+        "data-modeling",
+        "architecture"
+      ],
+      "estimatedPublishedAt": "2025-02-02"
+    },
+    {
+      "sourceId": "6",
+      "sourceFile": "25_06_주문_스냅샷을_지키는_소프트_삭제와_격벽.MD",
+      "finalLineRead": 236,
+      "classification": "keep-technical",
+      "thesis": "Treat an order item as an immutable purchase snapshot separated from the current product, and prefer status transitions or archival safeguards over destructive deletion.",
+      "reason": "The body addresses domain boundaries, database relationships, historical integrity, refunds, soft deletion, rollback data, and operationally safe persistence design.",
+      "risks": [
+        "The illegal-product scenario is hypothetical and omits legal retention requirements. Soft deletion is not universally correct, and ASR garbles foreign-key terminology."
+      ],
+      "evidence": [
+        {
+          "lines": "70-90",
+          "paraphrase": "An order item records the product at purchase time and belongs under the order boundary; deleting it because the current product changed destroys that conceptual snapshot."
+        },
+        {
+          "lines": "114-151",
+          "paraphrase": "Hard deletion loses history about the removed product and affected refunds, while a blocked or deleted status can preserve the information and support later analysis."
+        }
+      ],
+      "slug": "order-snapshots-soft-delete-domain-boundaries",
+      "enTitle": "Protect Order Snapshots with Soft Delete and Boundaries",
+      "koTitle": "주문 스냅샷을 지키는 소프트 삭제와 도메인 경계",
+      "enDescription": "Separate current products from immutable order snapshots, preserve refund history, and use status transitions or archives before destructive deletion.",
+      "koDescription": "현재 상품과 주문 스냅샷의 경계를 나누고, 환불 이력을 보존하며 파괴적 삭제 전에 상태 전환과 보관을 검토합니다.",
+      "tags": [
+        "domain-modeling",
+        "data-modeling",
+        "reliability"
+      ],
+      "estimatedPublishedAt": "2025-02-09"
+    },
+    {
+      "sourceId": "7",
+      "sourceFile": "25_07_개발자의_최우선_역량은_기술보다_일의_완수.MD",
+      "finalLineRead": 214,
+      "classification": "keep-developer-related",
+      "thesis": "A professional developer earns trust by completing company work within a minimum quality bar, then improving the result and preparing for the next level of growth.",
+      "reason": "Its central purpose is developer responsibility and growth: it distinguishes technical study and external recognition from finishing useful work for one's team and company.",
+      "risks": [
+        "The rhetoric about work and external activity is deliberately sharp and reflects personal experience. It should not excuse poor quality, unhealthy workloads, or exploitative workplaces."
+      ],
+      "evidence": [
+        {
+          "lines": "113-142",
+          "paraphrase": "The speaker defines a good developer first as someone who does the company's work well, completes it, then refactors and evolves it while maintaining a minimum quality line."
+        },
+        {
+          "lines": "187-208",
+          "paraphrase": "Doing the current job well is only the base; a developer should keep preparing the next step, but professional work still takes priority over development as self-image."
+        }
+      ],
+      "slug": "developer-growth-starts-with-finishing-the-work",
+      "enTitle": "Developer Growth Starts with Finishing the Work",
+      "koTitle": "개발자 성장은 맡은 일을 끝내는 데서 시작한다",
+      "enDescription": "Build professional trust by completing valuable work within a quality baseline, then refactor, learn, and prepare deliberately for the next step.",
+      "koDescription": "최소 품질선을 지키며 가치 있는 일을 완수하고, 이후 리팩터링과 학습으로 다음 성장을 준비하는 태도를 다룹니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration",
+        "software-delivery"
+      ],
+      "estimatedPublishedAt": "2025-02-16"
+    },
+    {
+      "sourceId": "8",
+      "sourceFile": "25_08_도메인_학습과_기술_실험을_분리하는_두_트랙.MD",
+      "finalLineRead": 165,
+      "classification": "keep-developer-related",
+      "thesis": "Separate domain learning from technology experiments: launch domain projects with familiar tools, and isolate unfamiliar infrastructure in minimal projects with focused performance tests.",
+      "reason": "The source provides a concrete developer learning method covering side projects, service launch, technology evaluation, performance testing, and avoiding compounded uncertainty.",
+      "risks": [
+        "Tool names are sometimes unclear in the transcript, and the performance-test emphasis is personal advice rather than a complete validation plan. Costs and cloud guidance may vary."
+      ],
+      "evidence": [
+        {
+          "lines": "55-79",
+          "paraphrase": "For domain or product-idea learning, the speaker insists on familiar technology, fast launch, and performance testing to discover the system's practical limit."
+        },
+        {
+          "lines": "113-132",
+          "paraphrase": "Combining an unfamiliar domain with unfamiliar infrastructure often produces progress in neither, so technology experiments should use a minimal single-module project focused on that tool."
+        }
+      ],
+      "slug": "separate-domain-learning-from-technology-experiments",
+      "enTitle": "Separate Domain Learning from Technology Experiments",
+      "koTitle": "도메인 학습과 기술 실험을 분리하는 두 가지 트랙",
+      "enDescription": "Use familiar tools to launch domain projects, and isolate unfamiliar infrastructure in minimal experiments with focused performance tests.",
+      "koDescription": "도메인 프로젝트는 익숙한 기술로 출시하고, 낯선 인프라는 최소 프로젝트와 성능 테스트로 따로 검증합니다.",
+      "tags": [
+        "engineering-practice",
+        "performance",
+        "software-delivery"
+      ],
+      "estimatedPublishedAt": "2025-02-23"
+    },
+    {
+      "sourceId": "9",
+      "sourceFile": "25_09_목록_좋아요_수는_단순_조회부터_시작하라.MD",
+      "finalLineRead": 215,
+      "classification": "keep-technical",
+      "thesis": "For paginated like counts, begin with a bounded group-by query and presentation-layer composition before adding counters, Redis, or distributed synchronization costs.",
+      "reason": "The body is technical guidance on query modeling, table responsibility, concurrency, pagination, caching, consistency, and scale-driven performance evolution.",
+      "risks": [
+        "The claim that a 20-item group-by will not be slow is illustrative, not benchmark evidence. Query shape, indexes, skew, database load, and consistency needs can change the result."
+      ],
+      "evidence": [
+        {
+          "lines": "67-96",
+          "paraphrase": "Instead of updating a like-count column on the review row, fetch counts with a grouped query for only the IDs in the current page and compose the response."
+        },
+        {
+          "lines": "143-166",
+          "paraphrase": "Redis may become useful at scale, but introducing it early adds distributed storage, refill, synchronization, and operational costs before a measured need exists."
+        }
+      ],
+      "slug": "paginated-like-counts-start-with-simple-queries",
+      "enTitle": "Paginated Like Counts: Start with a Simple Query",
+      "koTitle": "목록 좋아요 수는 단순한 조회부터 시작하라",
+      "enDescription": "Count likes for the current page with a bounded query before adding counter columns or Redis and their added management costs.",
+      "koDescription": "현재 페이지의 좋아요만 제한적으로 조회하고, 카운터 컬럼이나 Redis는 규모가 커져 필요할 때 관리 비용과 함께 검토합니다.",
+      "tags": [
+        "data-modeling",
+        "performance",
+        "backend"
+      ],
+      "estimatedPublishedAt": "2025-03-02"
+    },
+    {
+      "sourceId": "10",
+      "sourceFile": "25_10_생성과_변경_주기로_판단하는_개념의_생명주기.MD",
+      "finalLineRead": 230,
+      "classification": "keep-technical",
+      "thesis": "Discover domain boundaries by comparing when concepts are created, read, changed, and deleted, then adjust groupings to the product's actual requirements and coupling.",
+      "reason": "The source teaches domain modeling through lifecycle analysis, cohesion, coupling, boundaries, and examples involving products, orders, payments, shipping, cancellation, and settlement.",
+      "risks": [
+        "The examples are exploratory and explicitly not definitive domain models. Requirements are incomplete, and several spoken terms or states may be mistranscribed."
+      ],
+      "evidence": [
+        {
+          "lines": "21-27",
+          "paraphrase": "The speaker proposes creation, reading, modification, and deletion as the basic dimensions for sensing whether concepts share a lifecycle."
+        },
+        {
+          "lines": "203-217",
+          "paraphrase": "Write out the concepts, draw boundaries, and group only close concepts; the resulting lifecycle model has no universal answer because requirements differ."
+        }
+      ],
+      "slug": "domain-boundaries-through-concept-lifecycles",
+      "enTitle": "Find Domain Boundaries Through Concept Lifecycles",
+      "koTitle": "개념의 생명주기로 도메인 경계를 찾는 법",
+      "enDescription": "Compare creation, reads, changes, and deletion to judge cohesion, coupling, and boundaries among products, orders, payments, shipping, and settlement.",
+      "koDescription": "생성, 조회, 수정, 삭제 주기를 비교해 상품, 주문, 결제, 배송, 정산의 응집과 경계를 판단합니다.",
+      "tags": [
+        "domain-modeling",
+        "architecture",
+        "data-modeling"
+      ],
+      "estimatedPublishedAt": "2025-03-09"
+    },
+    {
+      "sourceId": "11",
+      "sourceFile": "25_11_작은_문제를_적은_자원으로_푸는_엔지니어링.MD",
+      "finalLineRead": 221,
+      "classification": "keep-technical",
+      "thesis": "Good engineering solves the current problem efficiently with available resources, measures the result, and adds complexity only as scale and evidence demand it.",
+      "reason": "The body centers on engineering trade-offs, resource efficiency, overengineering, caching, infrastructure, performance measurement, and experience across different system scales.",
+      "risks": [
+        "Traffic and company examples are rhetorical rather than measured case studies. Minimal resources should not be read as underprovisioning reliability, security, or recovery needs."
+      ],
+      "evidence": [
+        {
+          "lines": "24-58",
+          "paraphrase": "Engineering starts by extracting the most efficiency from the servers and database already available, measuring that baseline, and adding technology only when growth requires it."
+        },
+        {
+          "lines": "103-123",
+          "paraphrase": "A small problem that one table can solve should not receive Kafka-sized machinery; repeated practice solving small problems proportionally builds engineering judgment."
+        }
+      ],
+      "slug": "solve-small-problems-with-proportional-engineering",
+      "enTitle": "Solve Small Problems with Proportional Engineering",
+      "koTitle": "작은 문제를 적은 자원으로 푸는 엔지니어링",
+      "enDescription": "Measure what existing systems can do, solve small problems proportionally, and add caches or distributed infrastructure only when evidence demands it.",
+      "koDescription": "현재 시스템의 한계를 측정하고 작은 문제를 비례 있게 해결하며, 근거가 생길 때 캐시와 분산 인프라를 추가합니다.",
+      "tags": [
+        "architecture",
+        "performance",
+        "reliability",
+        "engineering-practice"
+      ],
+      "estimatedPublishedAt": "2025-03-16"
+    },
+    {
+      "sourceId": "12",
+      "sourceFile": "25_12_빅뱅_대신_작은_배포로_완성하는_레거시_개편.MD",
+      "finalLineRead": 305,
+      "classification": "keep-technical",
+      "thesis": "Modernize legacy systems through small verified deployments that deliver value, simplify rollback, and expose progress instead of accumulating a risky big-bang release.",
+      "reason": "The source is an operations and delivery analysis of legacy modernization, deployment slicing, verification, rollback, business risk, team stress, and incremental value.",
+      "risks": [
+        "Schedule multipliers and line-count examples are illustrative, not measured estimates. Some migrations may still require coordinated cutovers, so iteration needs case-specific design."
+      ],
+      "evidence": [
+        {
+          "lines": "67-93",
+          "paraphrase": "The preferred approach repeatedly verifies and deploys each ready API or concept, limiting uncertainty to a small change instead of an entire year of work."
+        },
+        {
+          "lines": "163-180",
+          "paraphrase": "Verification, deployment slicing, and rollback must be designed from the start; validating a year of changes at once can stall or prevent the release entirely."
+        }
+      ],
+      "slug": "incremental-legacy-modernization-with-small-deployments",
+      "enTitle": "Modernize Legacy Systems with Small Deployments",
+      "koTitle": "빅뱅 대신 작은 배포로 완성하는 레거시 개편",
+      "enDescription": "Reduce modernization risk with small verified deployments, practical rollback boundaries, visible progress, and value that survives a paused project.",
+      "koDescription": "검증 가능한 작은 배포와 롤백 경계로 개편 위험을 낮추고, 프로젝트가 멈춰도 남는 가치와 진척을 만듭니다.",
+      "tags": [
+        "software-delivery",
+        "reliability",
+        "testing"
+      ],
+      "estimatedPublishedAt": "2025-03-23"
+    },
+    {
+      "sourceId": "13",
+      "sourceFile": "25_13_레거시_개선의_첫걸음은_죽은_코드_삭제다.MD",
+      "finalLineRead": 284,
+      "classification": "keep-technical",
+      "thesis": "Begin legacy improvement by proving and deleting dead code, using runtime data and consumer checks so the smaller system is safer to understand, operate, and change.",
+      "reason": "The body gives concrete legacy maintenance and operations guidance around dead-code identification, access logs, database evidence, API consumers, deletion risk, and incremental cleanup.",
+      "risks": [
+        "The named dead-code tool is unclear in the transcript and only partially observed runtime classes. Logs can miss rare or seasonal use, so tool output alone cannot prove safe deletion."
+      ],
+      "evidence": [
+        {
+          "lines": "64-90",
+          "paraphrase": "Adding code is easy but deleting it safely is hard; before remodularizing a long-lived unknown system, the speaker first removes code shown to be unused."
+        },
+        {
+          "lines": "177-203",
+          "paraphrase": "For APIs, inspect access logs over the longest relevant period and confirm actual use in consuming repositories or with owning teams before deleting the call chain."
+        }
+      ],
+      "slug": "legacy-cleanup-starts-with-safe-dead-code-removal",
+      "enTitle": "Legacy Cleanup Starts with Safe Dead-Code Removal",
+      "koTitle": "레거시 개선은 죽은 코드를 안전하게 지우는 데서 시작한다",
+      "enDescription": "Shrink legacy systems safely by combining runtime evidence, database checks, API consumer verification, and incremental dead-code deletion.",
+      "koDescription": "런타임 증거, 데이터 확인, API 소비자 검증을 결합해 죽은 코드를 점진적으로 삭제하고 레거시를 줄입니다.",
+      "tags": [
+        "software-delivery",
+        "testing",
+        "reliability"
+      ],
+      "estimatedPublishedAt": "2025-03-30"
+    },
+    {
+      "sourceId": "14",
+      "sourceFile": "25_14_경력_있는_신입은_업무_경험으로_차별화하라.MD",
+      "finalLineRead": 206,
+      "classification": "keep-developer-related",
+      "thesis": "Developers applying as entry-level candidates with prior work should prepare to explain what they did, the problems they faced, how they approached them, the solutions they tried, and the actions they took.",
+      "reason": "The source is explicitly developer career and hiring guidance focused on resumes, interviews, problem-solving depth, work attitude, transfer motivation, and evidence of action.",
+      "risks": [
+        "This reflects one interviewer's preferences, not a universal hiring rubric. Market comments are time-sensitive, and the advice should not reward inflated ownership or invented scale tests."
+      ],
+      "evidence": [
+        {
+          "lines": "47-65",
+          "paraphrase": "Prior work changes the interview focus from general knowledge to what problem the candidate faced, how deeply they considered it, and how they worked through an imperfect solution."
+        },
+        {
+          "lines": "120-153",
+          "paraphrase": "Candidates should prepare follow-up reasoning about constraints and alternatives; independent experiments help only when they produced a concrete action and learning, not a hollow claim."
+        }
+      ],
+      "slug": "entry-level-developers-with-experience-interview-evidence",
+      "enTitle": "How Experienced Entry-Level Developers Can Stand Out",
+      "koTitle": "경력 있는 신입 개발자는 업무 경험으로 차별화하라",
+      "enDescription": "Prepare prior work for interviews by explaining what you did, the problem you faced, how you approached it, the solution you tried, and the action you took.",
+      "koDescription": "이전에 한 일과 문제, 접근 방식, 시도한 해법과 실제 행동을 면접에서 구체적으로 설명하는 법을 다룹니다.",
+      "tags": [
+        "engineering-practice",
+        "hiring"
+      ],
+      "estimatedPublishedAt": "2025-04-06"
+    },
+    {
+      "sourceId": "15",
+      "sourceFile": "25_15_모든_조회를_삼키는_만능_메서드에서_탈출하기.MD",
+      "finalLineRead": 214,
+      "classification": "keep-technical",
+      "thesis": "Replace universal dynamic query methods with purpose-specific operations, then migrate callers in small deployments that narrow side effects before deeper cleanup.",
+      "reason": "The source provides implementation and refactoring guidance on god methods, dynamic query conditions, naming, parameters, side effects, call-site migration, and incremental delivery.",
+      "risks": [
+        "The sample code is deliberately reconstructed rather than the real proprietary code. Copying before splitting can duplicate defects, so characterization tests and call-site verification may be needed."
+      ],
+      "evidence": [
+        {
+          "lines": "50-83",
+          "paraphrase": "A single dynamic query used by many callers hides each call's purpose and makes changing one condition expose every other path to unpredictable side effects."
+        },
+        {
+          "lines": "138-173",
+          "paraphrase": "The remedy is to split the method by purpose, move callers gradually, remove irrelevant parameters, and first isolate the portion whose impact can be understood."
+        }
+      ],
+      "slug": "split-god-query-methods-by-purpose",
+      "enTitle": "Split God Query Methods by Purpose",
+      "koTitle": "모든 조회를 삼키는 만능 메서드를 목적별로 쪼개라",
+      "enDescription": "Replace universal dynamic queries with purpose-specific methods, migrate callers incrementally, and shrink the side-effect surface before deeper refactoring.",
+      "koDescription": "만능 동적 조회를 목적별 메서드로 나누고 호출부를 점진적으로 옮겨, 리팩터링의 사이드 이펙트를 줄입니다.",
+      "tags": [
+        "backend",
+        "testing",
+        "software-delivery"
+      ],
+      "estimatedPublishedAt": "2025-04-13"
+    },
+    {
+      "sourceId": "16",
+      "sourceFile": "25_16_아이디_간격으로_안전한_DB_마이그레이션_만들기.MD",
+      "finalLineRead": 148,
+      "classification": "keep-technical",
+      "thesis": "Reserve a disjoint identifier range for the new database during migration so rollback data can return without primary-key collisions and operations remain easy to distinguish.",
+      "reason": "The body is a focused database migration and operations technique covering sequences, dual-running systems, rollback, reverse migration, consistency, logs, and cross-system identifiers.",
+      "risks": [
+        "Numeric ranges and the three-hour rollback scenario are illustrative. The source explains separation qualitatively and does not provide a formula for choosing the size of the gap."
+      ],
+      "evidence": [
+        {
+          "lines": "43-55",
+          "paraphrase": "Starting the new database at the legacy database's current sequence makes rollback collisions likely, so the proposed safeguard is to advance the new identifier range substantially."
+        },
+        {
+          "lines": "98-105",
+          "paraphrase": "With separated ranges, new rows can be copied back into the still-running legacy database without overlapping IDs even when both sides continued receiving data."
+        }
+      ],
+      "slug": "database-migration-id-range-gaps-for-safe-rollback",
+      "enTitle": "Use ID Range Gaps for Safer Database Rollbacks",
+      "koTitle": "아이디 범위를 띄워 DB 마이그레이션 롤백을 안전하게 만들기",
+      "enDescription": "Separate legacy and new identifier ranges to prevent rollback collisions, simplify reverse migration, and make operational traffic easier to trace.",
+      "koDescription": "레거시와 신규 아이디 범위를 분리해 롤백 충돌을 막고, 역마이그레이션과 운영 트래픽 추적을 단순하게 만듭니다.",
+      "tags": [
+        "data-modeling",
+        "software-delivery",
+        "reliability"
+      ],
+      "estimatedPublishedAt": "2025-04-20"
+    },
+    {
+      "sourceId": "17",
+      "sourceFile": "25_17_좋아요_정렬은_핵심_테이블과_집계_데이터를_분리하라.MD",
+      "finalLineRead": 425,
+      "classification": "keep-technical",
+      "thesis": "Keep engagement aggregates outside the core table, refresh them at the consistency level users need, and evolve from queries to async events or search infrastructure only with scale.",
+      "reason": "The source is an extensive technical treatment of aggregation tables, pagination, contention, eventual consistency, asynchronous updates, batch refresh, events, search separation, and scale.",
+      "risks": [
+        "All traffic volumes and freshness intervals are illustrative. Eventual consistency is acceptable only if product semantics allow it, and the search-system discussion is high-level rather than an implementation recipe."
+      ],
+      "evidence": [
+        {
+          "lines": "51-89",
+          "paraphrase": "At larger data volumes, store like counts and other ranking signals in a separate metadata table rather than contaminating the product or review lifecycle with aggregate columns."
+        },
+        {
+          "lines": "195-237",
+          "paraphrase": "Updating an aggregate row in the primary transaction creates contention that can block the core like action, so asynchronous events and periodic reconciliation can isolate the secondary concern."
+        }
+      ],
+      "slug": "separate-core-data-from-like-count-aggregates",
+      "enTitle": "Separate Core Data from Like-Count Aggregates",
+      "koTitle": "좋아요 정렬을 위한 핵심 데이터와 집계 데이터 분리",
+      "enDescription": "Design scalable like-based ranking with separate aggregates, explicit freshness goals, async updates, reconciliation, and search boundaries that follow real demand.",
+      "koDescription": "집계 분리, 명시적인 최신성 기준, 비동기 갱신, 정합성 보정, 검색 경계로 좋아요 기반 정렬을 확장합니다.",
+      "tags": [
+        "data-modeling",
+        "performance",
+        "reliability",
+        "architecture"
+      ],
+      "estimatedPublishedAt": "2025-04-27"
+    },
+    {
+      "sourceId": "18",
+      "sourceFile": "25_18_연차보다_다음_세대의_유산을_책임지는_시니어.MD",
+      "finalLineRead": 383,
+      "classification": "keep-developer-related",
+      "thesis": "Seniority is demonstrated by leaving maintainable code, tests, guidance, and room for successors rather than by tenure or personal coding stamina.",
+      "reason": "The body centers on developer responsibility, team sustainability, testing, mentorship, and the legacy a senior leaves to later maintainers.",
+      "risks": [
+        "The argument is delivered through an anonymized second-hand workplace account that cannot be independently checked.",
+        "The speaker's anger and categorical career advice should be softened and contextualized for publication."
+      ],
+      "evidence": [
+        {
+          "lines": "L117-L132",
+          "paraphrase": "The speaker says a senior will eventually leave, so juniors inherit the legacy created by that person's style, including oversized untested classes."
+        },
+        {
+          "lines": "L201-L208",
+          "paraphrase": "A senior's basic role is to help the team continue after departure by balancing successors' freedom with practical guidance and ongoing adjustment."
+        }
+      ],
+      "slug": "senior-engineer-legacy-maintainable-teams",
+      "enTitle": "What Senior Engineers Owe the Developers Who Come Next",
+      "koTitle": "시니어 개발자가 다음 개발자에게 남겨야 할 유산",
+      "enDescription": "Seniority is more than tenure: learn how maintainable code, tests, guidance, and team continuity define responsible senior engineering.",
+      "koDescription": "연차가 아니라 유지보수 가능한 코드, 테스트, 가이드와 팀의 지속가능성으로 시니어의 책임을 살펴봅니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration",
+        "testing"
+      ],
+      "estimatedPublishedAt": "2025-05-04"
+    },
+    {
+      "sourceId": "19",
+      "sourceFile": "25_19_완전_익명_직장_평가_서비스_레이트인_설계_공개.MD",
+      "finalLineRead": 278,
+      "classification": "exclude-self-promotion",
+      "thesis": "The speaker introduces a newly built anonymous career community, outlines its features and deployment shape, and repeatedly invites viewers to join and use it.",
+      "reason": "Although the body includes useful architecture and privacy details, its central purpose is to launch, demonstrate, and recruit users for the speaker's own service.",
+      "risks": [
+        "Claims of complete anonymity are not supported by an independent security or privacy review.",
+        "Several framework and architecture terms are uncertain in the automatic transcript.",
+        "Publication as technical guidance would require separating the implementation lessons from the service invitation."
+      ],
+      "evidence": [
+        {
+          "lines": "L18-L35",
+          "paraphrase": "The opening explicitly announces a new project, names the service, and introduces anonymous profile evaluation and community features."
+        },
+        {
+          "lines": "L261-L276",
+          "paraphrase": "The closing asks interested viewers to visit, sign up, post questions, and use the service while promising future examples from it."
+        }
+      ],
+      "slug": "anonymous-developer-community-service-introduction",
+      "enTitle": "Inside an Anonymous Developer Community Service Architecture",
+      "koTitle": "익명 개발자 커뮤니티 서비스의 구조와 설계",
+      "enDescription": "A service introduction covering anonymous signup, profile evaluation, private backend access, separate frontend, API, batch, and database components.",
+      "koDescription": "익명 가입, 프로필 평가, 비공개 백엔드와 프론트엔드·API·배치 분리 구조를 소개합니다.",
+      "tags": [
+        "architecture",
+        "backend",
+        "api-design"
+      ]
+    },
+    {
+      "sourceId": "20",
+      "sourceFile": "25_20_로그인_전_데이터_마스킹은_프레젠테이션에_격리하라.MD",
+      "finalLineRead": 173,
+      "classification": "keep-technical",
+      "thesis": "Guest-facing masking and author markers should be generated at the presentation boundary so UI policy does not contaminate reusable business concepts.",
+      "reason": "The complete body is an implementation and layering discussion grounded in two concrete backend response-shaping examples.",
+      "risks": [
+        "The transcript describes on-screen code that is not preserved in the text.",
+        "The recommended layer boundary is explicitly conditional and should not be generalized to rules that are genuinely business policy."
+      ],
+      "evidence": [
+        {
+          "lines": "L63-L81",
+          "paraphrase": "The speaker keeps business logic pure and places guest masking in the presentation layer because it exists to satisfy a UI disclosure requirement."
+        },
+        {
+          "lines": "L126-L145",
+          "paraphrase": "An is-author response flag is treated as removable UI specification rather than an intrinsic comment field, preserving the inner model from presentation changes."
+        }
+      ],
+      "slug": "presentation-layer-data-masking",
+      "enTitle": "Keep Guest Data Masking in the Presentation Layer",
+      "koTitle": "로그인 전 데이터 마스킹을 프레젠테이션 계층에 두는 법",
+      "enDescription": "Learn why guest masking and author flags belong at the presentation boundary, keeping domain logic clean while preventing raw data exposure.",
+      "koDescription": "게스트 마스킹과 작성자 표시를 프레젠테이션 경계에 격리해 도메인 로직과 원문 데이터를 보호하는 방법을 설명합니다.",
+      "tags": [
+        "architecture",
+        "api-design",
+        "backend"
+      ],
+      "estimatedPublishedAt": "2025-05-11"
+    },
+    {
+      "sourceId": "21",
+      "sourceFile": "25_21_프로필과_계정을_연결하지_않는_완전_익명_설계.MD",
+      "finalLineRead": 156,
+      "classification": "keep-technical",
+      "thesis": "An anonymous service can reduce account-to-profile correlation by separating identifier spaces, discarding temporary mapping data, and retaining only what duplicate prevention requires.",
+      "reason": "The source is centrally about data modeling and privacy-oriented implementation tradeoffs for a real service.",
+      "risks": [
+        "The phrase complete anonymity overstates what the described design alone can prove.",
+        "The design has not been independently threat-modeled, legally reviewed, or audited for infrastructure-level identifiers and access logs.",
+        "The speaker acknowledges unresolved timestamp and recoverability tradeoffs."
+      ],
+      "evidence": [
+        {
+          "lines": "L38-L53",
+          "paraphrase": "User-side identifiers are strings rather than matching profile sequences, and no profile-to-user mapping is stored; login secrets are isolated separately."
+        },
+        {
+          "lines": "L71-L84",
+          "paraphrase": "A temporary key supports initial profile import and duplicate prevention, then the mapping data is discarded instead of retained in the database."
+        }
+      ],
+      "slug": "unlink-accounts-profiles-anonymous-design",
+      "enTitle": "Reduce Account-to-Profile Linkability in Anonymous Services",
+      "koTitle": "계정과 프로필 연결 가능성을 낮추는 익명 설계",
+      "enDescription": "Explore identifier separation, disposable mapping keys, minimal retention, and the recovery tradeoffs behind a privacy-oriented account model.",
+      "koDescription": "식별자 분리, 휘발성 매핑 키, 최소 보관과 계정 복구 제약을 통해 익명 계정 모델의 트레이드오프를 살펴봅니다.",
+      "tags": [
+        "data-modeling",
+        "architecture",
+        "backend"
+      ],
+      "estimatedPublishedAt": "2025-05-18"
+    },
+    {
+      "sourceId": "22",
+      "sourceFile": "25_22_회사는_성장시켜_주는_곳이_아니라_일하는_곳이다.MD",
+      "finalLineRead": 213,
+      "classification": "keep-developer-related",
+      "thesis": "A company supplies work and experience, but developers grow only by deliberately converting experience from work, study, projects, and communities into their own judgment.",
+      "reason": "The body is a developer career and learning argument about personal agency, workplace choice, and reflective practice rather than promotion or general autobiography.",
+      "risks": [
+        "The opening uses intentionally provocative and dismissive language that could obscure the later nuance.",
+        "The claim that employers owe no growth opportunity is normative and should be presented as the speaker's position, not universal employment guidance."
+      ],
+      "evidence": [
+        {
+          "lines": "L99-L115",
+          "paraphrase": "Work, books, courses, projects, and communities provide experience points, but growth occurs only when a person combines and internalizes them."
+        },
+        {
+          "lines": "L173-L180",
+          "paraphrase": "The conclusion makes the individual responsible for growth while allowing workplace choice to consider whether useful experience will be available."
+        }
+      ],
+      "slug": "developer-growth-own-your-learning",
+      "enTitle": "Your Company Provides Experience, Not Developer Growth",
+      "koTitle": "회사가 아닌 개발자가 자신의 성장을 책임지는 법",
+      "enDescription": "Developer growth comes from turning work, books, projects, and communities into personal judgment—not waiting for an employer to do it.",
+      "koDescription": "회사, 책, 프로젝트와 커뮤니티의 경험을 자기 판단으로 바꾸며 개발자 성장을 스스로 책임지는 관점을 다룹니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration"
+      ],
+      "estimatedPublishedAt": "2025-05-25"
+    },
+    {
+      "sourceId": "23",
+      "sourceFile": "25_23_애자일을_핑계로_필요한_문서화를_거부하지_마라.MD",
+      "finalLineRead": 176,
+      "classification": "keep-developer-related",
+      "thesis": "Agile values do not excuse refusing documentation; teams should document when continuity, organizational needs, regulation, or security make it necessary.",
+      "reason": "The central purpose is developer collaboration and sustainable engineering practice, using the Agile Manifesto to reject false either-or reasoning.",
+      "risks": [
+        "The delivery repeatedly insults hypothetical colleagues and requires substantial tone editing.",
+        "The transcript paraphrases the Agile Manifesto rather than providing a stable primary-source citation.",
+        "The source argues for context-dependent documentation but does not define a concrete minimum document set."
+      ],
+      "evidence": [
+        {
+          "lines": "L74-L88",
+          "paraphrase": "The source stresses that Agile values working software more, not exclusively, and rejects using that preference to abandon all documentation and comments."
+        },
+        {
+          "lines": "L104-L110",
+          "paraphrase": "Documentation is required when the team needs it, when company assets must persist, and when regulated or security-sensitive work requires evidence."
+        }
+      ],
+      "slug": "agile-documentation-when-teams-need-it",
+      "enTitle": "Agile Does Not Mean No Documentation",
+      "koTitle": "애자일은 문서화를 하지 말라는 뜻이 아니다",
+      "enDescription": "Agile values working software without banning documentation. Write what teams, continuity, security, and regulated operations genuinely require.",
+      "koDescription": "애자일을 문서화 거부의 핑계로 삼지 않고 팀의 연속성, 보안, 규제와 운영에 필요한 문서를 판단하는 기준을 다룹니다.",
+      "tags": [
+        "collaboration",
+        "software-delivery",
+        "engineering-practice"
+      ],
+      "estimatedPublishedAt": "2025-06-01"
+    },
+    {
+      "sourceId": "24",
+      "sourceFile": "25_24_바이브_코딩에_휩쓸리지_않고_사고력을_지키는_법.MD",
+      "finalLineRead": 193,
+      "classification": "keep-developer-related",
+      "thesis": "AI-assisted coding can accelerate access and learning, but developers still need technical fundamentals, problem definition, quality criteria, and judgment to select and verify generated work.",
+      "reason": "The source focuses on responsible developer practice and learning with AI rather than promoting a tool or course.",
+      "risks": [
+        "Predictions about AI replacing developers and future work are speculative and time-sensitive.",
+        "Tool names and the claimed origin date of the vibe-coding term may be mistranscribed or require current primary-source verification.",
+        "The movie analogy is incidental and should not carry the technical argument."
+      ],
+      "evidence": [
+        {
+          "lines": "L61-L81",
+          "paraphrase": "Choosing among AI proposals requires reading code, judging fit to the current situation, and retaining development knowledge and problem-definition ability."
+        },
+        {
+          "lines": "L105-L127",
+          "paraphrase": "The main risk is surrendering thought and quality standards; continued study turns AI from a dependency into a learning and collaboration tool."
+        }
+      ],
+      "slug": "vibe-coding-with-engineering-judgment",
+      "enTitle": "Vibe Coding Still Requires Engineering Judgment",
+      "koTitle": "바이브 코딩 시대에도 개발자 판단력이 필요한 이유",
+      "enDescription": "Use AI coding tools without surrendering problem definition, code review, quality standards, or the technical knowledge needed to verify results.",
+      "koDescription": "AI 코딩을 활용하면서도 문제 정의, 코드 검토, 품질 기준과 결과를 검증할 기술 지식을 지키는 방법을 다룹니다.",
+      "tags": [
+        "engineering-practice",
+        "testing",
+        "backend"
+      ],
+      "estimatedPublishedAt": "2025-06-08"
+    },
+    {
+      "sourceId": "25",
+      "sourceFile": "25_25_동작하는_스파게티_코드를_테스트로_정복하는_법.MD",
+      "finalLineRead": 220,
+      "classification": "keep-technical",
+      "thesis": "Refactor opaque legacy code by first capturing its proven external behavior with broad characterization tests, then narrowing tests and shipping small reversible changes.",
+      "reason": "The entire source presents a concrete testing, refactoring, rollback, and incremental-delivery strategy for functioning legacy systems.",
+      "risks": [
+        "The example is primarily API and local Spring-context oriented and is not claimed to fit every legacy system.",
+        "Production request and response logs may contain sensitive data and must not be copied into tests without sanitization.",
+        "Characterization tests cover observed cases, not every hidden behavior."
+      ],
+      "evidence": [
+        {
+          "lines": "L63-L81",
+          "paraphrase": "For tangled code, the first move is a large outer net: dense E2E or API tests that capture the currently working behavior before internal analysis."
+        },
+        {
+          "lines": "L120-L132",
+          "paraphrase": "Observed request-response cases become a safety net for refactoring, followed by partial traffic, rollback on failure, and gradually broader coverage."
+        }
+      ],
+      "slug": "characterization-tests-for-spaghetti-code",
+      "enTitle": "Refactor Spaghetti Code with Characterization Tests",
+      "koTitle": "동작하는 스파게티 코드를 특성 테스트로 리팩터링하기",
+      "enDescription": "Capture legacy behavior with broad API tests, refactor behind the safety net, and deploy small reversible changes while coverage grows.",
+      "koDescription": "넓은 API 특성 테스트로 레거시 동작을 고정하고 안전망 안에서 리팩터링한 뒤 작은 가역적 변경으로 배포하는 전략을 설명합니다.",
+      "tags": [
+        "testing",
+        "software-delivery",
+        "architecture"
+      ],
+      "estimatedPublishedAt": "2025-06-15"
+    },
+    {
+      "sourceId": "26",
+      "sourceFile": "25_26_수신_가공_송신을_분리해_배치_재실행_비용_줄이기.MD",
+      "finalLineRead": 251,
+      "classification": "keep-technical",
+      "thesis": "Separate external data retrieval from internal transformation and persistence so processing bugs can be retried without repeating expensive or rate-limited API calls.",
+      "reason": "The source is an operations-grounded batch design case covering failure recovery, traffic constraints, staging data, retries, and job orchestration.",
+      "risks": [
+        "The case is recalled from memory, and the speaker flags uncertainty about some implementation details.",
+        "The example's product counts and schedule gaps are illustrative rather than measured recommendations.",
+        "Staging raw third-party data introduces retention, storage, schema-versioning, and privacy concerns not fully explored."
+      ],
+      "evidence": [
+        {
+          "lines": "L132-L155",
+          "paraphrase": "The solution splits receipt from processing: store the external representation first, then load and transform it into the internal database shape in a second batch."
+        },
+        {
+          "lines": "L161-L180",
+          "paraphrase": "Once external calls are isolated, transformation bugs and mapping changes can be fixed by rerunning only the second batch without hitting the provider again."
+        }
+      ],
+      "slug": "split-batch-ingestion-and-processing",
+      "enTitle": "Split Batch Ingestion from Processing to Reduce Retry Cost",
+      "koTitle": "배치 재실행 비용을 줄이기 위해 수신과 가공을 분리하는 법",
+      "enDescription": "Stage external data, rerun internal transformations without repeating provider calls, and reduce the traffic and recovery costs of oversized batch jobs.",
+      "koDescription": "외부 데이터를 저장한 뒤 제공자 호출 없이 내부 가공만 재실행해 대형 배치의 트래픽과 복구 비용을 줄이는 방법입니다.",
+      "tags": [
+        "data-modeling",
+        "reliability",
+        "software-delivery"
+      ],
+      "estimatedPublishedAt": "2025-06-22"
+    },
+    {
+      "sourceId": "27",
+      "sourceFile": "25_27_페이징_카운트_쿼리가_DB를_느리게_만드는_이유.MD",
+      "finalLineRead": 157,
+      "classification": "keep-technical",
+      "thesis": "Exact total-count pagination can consume far more database work than a limited result query, so teams should challenge the requirement and consider slices, cached counts, or estimates.",
+      "reason": "The body explains a concrete database performance mechanism and connects it to product requirements and operational impact.",
+      "risks": [
+        "Performance depends on database engine, query shape, indexes, statistics, and data distribution, so benchmarks are required.",
+        "The Google search example is observational and speculative, not evidence of Google's internal implementation.",
+        "The transcript ends with an apparently stray automatic-transcription fragment."
+      ],
+      "evidence": [
+        {
+          "lines": "L50-L72",
+          "paraphrase": "Unlike a limited query that can stop after enough rows, an exact count must process the full matching set and can consume significant database CPU and memory."
+        },
+        {
+          "lines": "L145-L154",
+          "paraphrase": "Before building exact totals and last-page navigation, the source recommends product review plus alternatives such as cached counts, separate metadata, or bounded estimates."
+        }
+      ],
+      "slug": "pagination-count-query-performance",
+      "enTitle": "Why Pagination Count Queries Slow Down Databases",
+      "koTitle": "페이징 카운트 쿼리가 데이터베이스를 느리게 하는 이유",
+      "enDescription": "Understand why exact totals can cost more than limited queries and when to consider slices, cached metadata, estimates, or product changes.",
+      "koDescription": "정확한 전체 건수가 제한 조회보다 비싼 이유와 슬라이스, 캐시 메타데이터, 추정치 또는 요구사항 변경을 선택할 기준을 설명합니다.",
+      "tags": [
+        "performance",
+        "data-modeling",
+        "backend"
+      ],
+      "estimatedPublishedAt": "2025-06-29"
+    },
+    {
+      "sourceId": "28",
+      "sourceFile": "25_28_분산_서비스_로그_추적과_기록_비용을_함께_설계하라.MD",
+      "finalLineRead": 222,
+      "classification": "keep-technical",
+      "thesis": "Operate distributed services with end-to-end trace correlation and deliberately minimal logs that preserve useful diagnostics without leaking sensitive data or wasting storage.",
+      "reason": "The source is centrally about observability, distributed tracing, log consistency, privacy, access control, retention, and operational debugging.",
+      "risks": [
+        "Specific Spring tracing library names and maintenance status are uncertain in the transcript and require current documentation checks.",
+        "Compliance suggestions are explicitly tentative and require security and legal review.",
+        "The blanket advice on production SQL logs needs adaptation for audit, database, and incident-response requirements."
+      ],
+      "evidence": [
+        {
+          "lines": "L52-L100",
+          "paraphrase": "A request crossing several services needs a shared trace identifier so operators can reconstruct its complete path instead of searching isolated server logs."
+        },
+        {
+          "lines": "L197-L216",
+          "paraphrase": "Sensitive fields must not leak through generated string representations; log only the minimum useful information while preserving traces needed to operate the service."
+        }
+      ],
+      "slug": "distributed-tracing-minimal-safe-logging",
+      "enTitle": "Design Distributed Tracing and Safe Production Logs Together",
+      "koTitle": "분산 추적과 안전한 운영 로그를 함께 설계하는 법",
+      "enDescription": "Correlate requests across services while controlling log volume, masking sensitive fields, limiting access, and retaining only useful operational data.",
+      "koDescription": "서비스 간 요청을 추적하면서 로그 용량, 민감정보 마스킹, 접근 권한과 보관 기간을 함께 설계하는 실무 기준을 다룹니다.",
+      "tags": [
+        "reliability",
+        "backend",
+        "data-modeling"
+      ],
+      "estimatedPublishedAt": "2025-07-06"
+    },
+    {
+      "sourceId": "29",
+      "sourceFile": "25_29_엉망인_테이블을_코드_격벽으로_점진_개선하는_법.MD",
+      "finalLineRead": 195,
+      "classification": "keep-technical",
+      "thesis": "When a legacy schema is too risky to rename directly, first hide meaningless tables and columns behind repositories and meaningful types, then improve the database after code-level control increases.",
+      "reason": "The source provides an incremental legacy-data remediation strategy using boundaries, static types, adapters, and staged database change.",
+      "risks": [
+        "The source extrapolates from a brief second-hand description and repeatedly labels the imagined schema details as uncertain.",
+        "Adding an abstraction layer can preserve poor schema assumptions if behavior is not first characterized and monitored.",
+        "A complete rewrite is mentioned as an alternative for map-heavy dynamic code but not evaluated in depth."
+      ],
+      "evidence": [
+        {
+          "lines": "L67-L97",
+          "paraphrase": "A repository boundary should hide cryptic table names and expose only meaningful typed results, keeping raw queries and schema vocabulary below the line."
+        },
+        {
+          "lines": "L136-L142",
+          "paraphrase": "The proposed sequence is to conquer the code first with meaningful classes and isolation, then proceed to database improvement after the bad schema stops leaking outward."
+        }
+      ],
+      "slug": "legacy-schema-code-boundary",
+      "enTitle": "Improve a Bad Legacy Schema Behind a Code Boundary",
+      "koTitle": "엉망인 레거시 스키마를 코드 경계 뒤에서 개선하는 법",
+      "enDescription": "Hide cryptic tables behind repositories and meaningful types, regain control in code, then approach improvements to the legacy database.",
+      "koDescription": "의미 없는 테이블과 컬럼을 리포지토리와 타입 뒤에 숨겨 코드 통제력을 회복한 뒤 데이터베이스를 점진 개선하는 전략입니다.",
+      "tags": [
+        "data-modeling",
+        "software-delivery",
+        "architecture"
+      ],
+      "estimatedPublishedAt": "2025-07-13"
+    },
+    {
+      "sourceId": "30",
+      "sourceFile": "25_30_도메인_지식은_실무_문제_해결_경험으로_증명하라.MD",
+      "finalLineRead": 299,
+      "classification": "keep-developer-related",
+      "thesis": "Domain knowledge comes primarily from operating inside a real organization's policies and cross-team problems, and developers prove it through concrete problem-solving rather than vocabulary alone.",
+      "reason": "The source is a developer career and growth discussion linking domain learning, hiring evidence, technical fundamentals, real operations, and problem-solving ability.",
+      "risks": [
+        "Claims about AI outperforming humans in domain knowledge and hiring-market change are speculative and time-sensitive.",
+        "The claim that one must join a company to gain domain knowledge underweights open ecosystems, users, field research, and other operational settings.",
+        "Several broad examples and market observations need primary-source verification before publication."
+      ],
+      "evidence": [
+        {
+          "lines": "L132-L168",
+          "paraphrase": "Real domain knowledge includes company culture, operating rules, and problems among operations, development, and sales; experienced candidates demonstrate how they solved those problems technically."
+        },
+        {
+          "lines": "L173-L205",
+          "paraphrase": "For entry-level developers, fundamentals and a serious attempt to define and solve realistic problems matter more than claiming domain expertise from a side project."
+        }
+      ],
+      "slug": "prove-domain-knowledge-through-problem-solving",
+      "enTitle": "Prove Domain Knowledge Through Real Problem Solving",
+      "koTitle": "도메인 지식을 실무 문제 해결로 증명하는 법",
+      "enDescription": "Domain expertise grows through real operations, policy, and cross-team problems. Show it through concrete problem solving, not terminology alone.",
+      "koDescription": "운영, 정책과 부서 간 문제에서 도메인 지식을 쌓고 용어가 아니라 실제 판단과 해결 과정으로 역량을 증명하는 방법을 다룹니다.",
+      "tags": [
+        "engineering-practice",
+        "domain-modeling",
+        "collaboration"
+      ],
+      "estimatedPublishedAt": "2025-07-20"
+    },
+    {
+      "sourceId": "32",
+      "sourceFile": "25_32_새_언어_도입은_인력과_유지보수까지_계산하라.MD",
+      "finalLineRead": 324,
+      "classification": "keep-technical",
+      "thesis": "Adopt a new programming language only when its technical advantage outweighs hiring, learning, observability, shared-library, integration, and long-term maintenance costs.",
+      "reason": "The body is a software technology governance discussion grounded in operating systems after their original authors leave.",
+      "risks": [
+        "Some ecosystem and labor-market claims are explicitly uncertain and geographically specific.",
+        "Framework performance comments are broad and require workload-specific benchmarks.",
+        "The suggested limit of a few secondary languages is illustrative, not a measured universal threshold."
+      ],
+      "evidence": [
+        {
+          "lines": "L90-L96",
+          "paraphrase": "A language decision must account for what happens if its small specialist team leaves, whether replacement hiring is possible, and whether the resulting code remains a usable company asset."
+        },
+        {
+          "lines": "L197-L208",
+          "paraphrase": "Because colleagues must maintain and extend the system after its authors depart, the source argues against uncontrolled language proliferation."
+        }
+      ],
+      "slug": "programming-language-adoption-total-cost",
+      "enTitle": "Calculate the Full Cost of a New Programming Language",
+      "koTitle": "새 프로그래밍 언어 도입의 전체 비용을 계산하는 법",
+      "enDescription": "Evaluate language adoption through hiring, learning, observability, shared libraries, integration, and maintenance—not technical fit alone.",
+      "koDescription": "기술 적합성만 보지 않고 채용, 학습, 관측성, 공통 라이브러리, 통합과 유지보수 비용으로 새 언어 도입을 판단합니다.",
+      "tags": [
+        "architecture",
+        "reliability",
+        "collaboration"
+      ],
+      "estimatedPublishedAt": "2025-07-27"
+    },
+    {
+      "sourceId": "33",
+      "sourceFile": "25_33_QA_티켓을_당연시하지_않는_개발자의_품질_책임.MD",
+      "finalLineRead": 287,
+      "classification": "keep-developer-related",
+      "thesis": "Developers must verify normal behavior before handing work to QA so QA can focus on edge cases and strengthen product quality instead of repeatedly compensating for missing developer tests.",
+      "reason": "The central purpose is developer quality responsibility and effective collaboration with QA in shipping software.",
+      "risks": [
+        "The source uses stigmatizing labels for developers and treats QA roles somewhat simplistically despite acknowledging organizational variation.",
+        "The frequency estimate for irresponsible testing behavior is anecdotal.",
+        "Publication should preserve shared quality ownership without implying that every QA ticket is developer failure."
+      ],
+      "evidence": [
+        {
+          "lines": "L25-L33",
+          "paraphrase": "The rejected pattern is implementing without automated or manual testing and passing work to QA because the developer does not know how to verify it."
+        },
+        {
+          "lines": "L255-L270",
+          "paraphrase": "Developers should verify minimum cases before handoff so QA can work efficiently, find surprising boundaries, and build mutual trust around product quality."
+        }
+      ],
+      "slug": "developer-testing-responsibility-before-qa",
+      "enTitle": "Developer Testing Responsibility Before QA Handoff",
+      "koTitle": "QA 전달 전에 개발자가 먼저 검증해야 하는 이유",
+      "enDescription": "Verify expected behavior before QA handoff so testers can pursue edge cases, reduce release loops, and build stronger cross-functional trust.",
+      "koDescription": "QA 전달 전 개발자가 정상 동작을 검증해 반복 수정 비용을 줄이고 QA가 경계 조건과 제품 품질에 집중하도록 만드는 방법입니다.",
+      "tags": [
+        "testing",
+        "collaboration",
+        "software-delivery"
+      ],
+      "estimatedPublishedAt": "2025-08-03"
+    },
+    {
+      "sourceId": "34",
+      "sourceFile": "25_34_테이블_수와_도메인_개념_수가_다른_이유.MD",
+      "finalLineRead": 225,
+      "classification": "keep-technical",
+      "thesis": "Domain concepts should reflect business importance, hierarchy, and behavior rather than mirroring database tables or generating one repository per entity.",
+      "reason": "The source is a focused domain-modeling and persistence-boundary discussion using coupon, product, brand, and relationship-table examples.",
+      "risks": [
+        "The product-brand example is underspecified, and the speaker repeatedly revises the interpretation while reasoning aloud.",
+        "The on-screen repository and interface sketches are absent from the transcript.",
+        "The advice is conceptual and requires concrete transaction, lifecycle, and consistency requirements before implementation."
+      ],
+      "evidence": [
+        {
+          "lines": "L35-L55",
+          "paraphrase": "One coupon concept may require many supporting tables, establishing that domain count and table count need not match."
+        },
+        {
+          "lines": "L124-L131",
+          "paraphrase": "A product repository can encapsulate several persistence operations, so neither repositories nor domain concepts need a one-to-one relationship with entities or tables."
+        }
+      ],
+      "slug": "domain-concepts-not-database-tables",
+      "enTitle": "Why Domain Concepts Should Not Mirror Database Tables",
+      "koTitle": "도메인 개념과 데이터베이스 테이블이 일대일이 아닌 이유",
+      "enDescription": "Model business importance, hierarchy, and behavior instead of creating one domain object and repository for every persistence table.",
+      "koDescription": "모든 테이블을 도메인 객체와 리포지토리로 복제하지 않고 비즈니스 중요도, 위계와 행동을 기준으로 모델링하는 법을 설명합니다.",
+      "tags": [
+        "domain-modeling",
+        "data-modeling",
+        "architecture"
+      ],
+      "estimatedPublishedAt": "2025-08-10"
+    },
+    {
+      "sourceId": "35",
+      "sourceFile": "25_35_정보와_행동을_함께_보는_다각도_개념_도출법.MD",
+      "finalLineRead": 186,
+      "classification": "keep-technical",
+      "thesis": "Discover domain concepts from multiple views of information, behavior, real-world responsibilities, hierarchy, and change instead of treating transport events or every event type as a concept.",
+      "reason": "The source is centrally a practical domain-modeling method with examples of device signals, grouped behavior, and transport-versus-domain distinctions.",
+      "risks": [
+        "The device-event scenario lacks source details, so the speaker explicitly improvises examples that may not match the questioner's system.",
+        "Fire, gas, and access-control behaviors are hypothetical and must not be published as safety-system requirements.",
+        "The term event may refer to transport messages or business occurrences, and that ambiguity must remain explicit."
+      ],
+      "evidence": [
+        {
+          "lines": "L25-L50",
+          "paraphrase": "The speaker uses both information and process views plus real-world observation, warning that a single method can obstruct good software design."
+        },
+        {
+          "lines": "L160-L180",
+          "paraphrase": "Transport events and protocols are not automatically domain concepts; look for behavioral clusters among types without collapsing everything together or splitting every type apart."
+        }
+      ],
+      "slug": "multi-perspective-domain-concept-discovery",
+      "enTitle": "Discover Domain Concepts from Information and Behavior",
+      "koTitle": "정보와 행동을 함께 보는 도메인 개념 도출법",
+      "enDescription": "Use information and process or behavior from case-dependent viewpoints to distinguish transport events from domain concepts.",
+      "koDescription": "정보와 프로세스 또는 행동을 사례별 관점에서 살펴 전송 이벤트와 도메인 개념을 구분하는 방법입니다.",
+      "tags": [
+        "domain-modeling",
+        "architecture",
+        "data-modeling"
+      ],
+      "estimatedPublishedAt": "2025-08-17"
+    },
+    {
+      "sourceId": "36",
+      "sourceFile": "25_36_어렵고_긴_작업은_완벽을_버리고_작게_정복하라.MD",
+      "finalLineRead": 336,
+      "classification": "keep-technical",
+      "thesis": "Long, exhausting legacy work should be split into small, deployable steps that create early feedback and progress instead of waiting for a perfect rewrite.",
+      "reason": "The body is centrally about software delivery and legacy-system implementation strategy, including partial traffic migration, repository consolidation, validation, and live deployment.",
+      "risks": [
+        "The company example is deliberately abstracted, so its constraints and validation coverage are incomplete.",
+        "Several framework/version and elapsed-time recollections are uncertain or ASR-prone; do not publish them as precise facts."
+      ],
+      "evidence": [
+        {
+          "lines": "L22-L23",
+          "paraphrase": "특히 어렵고 힘든 일일수록 ... 일단 일을 쪼개서 하는 방향을 무조건 찾아야 되고 ... 어느 정도는 좀 완벽함을 버릴 줄 알아야 할 것 같아요."
+        },
+        {
+          "lines": "L240-L252",
+          "paraphrase": "레거시 개편할 때 믿을 수 있는 것 중 하나가 지금 돌아가는 코드 ... 코드 수정을 하나도 안 하면 똑같이 동작 ... 일단은 이걸 병합했던 적이 있거든요."
+        }
+      ],
+      "slug": "ship-long-legacy-work-in-small-safe-steps",
+      "enTitle": "How to Break Long Legacy Migrations into Small, Deployable Steps",
+      "koTitle": "긴 레거시 개편을 작은 배포로 나누는 법",
+      "enDescription": "Break exhausting legacy work into small development, verification, and deployment increments that create feedback before a perfect rewrite.",
+      "koDescription": "지치는 레거시 개편을 작은 개발·검증·배포로 나눠 빠르게 피드백을 얻고 완벽주의의 함정을 피하는 방법입니다.",
+      "tags": [
+        "software-delivery",
+        "testing",
+        "collaboration"
+      ],
+      "estimatedPublishedAt": "2025-08-24"
+    },
+    {
+      "sourceId": "37",
+      "sourceFile": "25_37_자바_옵셔널은_데이터_조회_경계에서만_사용하라.MD",
+      "finalLineRead": 210,
+      "classification": "keep-technical",
+      "thesis": "Use Java Optional at return boundaries where absence is meaningful and the caller must choose a response, not habitually throughout internal fields, parameters, and flows.",
+      "reason": "The source is an implementation-focused discussion of Java API contracts, nullability, layer boundaries, external calls, and explicit ownership of missing-value handling.",
+      "risks": [
+        "The speaker says he has not used Java recently and offers no compiled code example, so API-level details need independent review.",
+        "The guidance is a team convention with acknowledged project-specific exceptions, not a universal Java rule."
+      ],
+      "evidence": [
+        {
+          "lines": "L61-L71",
+          "paraphrase": "함수 반환 타입으로 쓸 때 좀 많이 썼던 것 같고 ... 상위 레이어 ... 옵셔널이 없을 수 있게 미리 전처리 같은 걸 한 다음에 넘기는 식으로."
+        },
+        {
+          "lines": "L188-L201",
+          "paraphrase": "그 책임을 너한테 넘길 거야 말 거야 ... 데이터 조회하는 영역에서 옵셔널을 있게 하자 ... 외부 API 호출한 영역에서 옵셔널이 올 수 있는 거를 지정하자."
+        }
+      ],
+      "slug": "java-optional-at-data-boundaries",
+      "enTitle": "Java Optional Rules: Keep Absence at Data Boundaries",
+      "koTitle": "자바 Optional은 데이터 경계에서만 쓰는 이유",
+      "enDescription": "Use Java Optional where a missing return value gives callers a real choice, while keeping fields, parameters, and trusted internal flows explicit.",
+      "koDescription": "값의 부재를 호출자가 실제로 결정해야 하는 반환 경계에서만 Optional을 쓰고 내부 흐름은 명확하게 유지하는 기준입니다.",
+      "tags": [
+        "backend",
+        "architecture"
+      ],
+      "estimatedPublishedAt": "2025-08-31"
+    },
+    {
+      "sourceId": "38",
+      "sourceFile": "25_38_탈퇴_회원_데이터의_법적_보관과_분리_전략.MD",
+      "finalLineRead": 244,
+      "classification": "keep-technical",
+      "thesis": "Design account-deletion data flows around explicit retention policy, operational recovery needs, and genuine storage separation, with legal and audit experts defining the current rules.",
+      "reason": "Its central purpose is operating data systems for real users: moving retained orders, handling cancellation and re-registration, separating storage, encrypting identifiers, and expiring records.",
+      "risks": [
+        "The speaker repeatedly states he is not a legal expert; all retention periods and separation requirements require current counsel or auditor confirmation.",
+        "The dormant-account discussion is recalled and checked informally during recording, so it must not be presented as current law."
+      ],
+      "evidence": [
+        {
+          "lines": "L28-L43",
+          "paraphrase": "저도 법령 전문가는 아니고 ... 제가 겪었던 논리적 물리적 분리된 DB를 의미 ... 스키마만 분리하는 게 아니라 DBMS 자체를 별도로 만들어가지고 옮겨거리는 게 사실 베스트."
+        },
+        {
+          "lines": "L224-L238",
+          "paraphrase": "법안이나 정책들 ... 계속 바뀌기 때문에 전문가분들이 ... 해석 ... 외부 기관 ... 가이드를 ... 그거 맞춰서 하는 게 제일 심플."
+        }
+      ],
+      "slug": "design-data-retention-after-account-deletion",
+      "enTitle": "Account Deletion Data: Retention, Separation, and Recovery Design",
+      "koTitle": "회원 탈퇴 데이터의 보관·분리·복구 설계",
+      "enDescription": "Design deleted-account data around verified retention rules, isolated storage, encryption, expiry, and the operational flows that may still need recovery.",
+      "koDescription": "탈퇴 회원 데이터를 검증된 보관 기준, 분리 저장, 암호화, 만료와 취소·재가입 같은 운영 흐름에 맞춰 설계합니다.",
+      "tags": [
+        "data-modeling",
+        "reliability",
+        "software-delivery"
+      ],
+      "estimatedPublishedAt": "2025-09-07"
+    },
+    {
+      "sourceId": "41",
+      "sourceFile": "25_41_리뷰_개수보다_피드백을_줄여_가는_과정이_중요하다.MD",
+      "finalLineRead": 227,
+      "classification": "keep-developer-related",
+      "thesis": "Judge code review health by whether early feedback aligns a team and declines over time, using automation and draft pull requests to surface mismatches before work hardens.",
+      "reason": "The body is about developer collaboration, onboarding, asynchronous review, team conventions, and automating mechanical checks rather than chasing a raw review-comment count.",
+      "risks": [
+        "Comment counts are only a proxy: few comments may mean alignment or superficial review, and many comments vary in substance.",
+        "The draft-PR workflow assumes a team willing and able to review unfinished work promptly."
+      ],
+      "evidence": [
+        {
+          "lines": "L153-L169",
+          "paraphrase": "이런 문제를 좀 해결을 하는 거에 가장 좋은 거는 ... 드래프트 PR ... 작은 일부터 서로 동기화 ... 리뷰가 많이 나오다가 점점점점 줄어드는 그 추이를 보는 게 더 중요."
+        },
+        {
+          "lines": "L188-L200",
+          "paraphrase": "드래프트 PR 같은 걸 활용하면서 ... 리뷰를 점점 줄여가는 거를 목표 ... 작업하는 중간에 먼저 피드백을 드릴 수 있기 때문에."
+        }
+      ],
+      "slug": "measure-code-review-alignment-over-time",
+      "enTitle": "Code Review Health Is a Trend, Not a Comment Count",
+      "koTitle": "코드 리뷰 품질은 댓글 수보다 줄어드는 추이로 본다",
+      "enDescription": "Use automation and draft pull requests to align teammates early, then track whether repeated feedback declines as shared conventions become real practice.",
+      "koDescription": "자동화와 드래프트 PR로 초기에 합을 맞추고, 공통 규칙이 자리 잡으며 반복 피드백이 줄어드는지를 확인합니다.",
+      "tags": [
+        "collaboration",
+        "engineering-practice",
+        "software-delivery"
+      ],
+      "estimatedPublishedAt": "2025-09-14"
+    },
+    {
+      "sourceId": "42",
+      "sourceFile": "25_42_강점과_경험을_조합해_나만의_커리어_설계하기.MD",
+      "finalLineRead": 432,
+      "classification": "keep-developer-related",
+      "thesis": "Build a developer career by identifying a distinctive strength mix, testing preferences through real or side-project experience, and repeatedly revising a concrete future direction.",
+      "reason": "The source centrally addresses developer growth and career design through self-assessment, team contribution, varied backend roles, experiments, and deliberate five- and ten-year reflection.",
+      "risks": [
+        "The strength model and daily reflection cadence are personal heuristics, not validated assessment methods.",
+        "The later predictions about AI and future work are speculative and should not anchor a publication."
+      ],
+      "evidence": [
+        {
+          "lines": "L27-L32",
+          "paraphrase": "한 가지 뚜렷한 강력한 장점과 두 가지 뭉툭한 장점 ... 내가 코드를 ... 일을 추진 ... 복잡한 도메인을 이해 ... 동료들한테 물어보는 것도 방법."
+        },
+        {
+          "lines": "L133-L159",
+          "paraphrase": "좋아하는 것을 찾으려면 사실 한 번씩 해보긴 해야 돼요 ... 사이드 프로젝트 ... 오픈소스 ... 내가 서비스 향으로 해서 어떤 사람한테 가치를 좀 직접적으로 주는 걸 좋아하는구나."
+        }
+      ],
+      "slug": "design-a-developer-career-around-strengths",
+      "enTitle": "Design Your Developer Career Around Strengths and Experiments",
+      "koTitle": "강점과 실험으로 개발자 커리어를 설계하는 법",
+      "enDescription": "Map your strongest capabilities, test different kinds of engineering work, and keep revising a future direction from evidence rather than vague ambition.",
+      "koDescription": "자신의 강점을 구조화하고 여러 개발 경험을 직접 시험하며, 막연한 포부 대신 근거로 미래 방향을 계속 고치는 방법입니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration"
+      ],
+      "estimatedPublishedAt": "2025-09-21"
+    },
+    {
+      "sourceId": "43",
+      "sourceFile": "25_43_리더_직함은_이미_리더_역할을_하는_사람에게_온다.MD",
+      "finalLineRead": 185,
+      "classification": "keep-developer-related",
+      "thesis": "Engineering leadership should formalize responsibility, results, and peer trust already demonstrated in practice rather than grant authority first and hope capability follows.",
+      "reason": "The body focuses on developer leadership growth: code review, incident response, company-wide problem solving, readiness for opportunity, and trust from close collaborators.",
+      "risks": [
+        "The model is explicitly drawn from the speaker's experience in relatively healthy organizations and may not fit political or appointment-driven structures.",
+        "Acting beyond one's role can become unpaid or unsupported labor unless scope, authority, and recognition are made explicit."
+      ],
+      "evidence": [
+        {
+          "lines": "L25-L27",
+          "paraphrase": "이미 리더 역할을 하고 있을 때 리더가 된다. 사실은 오늘 말하고 싶은 거에 결론."
+        },
+        {
+          "lines": "L121-L131",
+          "paraphrase": "그 팀장 일을 하고 계시면 됩니다 ... 팀장의 역할을 대행할 수 있는 수준의 역량과 결과물과 그 동료들의 신뢰를 받았을 때 ... 다음 기회."
+        }
+      ],
+      "slug": "earn-engineering-leadership-before-the-title",
+      "enTitle": "Engineering Leadership Starts Before the Title",
+      "koTitle": "개발 리더십은 직함을 받기 전에 시작된다",
+      "enDescription": "Prepare for engineering leadership by already handling reviews, incidents, broad problems, and peer trust before an organization adds the formal title.",
+      "koDescription": "리뷰, 장애, 넓은 문제와 동료의 신뢰를 먼저 책임지며 직함이 붙기 전부터 개발 리더십을 준비하는 기준입니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration"
+      ],
+      "estimatedPublishedAt": "2025-09-28"
+    },
+    {
+      "sourceId": "44",
+      "sourceFile": "25_44_연봉보다_다음_경험의_재료로_이직_회사를_고르기.MD",
+      "finalLineRead": 226,
+      "classification": "keep-developer-related",
+      "thesis": "When immediate financial constraints allow, evaluate a developer job by the domain, operating problems, and learning material you can actively turn into future capability—not salary alone.",
+      "reason": "The source is a developer-career decision framework grounded in choosing exposure to B2C, global delivery, finance, operations, and different organizational scales.",
+      "risks": [
+        "The advice is personal and explicitly conditional; salary, stability, caregiving, and market constraints can rightly dominate a decision.",
+        "An interesting domain does not guarantee access to the desired work, mentors, or operating responsibility."
+      ],
+      "evidence": [
+        {
+          "lines": "L78-L100",
+          "paraphrase": "돈을 더 준다고 했었는데도 ... 결국은 경험, 경험치 그리고 이제 성장의 재료 ... 실제 이 서비스를 해본 거랑 또 차원이 다르기 때문에."
+        },
+        {
+          "lines": "L219-L225",
+          "paraphrase": "당장의 이익보다도 경험을 항상 중심으로 하시는 게 멀리 갈 때 기준으로 유리하지 않을까 ... 이직 자체가 되게 쉬운 시장 상황은 아니."
+        }
+      ],
+      "slug": "choose-developer-jobs-for-experience-value",
+      "enTitle": "Choose Your Next Developer Job for Experience, Not Salary Alone",
+      "koTitle": "개발자 이직은 연봉만이 아니라 다음 경험으로 고른다",
+      "enDescription": "Compare developer jobs by the domains, operating problems, and responsibilities you can turn into lasting capability, while respecting real financial constraints.",
+      "koDescription": "현실적인 금전 제약을 존중하면서도 도메인, 운영 문제, 책임을 장기 역량으로 바꿀 수 있는지를 이직 기준에 넣습니다.",
+      "tags": [
+        "engineering-practice",
+        "reliability"
+      ],
+      "estimatedPublishedAt": "2025-10-05"
+    },
+    {
+      "sourceId": "45",
+      "sourceFile": "25_45_오라클_레거시를_MySQL로_점진_이관한_전략.MD",
+      "finalLineRead": 437,
+      "classification": "keep-technical",
+      "thesis": "Migrate a legacy database by inserting a compatible adapter, deploying dormant paths early, dual-writing behind flags, testing each state, switching reads deliberately, and deleting retired code.",
+      "reason": "This is a detailed production migration case covering Oracle-to-MySQL query conversion, adapter boundaries, dual writes, toggles, DBA-assisted data movement, rollback, testing, and cleanup.",
+      "risks": [
+        "The example code is reconstructed from memory and many flag, class, and query names are garbled by ASR; publish the mechanism, not those identifiers.",
+        "Dual writes introduce consistency and reconciliation risks that the transcript does not fully specify; a real design needs failure handling and measurable parity checks."
+      ],
+      "evidence": [
+        {
+          "lines": "L155-L160",
+          "paraphrase": "서비스 쪽 로직을 하나도 수정을 안 했어요 ... 서비스 쪽 로직을 수정하는 순간 ... 우려 ... 그래서 그대로 다 어댑팅하는 전략."
+        },
+        {
+          "lines": "L185-L216",
+          "paraphrase": "이 안에서만 모든 작업을 끝내면 ... 데이터베이스를 천천히 페이드아웃 ... 듀얼라이트 ... 미리 사전에 다 배포 ... 검증 ... 스위치만 딱 킨 식."
+        }
+      ],
+      "slug": "migrate-oracle-to-mysql-with-adapters-and-flags",
+      "enTitle": "Oracle to MySQL Migration with Adapters, Dual Writes, and Flags",
+      "koTitle": "어댑터·듀얼 라이트·플래그로 Oracle을 MySQL로 이관하기",
+      "enDescription": "A reversible Oracle-to-MySQL migration using compatible adapters, dormant deployments, dual writes, tested switches, deliberate rollback, and legacy cleanup.",
+      "koDescription": "호환 어댑터, 사전 배포, 듀얼 라이트, 검증된 스위치와 롤백으로 Oracle 레거시를 MySQL로 점진 이관합니다.",
+      "tags": [
+        "data-modeling",
+        "software-delivery",
+        "reliability",
+        "testing"
+      ],
+      "estimatedPublishedAt": "2025-10-12"
+    },
+    {
+      "sourceId": "47",
+      "sourceFile": "25_47_대기업과_스타트업을_오가며_커리어_다양성_키우기.MD",
+      "finalLineRead": 218,
+      "classification": "keep-developer-related",
+      "thesis": "Choose career diversity that matches the engineer you want to become: broader leadership ambitions may benefit from smaller-company constraints, while deep specialists may choose scale and focus.",
+      "reason": "The central purpose is developer career growth through deliberate exposure to different scales, problem sizes, imperfect teams, and kinds of responsibility.",
+      "risks": [
+        "The source generalizes sharply from a limited personal sample and explicitly acknowledges counterexamples.",
+        "Hardship is not inherently educational; poor management, exploitation, or unsafe work should not be romanticized as required experience."
+      ],
+      "evidence": [
+        {
+          "lines": "L109-L131",
+          "paraphrase": "나는 5년 뒤에 CTO ... 창업 ... 뛰어난 시니어 엔지니어 ... 다 다를 거잖아요 ... CTO나 어떤 창업 ... 작은 회사나 스타트업 같은 곳에 한번 가보라."
+        },
+        {
+          "lines": "L150-L167",
+          "paraphrase": "더 큰 일 더 큰 규모와 더 다양한 걸 하고 싶다 ... 다양성을 늘려야 ... 기술 장인이 되고 싶어요 이런 사람들은 사실 비추."
+        }
+      ],
+      "slug": "build-career-range-across-company-scales",
+      "enTitle": "Build Engineering Career Range Across Company Sizes",
+      "koTitle": "회사 규모를 넘나들며 개발자 경험의 폭을 넓히는 법",
+      "enDescription": "Match company scale to your long-term path: broaden operating and leadership experience when needed, or preserve focus when deep technical craft is the goal.",
+      "koDescription": "장기 목표에 맞춰 작은 조직의 넓은 책임과 큰 조직의 깊은 전문성 중 필요한 경험의 폭을 의도적으로 선택합니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration"
+      ],
+      "estimatedPublishedAt": "2025-10-19"
+    },
+    {
+      "sourceId": "48",
+      "sourceFile": "25_48_어드민_공통_모듈보다_서비스별_경계를_지켜라.MD",
+      "finalLineRead": 173,
+      "classification": "keep-technical",
+      "thesis": "Do not let an admin-facing common module become the owner of every domain; preserve service boundaries and tolerate small duplication until genuinely shared behavior and lifecycle emerge.",
+      "reason": "The body is a software architecture analysis of admin requirements, multi-module dependencies, domain ownership, common-module coupling, and exceptions where admin itself is the product.",
+      "risks": [
+        "The original project structure is incomplete, and the speaker repeatedly labels his module-topology reconstruction as an assumption.",
+        "Admin products and stable shared persistence capabilities may justify different boundaries than internal operational screens."
+      ],
+      "evidence": [
+        {
+          "lines": "L50-L65",
+          "paraphrase": "어드민은 이제 커먼이라고 만들었어요 ... 모든 기능들 ... 서비스 1, 2, 3 ... 어드민 커먼을 보고 ... 안 좋게 역전 ... 커먼이 모든 도메인을 다 알고."
+        },
+        {
+          "lines": "L124-L135",
+          "paraphrase": "어드민의 요구사항의 차이 ... 커먼에 ... 각각 ... 그렇게 될 바에는 ... 조금 중복 코드가 있어봐도 ... 각각 명확하게 분리."
+        }
+      ],
+      "slug": "avoid-admin-common-module-domain-coupling",
+      "enTitle": "Avoid the Admin Common Module That Owns Every Domain",
+      "koTitle": "모든 도메인을 삼키는 어드민 공통 모듈을 피하라",
+      "enDescription": "Keep admin features from reversing domain dependencies. Preserve service boundaries and accept small duplication while admin requirements continue to diverge.",
+      "koDescription": "어드민 요구가 도메인 의존성을 뒤집지 않게 서비스 경계를 지키고, 요구가 계속 갈라지는 동안 작은 중복을 허용합니다.",
+      "tags": [
+        "architecture",
+        "backend",
+        "domain-modeling"
+      ],
+      "estimatedPublishedAt": "2025-10-26"
+    },
+    {
+      "sourceId": "49",
+      "sourceFile": "25_49_암묵지를_컨벤션_문서와_리뷰로_살아_있게_만들기.MD",
+      "finalLineRead": 343,
+      "classification": "keep-developer-related",
+      "thesis": "Turn tacit engineering rules into a lightweight, reviewable convention that explains current choices, allows team overrides, supports onboarding, and stays alive through shared edits.",
+      "reason": "Although the opening and ending mention a course, the central body is developer collaboration and software stewardship through conventions, onboarding sessions, repository docs, team review, and AI instructions.",
+      "risks": [
+        "The transcript repeatedly renders '암묵지' as '안목지'; normalize the concept without claiming the ASR wording is exact.",
+        "Documentation can become stale or coercive; the source itself favors loose company defaults, explicit team overrides, and selective maintenance."
+      ],
+      "evidence": [
+        {
+          "lines": "L142-L165",
+          "paraphrase": "신규 입사자한테 온보딩 ... AI한테 이 프로젝트를 어떻게 수정 ... 팀 리포에 문서를 ... 팀 안에서 협의가 되면 무조건 여기에 적어 ... 팀에서 결정을 했다면 ... 오버라이드."
+        },
+        {
+          "lines": "L329-L335",
+          "paraphrase": "전사 기준으로 정리 ... 직원이 몇 천명인데 ... 말이 안 되거든요 ... 메인 컨벤션 느슨한 컨벤션을 만들어 놓고 팀마다 ... 커스텀."
+        }
+      ],
+      "slug": "turn-tacit-engineering-rules-into-living-conventions",
+      "enTitle": "Turn Tacit Engineering Rules into Living Team Conventions",
+      "koTitle": "암묵지를 살아 있는 팀 컨벤션으로 만드는 법",
+      "enDescription": "Document the engineering rules teammates carry in their heads, explain why they exist, permit team overrides, and keep them alive through review and onboarding.",
+      "koDescription": "팀원의 머릿속에만 있는 개발 규칙을 이유와 함께 기록하고, 팀별 재정의와 리뷰·온보딩으로 살아 있게 관리합니다.",
+      "tags": [
+        "collaboration",
+        "architecture",
+        "engineering-practice"
+      ],
+      "estimatedPublishedAt": "2025-11-02"
+    },
+    {
+      "sourceId": "50",
+      "sourceFile": "25_50_미래_예측보다_조직_현실에_맞춰_관계를_설계하라.MD",
+      "finalLineRead": 232,
+      "classification": "keep-technical",
+      "thesis": "Start entity relationships with the simplest cardinality that fits current requirements, but treat proven decision volatility, unchanged deadlines, and team context as legitimate design inputs.",
+      "reason": "The central discussion is domain and data relationship design under real implementation constraints, using one-to-one, one-to-many, and many-to-many choices as the concrete problem.",
+      "risks": [
+        "Choosing many-to-many preemptively can still encode the wrong domain and add unnecessary implementation complexity.",
+        "The organizational examples are anecdotal; 'leaders often change requirements' should be established from local evidence, not assumed."
+      ],
+      "evidence": [
+        {
+          "lines": "L61-L75",
+          "paraphrase": "회사 내부의 현실적인 상황도 ... 결정을 ... 대부분 경우에 1대1, 1대N으로 접근 ... 예기치 못하는 상황 ... N대N ... 의사 결정권자가 ... 의견을 계속 뒤집 ... N대N 쓰는 게 맞다."
+        },
+        {
+          "lines": "L117-L125",
+          "paraphrase": "개발자들만의 관점으로는 ... 설계를 구축하는 게 ... 실제 회사에서는 ... 회사마다 사실은 ... 설계 스타일도 달라지는 것."
+        }
+      ],
+      "slug": "design-data-relationships-for-organizational-reality",
+      "enTitle": "Design Data Relationships for Organizational Reality",
+      "koTitle": "조직 현실까지 고려한 데이터 관계 설계",
+      "enDescription": "Prefer simple relationship cardinality, then account for observed requirement churn, decision habits, and deadline constraints instead of predicting every future change.",
+      "koDescription": "단순한 관계에서 시작하되 실제 요구사항 변경, 의사결정 습관과 일정 제약을 관찰해 데이터 관계 설계에 반영합니다.",
+      "tags": [
+        "domain-modeling",
+        "architecture",
+        "collaboration"
+      ],
+      "estimatedPublishedAt": "2025-11-09"
+    },
+    {
+      "sourceId": "52",
+      "sourceFile": "25_52_새_회사_개발_문화는_내_팀의_작은_성공부터_바꿔라.MD",
+      "finalLineRead": 341,
+      "classification": "keep-developer-related",
+      "thesis": "Improve a weak engineering culture by first learning the organization and earning trust, then creating small team practices whose visible quality and delivery gains attract wider adoption.",
+      "reason": "The source is centrally about developer responsibility and collaboration: entering a new company, introducing tests and policy discussions, working with product peers, and spreading change through demonstrated outcomes.",
+      "risks": [
+        "The claimed success rate is an anecdotal estimate, not measured evidence, and should be omitted.",
+        "Bottom-up change may fail in hostile or entrenched power structures; the source itself says leaving can be the better choice."
+      ],
+      "evidence": [
+        {
+          "lines": "L105-L127",
+          "paraphrase": "최소 3개월은 관망 ... 귀는 열고 입은 닫자 ... 신뢰를 얻자 ... 개발자 플러스 비개발자 ... 그 다음에 의견을 피력."
+        },
+        {
+          "lines": "L157-L180",
+          "paraphrase": "내 팀 먼저 바꾸는 걸 해야 돼요 ... 옆 팀이 관심 ... 실제 실무에 대한 걸 해결 ... 자기 팀도 하고 싶은데 어떻게 하면 좋은지."
+        }
+      ],
+      "slug": "change-engineering-culture-through-small-wins",
+      "enTitle": "Change Engineering Culture Through Trust and Small Wins",
+      "koTitle": "신뢰와 작은 성공으로 개발 문화를 바꾸는 법",
+      "enDescription": "Learn a new organization before prescribing fixes, earn trust through delivery, and let visible gains from tests and shared policy work spread beyond your team.",
+      "koDescription": "새 조직을 먼저 이해하고 일로 신뢰를 얻은 뒤, 테스트와 정책 공유의 작은 성과를 보여 개발 문화를 확산합니다.",
+      "tags": [
+        "collaboration",
+        "testing",
+        "engineering-practice"
+      ],
+      "estimatedPublishedAt": "2025-11-16"
+    },
+    {
+      "sourceId": "57",
+      "sourceFile": "25_57_최소한의_핵심_문서만_최신_상태로_관리하라.MD",
+      "finalLineRead": 219,
+      "classification": "keep-developer-related",
+      "thesis": "Maintain a small, trusted documentation set covering policy, core concepts, system flows, and API contracts rather than producing many artifacts that drift apart and lose credibility.",
+      "reason": "The body addresses sustainable developer collaboration and operating handover through requirements and policy documents, concept and system diagrams, batch flows, API docs, ownership, and onboarding feedback.",
+      "risks": [
+        "The proposed document set is a heuristic and must vary with system complexity, regulation, team topology, and operational risk.",
+        "A smaller set still fails without clear ownership and change-triggered updates; consolidating too aggressively can erase necessary detail."
+      ],
+      "evidence": [
+        {
+          "lines": "L23-L29",
+          "paraphrase": "가능한 최소한의 문서 ... 문서가 많으면 ... 관리 비용 ... 최신화가 계속 안 돼 있는 문서는 ... 볼 수가 없는."
+        },
+        {
+          "lines": "L139-L153",
+          "paraphrase": "요구사항 정의서 정책서 ... 개념도 ... 시스템 링크 ... 문서 이거 3개 정도 ... 관리하기도 쉬워 ... 유사한 문서가 많으면 ... 관리가 점점 힘들어."
+        }
+      ],
+      "slug": "keep-a-small-trusted-documentation-set",
+      "enTitle": "Keep a Small Documentation Set the Team Can Trust",
+      "koTitle": "팀이 믿을 수 있는 최소 문서만 최신화하라",
+      "enDescription": "Reduce documentation sprawl by maintaining a trusted core of policy, concepts, system flows, and API contracts with clear ownership and onboarding feedback.",
+      "koDescription": "정책, 핵심 개념, 시스템 흐름과 API 계약을 소수의 신뢰할 문서로 관리하고 온보딩 피드백으로 계속 최신화합니다.",
+      "tags": [
+        "collaboration",
+        "architecture",
+        "software-delivery"
+      ],
+      "estimatedPublishedAt": "2025-11-23"
+    },
+    {
+      "sourceId": "59",
+      "sourceFile": "25_59_애매한_경력도_면접_서사를_만드는_강점으로_쓰기.MD",
+      "finalLineRead": 308,
+      "classification": "keep-developer-related",
+      "thesis": "Keep an honest employment history, but tailor emphasis and project detail to each role so an unusual background becomes credible evidence of the value you can deliver.",
+      "reason": "The body is about developer hiring and career communication: truthful resumes, role-specific versions, job-description alignment, interview narrative, and converting adjacent AI experience into relevant evidence.",
+      "risks": [
+        "The source initially explores omitting experience but later rejects career reduction; publication must preserve the final honesty constraint and avoid contradictory advice.",
+        "Claims about employment records and hiring consequences are not legal guidance and should be checked for the target jurisdiction and employer."
+      ],
+      "evidence": [
+        {
+          "lines": "L185-L212",
+          "paraphrase": "원래는 하면 안 됩니다 ... 경력을 과대포장하는 것도 문제지만 축소하는 것도 ... 사람이 전체에 지나온 시간이 결국 그 사람을 만든다 ... 써야 된다."
+        },
+        {
+          "lines": "L257-L280",
+          "paraphrase": "AI를 조금 강조한 버전과 ... 강조하지 않은 버전 ... 경력은 그대로 적고 ... 회사마다 이력서를 내용을 다 바꾸셔야 ... 경력이나 이런 거 중심으로 내가 어필."
+        }
+      ],
+      "slug": "turn-an-unusual-developer-background-into-a-strength",
+      "enTitle": "Turn an Unusual Developer Background into an Interview Strength",
+      "koTitle": "애매한 개발 경력을 정직한 면접 강점으로 바꾸는 법",
+      "enDescription": "Keep your full work history honest, then tailor project emphasis to each role so adjacent experience gives interviewers credible reasons to hire you.",
+      "koDescription": "전체 경력은 정직하게 유지하되 지원 역할마다 프로젝트 강조점을 바꿔, 인접 경험을 채용할 만한 근거로 만듭니다.",
+      "tags": [
+        "engineering-practice",
+        "collaboration"
+      ],
+      "estimatedPublishedAt": "2025-11-30"
+    },
+    {
+      "sourceId": "60",
+      "sourceFile": "25_60_앱_하위_호환성을_지키는_서버_주도_응답_설계.MD",
+      "finalLineRead": 190,
+      "classification": "keep-technical",
+      "thesis": "Keep volatile display policy and experiment decisions on the server for long-lived app versions, while translating them at the presentation boundary so core business concepts stay clean.",
+      "reason": "The source is an API-design discussion about app backward compatibility, server-controlled formatting and badges, experiments, client contracts, and separation between presentation and domain logic.",
+      "risks": [
+        "The old-app usage evidence is anecdotal and undated; the architectural argument should not depend on a specific update-rate claim.",
+        "Returning every field as a string is presented as an observed alternative, not the recommended design, and can weaken type safety."
+      ],
+      "evidence": [
+        {
+          "lines": "L118-L139",
+          "paraphrase": "클라이언트의 로직이 있을만한 것과 서버 쪽에서 해줘야 되는 것들 ... 프레젠테이션 레이어 ... 클라이언트를 위한 레이어 ... 프레젠테이션 레이어와 개념 영역을 잘 분리."
+        },
+        {
+          "lines": "L145-L152",
+          "paraphrase": "비즈니스 로직 쪽에서 내려줄 때는 ... 15,000을 그대로 내려주고 API 리스폰스 할 때만 ... 클라이언트가 원하는 대로 ... 도메인과 개념 영역의 데이터를 변환."
+        }
+      ],
+      "slug": "server-driven-api-responses-for-app-compatibility",
+      "enTitle": "Server-Driven API Responses for Mobile App Compatibility",
+      "koTitle": "앱 하위 호환성을 위한 서버 주도 API 응답 설계",
+      "enDescription": "Keep changing display policy and experiments server-side for old app versions, but isolate that translation at the API boundary to protect the domain model.",
+      "koDescription": "구버전 앱을 위해 변하는 표시 정책과 실험은 서버가 맡되, 변환을 API 경계에 격리해 도메인 모델을 보호합니다.",
+      "tags": [
+        "api-design",
+        "architecture",
+        "backend"
+      ],
+      "estimatedPublishedAt": "2025-12-07"
+    },
+    {
+      "sourceId": "61",
+      "sourceFile": "25_61_통_라이브러리를_쪼개_불필요한_의존성을_막아라.MD",
+      "finalLineRead": 427,
+      "classification": "keep-technical",
+      "thesis": "Replace all-in-one company libraries with composable modules so each service declares only the infrastructure it needs, understands its dependency graph, and avoids hidden runtime cost and failure coupling.",
+      "reason": "The body is a detailed software architecture and developer-tooling argument about Gradle dependencies, Redis and Kafka coupling, auto-configuration, composable modules, presets, testing modules, and framework upgrades.",
+      "risks": [
+        "Spring Boot 4 module details are described while browsing on-screen code and include ASR-corrupted names; verify all framework claims against official source before publication.",
+        "Fine-grained modules add discovery and assembly cost; the source allows documented higher-level presets when team skill or delivery speed justifies them."
+      ],
+      "evidence": [
+        {
+          "lines": "L60-L82",
+          "paraphrase": "의존성을 거는 순간 모든 의존성이 다 들어와요 ... 내가 안 써도 ... 쓸데없이 자원을 쓰는 ... 소프트웨어가 무거워 ... 충돌 가능성 ... 생각지도 못한 데서 영향."
+        },
+        {
+          "lines": "L206-L212",
+          "paraphrase": "조합 가능한 구조 ... 로깅 모듈 ... JPA나 카프카 ... 모듈로 다 별개로 나눠 ... 선 넘지 않는 구조."
+        }
+      ],
+      "slug": "split-all-in-one-libraries-into-composable-modules",
+      "enTitle": "Split All-in-One Libraries into Composable Dependency Modules",
+      "koTitle": "통 라이브러리를 조합 가능한 의존성 모듈로 쪼개라",
+      "enDescription": "Avoid hidden infrastructure, runtime cost, and dependency conflicts by splitting company libraries into modules each service can understand and compose deliberately.",
+      "koDescription": "전사 통 라이브러리를 서비스가 이해하고 선택할 수 있는 모듈로 나눠 숨은 인프라 연결, 자원 낭비와 의존성 충돌을 막습니다.",
+      "tags": [
+        "architecture",
+        "backend",
+        "reliability"
+      ],
+      "estimatedPublishedAt": "2025-12-14"
+    }
+  ]
+}
