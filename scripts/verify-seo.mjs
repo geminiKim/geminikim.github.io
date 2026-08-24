@@ -38,7 +38,16 @@ function pagePath(file) {
   return `/${relative.replace(/index\.html$/u, '')}`;
 }
 
+function robotsValues(content) {
+  return [...content.matchAll(/<meta name="robots" content="([^"]*)">/gu)].map((match) => match[1]);
+}
+
+function robotsDirectives(content) {
+  return robotsValues(content).flatMap((value) => value.toLowerCase().split(',').map((directive) => directive.trim()));
+}
+
 const htmlFiles = collect(dist).filter((file) => file.pathname.endsWith('.html'));
+if (!htmlFiles.some((file) => pagePath(file) === '/404.html')) failures.push('Missing generated error page: dist/404.html');
 for (const file of htmlFiles) {
   const path = pagePath(file);
   const content = readFileSync(file, 'utf8');
@@ -46,7 +55,14 @@ for (const file of htmlFiles) {
   const isError = path === '/404.html';
   const isCanonicalPage = !isCompatibility && !isError;
 
+  if (isError) {
+    exactlyOnce(content, '<meta name="robots" content="noindex,follow">', `Error-page robots for ${path}`);
+    if (robotsValues(content).length !== 1) failures.push(`Error page must emit exactly one robots meta for ${path}`);
+    if (content.includes('<link rel="canonical"')) failures.push(`Error page must not emit a canonical for ${path}`);
+  }
+
   if (isCanonicalPage) {
+    if (robotsDirectives(content).includes('noindex')) failures.push(`Canonical page must remain indexable for ${path}`);
     exactlyOnce(content, `<meta property="og:image" content="${defaultImage}">`, `Open Graph image for ${path}`);
     exactlyOnce(content, '<meta property="og:image:width" content="1200">', `Open Graph image width for ${path}`);
     exactlyOnce(content, '<meta property="og:image:height" content="630">', `Open Graph image height for ${path}`);
