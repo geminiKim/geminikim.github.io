@@ -12,6 +12,8 @@ interface Props {
   title?: string;
   ogTitle?: string;
   description?: string;
+  robots?: string;
+  emitCanonical?: boolean;
   type?: 'website' | 'article';
   publishedAt?: Date;
   updatedAt?: Date;
@@ -25,6 +27,8 @@ const {
   title,
   ogTitle,
   description,
+  robots,
+  emitCanonical = true,
   type = 'website',
   publishedAt,
   updatedAt,
@@ -57,10 +61,11 @@ const enHome = localePath('en');
     <GoogleAnalytics />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={pageDescription} />
+    {robots && <meta name="robots" content={robots} />}
     <meta name="theme-color" content="#050505" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title={`Gemini Kim RSS (${locale})`} href={localePath(locale, 'rss.xml')} />
-    <link rel="canonical" href={canonicalURL} />
+    {emitCanonical && <link rel="canonical" href={canonicalURL} />}
     {alternateEntries.map(([lang, path]) => (
       <link rel="alternate" hreflang={lang} href={absoluteURL(path)} />
     ))}
